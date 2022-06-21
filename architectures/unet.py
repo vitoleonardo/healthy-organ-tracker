@@ -14,7 +14,7 @@ def conv_down(input, num_filters):
 
 def encoder_block(input, num_filters):
     enc = conv_down(input, num_filters)
-    pool = MaxPool2D((2, 2))(x)
+    pool = MaxPool2D((2, 2))(enc)
     return enc, pool
 
 def decoder_block(input, skip_features, num_filters):
