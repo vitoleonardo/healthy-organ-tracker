@@ -1,7 +1,10 @@
 /.DS_Store
 /.ipynb_checkpoints
 /envs
-/input
+/hpc_train_files/input/*
 /logs
+
 model.h5
 __pycache__
+hpc_train_files/input/.DS_Store
+hpc_train_files/.DS_Store
