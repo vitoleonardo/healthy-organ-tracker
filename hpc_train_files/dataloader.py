@@ -1,10 +1,14 @@
 import tensorflow as tf
+import numpy as np
+import cv2
+
+from utility import rle_encode, rle_decode, build_masks
 
 # Data Generator
 # Inspired by https://www.kaggle.com/code/samuelcortinhas/uwmgi-segmentation-unet-keras-train
 class DataGenerator(tf.keras.utils.Sequence):
     
-    def __init__(self, df, batch_size=16,  height=HEIGHT, width=WIDTH, subset="train", shuffle=False, two_five_dim=True):
+    def __init__(self, df, semi3d_data, batch_size=16,  height=128, width=128, subset="train", shuffle=False ):
         """_summary_
 
         Args:
@@ -14,16 +18,16 @@ class DataGenerator(tf.keras.utils.Sequence):
             width (integer): width which image ins resized to. Should be a multiple of 32
             subset (str): set subset to "train" or "test". Default is train
             shuffle (bool): defaults to False.
-            two_five_dim (bool): Specify if generator should load 2.5D data. Default is True
+            semi3d_data (bool): Specify if generator should load 2.5D data. Default is True
         """
         super().__init__()
         self.df           = df
+        self.semi3d_data  = semi3d_data
         self.shuffle      = shuffle
         self.subset       = subset
         self.batch_size   = batch_size
         self.height       = height
         self.width        = width
-        self.two_five_dim = two_five_dim
         self.on_epoch_end()
 
     def __len__(self):
@@ -58,11 +62,11 @@ class DataGenerator(tf.keras.utils.Sequence):
 
             img = self.__load_grayscale(image_paths[0])
 
-            if self.two_five_dim:
+            if self.semi3d_data:
                 # 2.5D Data (Stack 3 slices together)
                 img2 = self.__load_grayscale(image_paths[1])
                 img3 = self.__load_grayscale(image_paths[2])
-                img = np.stack([img1,img2,img3], axis=2)
+                img = np.stack([img,img2,img3], axis=2)
 
             X[i,] = img
             
@@ -89,7 +93,7 @@ class DataGenerator(tf.keras.utils.Sequence):
         dsize = (self.height, self.width)
         img = cv2.resize(img, dsize)
         img = img.astype(np.float32) / 255.
-        if not self.two_five_dim:
+        if not self.semi3d_data:
             img = np.expand_dims(img, axis=-1)
 
         return img
