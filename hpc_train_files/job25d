@@ -1,0 +1,19 @@
+#!/bin/bash
+#PBS -l select=1:ncpus=1:mem=8gb:ngpus=1:accelerator_model=a100
+#PBS -l walltime=23:59:00
+#PBS -A "CompVisBA"
+
+## Log-File definieren
+export LOGFILE=$PBS_O_WORKDIR/$PBS_JOBNAME"."$PBS_JOBID".log"
+
+module load Python/3.8.3
+module load gcc/10.2.0
+module load CUDA/11.2.2
+module load bazel/0.28.0
+module load cuDNN/8.1.1
+
+cd /gpfs/project/vikra107/train
+
+echo "Starting script"
+python HOT2_5D.py
+echo "Script beendet."
