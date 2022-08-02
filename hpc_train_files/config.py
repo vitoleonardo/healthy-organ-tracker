@@ -1,7 +1,7 @@
 # This class contains all the configuration parameters for the model
 class CFG:
 
-    def __init__(self,img_dims=(128,128,3), model='UNet', batch_size=16, epochs=50, kaggle=True, use_fold_csv=True, backbone='efficientnetb0', lr_patience=5, semi3d_data=True):
+    def __init__(self,img_dims=(128,128,3), model='UNet', batch_size=16, epochs=50, kaggle=True, use_fold_csv=True, backbone='efficientnetb0', lr_patience=5, semi3d_data=True, internet=False):
         self.img_dims             = img_dims
         self.height               = img_dims[0]
         self.width                = img_dims[1]
@@ -23,6 +23,7 @@ class CFG:
         self.backbone             = backbone
         self.lr_patience          = lr_patience
         self.semi3d_data          = semi3d_data
+        self.internet             = internet
 
     # Method which returns path according to key from encoder_weights_path
     def get_encoder_weights_path(self, key):
