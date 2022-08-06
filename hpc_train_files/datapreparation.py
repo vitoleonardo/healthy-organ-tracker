@@ -58,6 +58,12 @@ def extract_metadata(df, train_dir, remove_faulty_cases=True):
     return df_train
 
 def _remove_faulties(df_train):
+    """
+    It removes the faulty rows from the training data
+    
+    :param df_train: the training dataframe
+    :return: A dataframe with the faulty rows removed.
+    """
     fault1 = 'case7_day0'
     fault2 = 'case81_day30'
     df_train = df_train[~df_train['id'].str.contains(fault1) & ~df_train['id'].str.contains(fault2)].reset_index(drop=True)
@@ -78,3 +84,4 @@ def _get_paths_array(df_train, channels=3, stride=2):
 
     df_train['image_paths'] = df_train[[f'path{i:02d}' for i in range(channels)]].values.tolist()
     return df_train
+
