@@ -42,4 +42,6 @@ class CFG:
         'resnext101': 'input/resnext101_imagenet_1000_no_top.h5',
         'seresnext50': 'input/seresnext50_imagenet_1000_no_top.h5',
         'seresnext101': 'input/seresnext101_imagenet_1000_no_top.h5',
+        'densenet121': 'input/densenet121_weights_tf_dim_ordering_tf_kernels_notop.h5',
+        'densenet201': 'input/densenet201_weights_tf_dim_ordering_tf_kernels_notop.h5',
         }

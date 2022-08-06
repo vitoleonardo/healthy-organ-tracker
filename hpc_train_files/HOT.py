@@ -13,6 +13,8 @@ Backbones available:
         'resnext101'
         'seresnext50'
         'seresnext101'
+        'densenet121'
+        'densenet201'
 
 Dim should be divisible by 32
 Batchsize standard is 16, increase if you have a lot of memory
@@ -97,13 +99,14 @@ def main(backbone, dim, batch, epochs, semi3d_data, remove_faulty_cases):
     from segmentation_models.utils import set_trainable
     from keras.callbacks import Callback, ModelCheckpoint
 
-    for i in cfg.folds:
-        model   = Unet(cfg.backbone,input_shape=cfg.img_dims, classes=3, activation='sigmoid', encoder_weights=cfg.encoder_weights_path[cfg.backbone])
-        opt     = tf.keras.optimizers.Adam(learning_rate=cfg.lr)
+    model   = Unet(cfg.backbone,input_shape=cfg.img_dims, classes=3, activation='sigmoid', encoder_weights=cfg.encoder_weights_path[cfg.backbone])
+    opt     = tf.keras.optimizers.Adam(learning_rate=cfg.lr)
         
-        model.compile(optimizer=opt, loss=bce_dice_loss,metrics=[dice_coef,iou_coef])
+    model.compile(optimizer=opt, loss=bce_dice_loss,metrics=[dice_coef,iou_coef])
 
-        model_full_name = cfg.model + str(cfg.img_dims)+ "_BATCH_" + str(cfg.batch_size) + "_EPOCHS_" + str(cfg.epochs) + "_FOLD_" + str(i) + '_lr_' + str(cfg.lr)+ ".h5"
+    # Only train on fold 3
+    for i in range(3,4):
+        model_full_name = cfg.model + '_BB_' + str(cfg.backbone) + str(cfg.img_dims)+ "_25D_DATA_" + str(cfg.semi3d_data) +"_BATCH_" + str(cfg.batch_size) + "_EPOCHS_" + str(cfg.epochs) + "_FOLD_" + str(i) + '_lr_' + str(cfg.lr)+ ".h5"
         log_dir = "logs/"+ model_full_name + datetime.now().strftime("%Y%m%d-%H%M%S") + "_FOLD_" + str(i)
 
         callbacks = [
@@ -130,6 +133,8 @@ def main(backbone, dim, batch, epochs, semi3d_data, remove_faulty_cases):
         
         train_generator = DataGenerator(df_train.loc[train_ids],batch_size=cfg.batch_size, height=cfg.height, width=cfg.width,shuffle=True, semi3d_data=cfg.semi3d_data)
         val_generator = DataGenerator(df_train.loc[valid_ids], height=cfg.height, width=cfg.width, semi3d_data=cfg.semi3d_data)
+
+        print("Starting training fold: " + str(i))
 
         history = model.fit(
             train_generator,
