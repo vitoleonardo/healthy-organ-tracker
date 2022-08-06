@@ -46,6 +46,8 @@ def extract_metadata(df, train_dir, remove_faulty_cases=True):
     df_train['count'] = np.sum(df_train.iloc[:,1:4]!='',axis=1).values
     df_train.sort_values(by=['case','day','slice'],ignore_index=True, inplace=True)
 
+    df_train = _get_paths_array(df_train)
+
     print("Frame merged. Shape: {}".format(df_train.shape))
     print("Remove faulty cases: {}".format(remove_faulty_cases))
 
@@ -55,8 +57,13 @@ def extract_metadata(df, train_dir, remove_faulty_cases=True):
 
     return df_train
 
+def _remove_faulties(df_train):
+    fault1 = 'case7_day0'
+    fault2 = 'case81_day30'
+    df_train = df_train[~df_train['id'].str.contains(fault1) & ~df_train['id'].str.contains(fault2)].reset_index(drop=True)
+    return df_train
 
-def _remove_faulties(df_train, channels=3, stride=2):
+def _get_paths_array(df_train, channels=3, stride=2):
     """
     > For each channel, we shift the path column by a certain stride, and then fill the missing values
     with the previous value
