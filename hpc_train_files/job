@@ -15,9 +15,7 @@ module load bazel/0.28.0
 module load cuDNN/8.1.1
 
 echo "Loaded modules. Changing working dir..."
-cd /gpfs/project/vikra107/train
-
-
+cd /gpfs/project/vikra107/train 
 
 echo "Starting script with input: $INPUT"
 
