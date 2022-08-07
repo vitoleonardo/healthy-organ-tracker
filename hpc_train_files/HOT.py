@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-"""Usage: HOT.py <backbone> <dim> <batch> <epochs> <semi3d_data> <remove_faulty_cases>
+"""Usage: HOT.py <backbone> <dim> <batch> <epochs> <semi3d_data> <remove_faulty_cases> <use_crop_data>
 
 Backbones available: 
         'efficientnetb0'
@@ -53,11 +53,11 @@ from config import CFG
 from dataloader import DataGenerator
 from utility import rle_encode, rle_decode, build_masks
 from loss import dice_coef, iou_coef, dice_loss, bce_dice_loss
-from datapreparation import extract_metadata
+from datapreparation import extract_metadata, remove_faulties
 
 print(f"TensorFlow has access to the following devices:\n{tf.config.list_physical_devices()}")
 
-def main(backbone, dim, batch, epochs, semi3d_data, remove_faulty_cases):
+def main(backbone, dim, batch, epochs, semi3d_data, remove_faulty_cases, use_crop_data):
     cfg = CFG(
         backbone            = backbone,
         img_dims            = (dim,dim,3),
@@ -67,18 +67,16 @@ def main(backbone, dim, batch, epochs, semi3d_data, remove_faulty_cases):
         kaggle              = False, 
         use_fold_csv        = True,
         semi3d_data         = semi3d_data,
-        remove_faulty_cases = remove_faulty_cases)
+        remove_faulty_cases = remove_faulty_cases,
+        use_crop_data       = use_crop_data)
 
     print("Starting training with config: ", str(cfg))
 
-    df = pd.read_csv(cfg.train_csv)
+    df_train = pd.read_csv('df_train.csv', index_col=[0])
+    df_train.fillna('',inplace=True); 
 
-    DEBUG = False
-    if DEBUG:
-        df = df.sample(n=90, random_state=cfg.seed)
-
-    # Extract metadata from image paths
-    df_train = extract_metadata(df, cfg.train_dir, remove_faulty_cases=True)
+    if remove_faulty_cases:
+        df_train = remove_faulties(df_train)
 
     # Cross Validation; Import Index from CSV bc function is not available in HPC module
     if not cfg.use_fold_csv:
@@ -106,8 +104,8 @@ def main(backbone, dim, batch, epochs, semi3d_data, remove_faulty_cases):
 
     # Only train on fold 3
     for i in range(3,4):
-        model_full_name = cfg.model + '_BB_' + str(cfg.backbone) + str(cfg.img_dims)+ "_25D_DATA_" + str(cfg.semi3d_data) +"_BATCH_" + str(cfg.batch_size) + "_EPOCHS_" + str(cfg.epochs) + "_FOLD_" + str(i) + '_lr_' + str(cfg.lr)+ ".h5"
-        log_dir = "logs/"+ model_full_name + datetime.now().strftime("%Y%m%d-%H%M%S") + "_FOLD_" + str(i)
+        model_full_name = f"{cfg.model}_BB_{cfg.backbone}_DIM_{cfg.img_dims}_SEMI3D_{cfg.semi3d_data}_CROPDATA_{cfg.use_crop_data}_BATCH_{cfg.batch_size}_EPOCHS_{cfg.epochs}_FOLD_{i}.h5"
+        log_dir = f'logs/{model_full_name}_{datetime.now().strftime("%d%m%Y-%H%M")}_FOLD_{i}'
 
         callbacks = [
             tf.keras.callbacks.TensorBoard(
@@ -131,10 +129,10 @@ def main(backbone, dim, batch, epochs, semi3d_data, remove_faulty_cases):
         train_ids = df_train[df_train["fold"]!=i].index
         valid_ids = df_train[df_train["fold"]==i].index
         
-        train_generator = DataGenerator(df_train.loc[train_ids],batch_size=cfg.batch_size, height=cfg.height, width=cfg.width,shuffle=True, semi3d_data=cfg.semi3d_data)
-        val_generator = DataGenerator(df_train.loc[valid_ids], height=cfg.height, width=cfg.width, semi3d_data=cfg.semi3d_data)
+        train_generator = DataGenerator(df_train.loc[train_ids],batch_size=cfg.batch_size, height=cfg.height, width=cfg.width,shuffle=True, semi3d_data=cfg.semi3d_data, use_crop_data=cfg.use_crop_data)
+        val_generator = DataGenerator(df_train.loc[valid_ids], height=cfg.height, width=cfg.width, semi3d_data=True)
 
-        print("Starting training fold: " + str(i))
+        print(f"Starting training {model_full_name}")
 
         history = model.fit(
             train_generator,
@@ -163,7 +161,8 @@ if __name__ == '__main__':
         epochs = int(args['<epochs>'])
         semi3d_data = json.loads(args['<semi3d_data>'].lower())
         remove_faulty_cases = json.loads(args['<remove_faulty_cases>'].lower())
-        main(backbone, dim, batch, epochs, semi3d_data, remove_faulty_cases)
+        use_crop_data = json.loads(args['<use_crop_data>'].lower())
+        main(backbone, dim, batch, epochs, semi3d_data, remove_faulty_cases, use_crop_data)
     except Exception as e:
         print(e)
         print("Error: Check arguments")

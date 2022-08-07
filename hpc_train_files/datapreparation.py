@@ -5,7 +5,7 @@ import re
 import os
 
 
-def extract_metadata(df, train_dir, remove_faulty_cases=True):
+def extract_metadata(df, train_dir, remove_faulty_cases=True, crop_df="crop_df.csv"):
     """
     > It takes the dataframe from the train.csv file and merges it with the metadata from the slice meta
     info
@@ -48,16 +48,19 @@ def extract_metadata(df, train_dir, remove_faulty_cases=True):
 
     df_train = _get_paths_array(df_train)
 
-    print("Frame merged. Shape: {}".format(df_train.shape))
-    print("Remove faulty cases: {}".format(remove_faulty_cases))
+    crop = pd.read_csv(crop_df, index_col=[0], dtype={'case':int, 'day':int, 'rs':int, 'cs':int, 're':int, 'ce':int})
+    df_train = df_train.merge(crop, how='left', on=['case','day'])
 
+    print("Frame merged. Shape: {}".format(df_train.shape))
+
+    print("Remove faulty cases: {}".format(remove_faulty_cases))
     if remove_faulty_cases:
-        df_train = _remove_faulties(df_train)
+        df_train = remove_faulties(df_train)
         print("Sucess. Shape: {}".format(df_train.shape))
 
     return df_train
 
-def _remove_faulties(df_train):
+def remove_faulties(df_train):
     """
     It removes the faulty rows from the training data
     

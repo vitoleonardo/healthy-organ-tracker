@@ -8,7 +8,7 @@ from utility import rle_encode, rle_decode, build_masks
 # Inspired by https://www.kaggle.com/code/samuelcortinhas/uwmgi-segmentation-unet-keras-train
 class DataGenerator(tf.keras.utils.Sequence):
     
-    def __init__(self, df, semi3d_data, batch_size=16,  height=128, width=128, subset="train", shuffle=False ):
+    def __init__(self, df, semi3d_data, batch_size=16,  height=128, width=128, subset="train", shuffle=False, use_crop_data=False):
         """_summary_
 
         Args:
@@ -28,6 +28,7 @@ class DataGenerator(tf.keras.utils.Sequence):
         self.batch_size   = batch_size
         self.height       = height
         self.width        = width
+        self.use_crop_data= use_crop_data
         self.on_epoch_end()
 
     def __len__(self):
@@ -55,17 +56,19 @@ class DataGenerator(tf.keras.utils.Sequence):
         y = np.empty((self.batch_size,self.width,self.height,3))
         
         indexes = self.indexes[index*self.batch_size:(index+1)*self.batch_size]
-        
-        for i,image_paths in enumerate(self.df['image_paths'].iloc[indexes]):
+                
+        for i,path in enumerate(self.df['path'].iloc[indexes]):
             h=self.df['height'].iloc[indexes[i]]
             w=self.df['width'].iloc[indexes[i]]
+            
+            col = self.df.loc[self.df['path'] == path]
 
-            img = self.__load_grayscale(image_paths[0])
+            img = self.__load_grayscale(col['path00'].values[0])
 
             if self.semi3d_data:
                 # 2.5D Data (Stack 3 slices together)
-                img2 = self.__load_grayscale(image_paths[1])
-                img3 = self.__load_grayscale(image_paths[2])
+                img2 = self.__load_grayscale(col['path01'].values[0])
+                img3 = self.__load_grayscale(col['path02'].values[0])
                 img = np.stack([img,img2,img3], axis=2)
 
             X[i,] = img
@@ -75,13 +78,18 @@ class DataGenerator(tf.keras.utils.Sequence):
                     
                     # Get RLE encoded string of class, decode and create mask
                     rles = self.df[j].iloc[indexes[i]]
+                    
                     masks = rle_decode(rles, shape=(h, w, 1))
+                    if self.use_crop_data:
+                        masks = self.__crop_image(masks, col['path00'].values[0])
+                        
                     masks = cv2.resize(masks, (self.height, self.width))
                     
                     y[i,:,:,k] = masks
         if self.subset == 'train': return X, y
         else: return X
         
+            
     def __load_grayscale(self, img_path):
         """
         It loads the image, resizes it to the desired size, and converts it to a float32 array
@@ -90,10 +98,26 @@ class DataGenerator(tf.keras.utils.Sequence):
         :return: The image is being returned.
         """
         img = cv2.imread(img_path, cv2.IMREAD_ANYDEPTH)
+
+        if self.use_crop_data:
+            img = self.__crop_image(img, img_path)
+            
         dsize = (self.height, self.width)
         img = cv2.resize(img, dsize)
         img = img.astype(np.float32) / 255.
+        
         if not self.semi3d_data:
             img = np.expand_dims(img, axis=-1)
 
         return img
+
+    def __crop_image(self, img, img_path):
+        
+        col = self.df.loc[self.df['path'] == img_path]
+        
+        rs = col['rs'].values[0]
+        re = col['re'].values[0]
+        cs = col['cs'].values[0]
+        ce = col['ce'].values[0]
+        
+        return img[rs:re, cs:ce]
