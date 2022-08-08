@@ -130,7 +130,7 @@ def main(backbone, dim, batch, epochs, semi3d_data, remove_faulty_cases, use_cro
         valid_ids = df_train[df_train["fold"]==i].index
         
         train_generator = DataGenerator(df_train.loc[train_ids],batch_size=cfg.batch_size, height=cfg.height, width=cfg.width,shuffle=True, semi3d_data=cfg.semi3d_data, use_crop_data=cfg.use_crop_data)
-        val_generator = DataGenerator(df_train.loc[valid_ids], height=cfg.height, width=cfg.width, semi3d_data=True)
+        val_generator = DataGenerator(df_train.loc[valid_ids], height=cfg.height, width=cfg.width, semi3d_data=cfg.semi3d_data)
 
         print(f"Starting training {model_full_name}")
 

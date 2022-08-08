@@ -5,7 +5,7 @@ import re
 import os
 
 
-def extract_metadata(df, train_dir, remove_faulty_cases=True, crop_df="crop_df.csv"):
+def extract_metadata(df, train_dir, remove_faulty_cases=False, crop_df="crop_df.csv"):
     """
     > It takes the dataframe from the train.csv file and merges it with the metadata from the slice meta
     info
