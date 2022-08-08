@@ -75,7 +75,7 @@ def is_isolated(_row):
 
 def fix_nc_slices(_row):
     """
-    If the row has a segmented isolated nuclei, then set the predicted value to an empty string
+    If the row has a segmented isolated mask, then set the predicted value to an empty string
     
     :param _row: the row of the dataframe that is being processed
     :return: A dataframe with the predicted and actual values for each row.
