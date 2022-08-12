@@ -1,6 +1,8 @@
 \babel@toc {ngerman}{}\relax 
-\contentsline {figure}{\numberline {1}{\ignorespaces Anzahl Bilder pro Fall}}{3}{figure.1}%
-\contentsline {figure}{\numberline {2}{\ignorespaces Anzahl Bilder pro Tag}}{3}{figure.2}%
-\contentsline {figure}{\numberline {3}{\ignorespaces U-Net Architektur}}{5}{figure.3}%
-\contentsline {figure}{\numberline {4}{\ignorespaces Verteilung der Klassen im Testset}}{6}{figure.4}%
-\contentsline {figure}{\numberline {5}{\ignorespaces Verteilung der Klassen im Testset}}{6}{figure.5}%
+\contentsline {figure}{\numberline {1}{\ignorespaces Magen-Darm Trakt}}{3}{figure.1}%
+\contentsline {figure}{\numberline {2}{\ignorespaces Beispiel MRT des Magen-Darm Traks. Zu sehen ist der Magen (rot) und der Tumor (pink) sowie die verabreichte Strahlendosis. Die Strahlenintensivität werden durch den Regenbogen der Umrisse dargestellt, wobei höhere Dosen rot und niedrigere Dosen grün dargestellt werden.}}{7}{figure.2}%
+\contentsline {figure}{\numberline {3}{\ignorespaces U-Net Architektur}}{8}{figure.3}%
+\contentsline {figure}{\numberline {4}{\ignorespaces Trainingsdaten Hierachie}}{8}{figure.4}%
+\contentsline {figure}{\numberline {5}{\ignorespaces Verteilung der Klassen im Testset}}{9}{figure.5}%
+\contentsline {figure}{\numberline {6}{\ignorespaces Anzahl Bilder pro Fall}}{9}{figure.6}%
+\contentsline {figure}{\numberline {7}{\ignorespaces Anzahl Bilder pro Tag}}{9}{figure.7}%

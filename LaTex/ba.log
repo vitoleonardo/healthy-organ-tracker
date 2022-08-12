@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.8.5)  11 AUG 2022 23:05
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.8.5)  12 AUG 2022 22:26
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -537,11 +537,7 @@ Package graphics Info: Driver file: pdftex.def on input line 107.
 Package csquotes Info: Checking for multilingual support...
 Package csquotes Info: ... found 'babel' package.
 
-(./ba.aux
-
-LaTeX Warning: Label `Fig:klassenverteilung' multiply defined.
-
-)
+(./ba.aux)
 \openout1 = `ba.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 69.
@@ -562,7 +558,8 @@ LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 69.
 LaTeX Font Info:    ... okay on input line 69.
 LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 69.
 LaTeX Font Info:    ... okay on input line 69.
- (/usr/local/texlive/2022/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+
+(/usr/local/texlive/2022/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count404
 \scratchdimen=\dimen147
@@ -634,7 +631,7 @@ No file ba.bbl.
 Package biblatex Info: Reference section=0 on input line 69.
 Package biblatex Info: Reference segment=0 on input line 69.
 (./titelmakros.tex
-<bilder/HHU_Logo.pdf, id=96, 896.34875pt x 218.8175pt>
+<bilder/HHU_Logo.pdf, id=92, 896.34875pt x 218.8175pt>
 File: bilder/HHU_Logo.pdf Graphic file (type pdf)
 <use bilder/HHU_Logo.pdf>
 Package pdftex.def Info: bilder/HHU_Logo.pdf  used on input line 47.
@@ -679,111 +676,174 @@ l.151 \end{titlepage}
  [1
 
 ]) (./einleitung.tex
+
+LaTeX Warning: Citation 'Clarke:Mri1995' on page 1 undefined on input line 29.
+
+
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.24 \subsection
-                {CNN} [1
+l.33 \newpage
+              [1
 
 
-] [2]
+]
 
-LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 56.
+LaTeX Warning: Citation 'U-Net' on page 2 undefined on input line 38.
 
-<bilder/slice_per_case.png, id=165, 702.625pt x 501.875pt>
-File: bilder/slice_per_case.png Graphic file (type png)
-<use bilder/slice_per_case.png>
-Package pdftex.def Info: bilder/slice_per_case.png  used on input line 77.
-(pdftex.def)             Requested size: 245.829pt x 175.58995pt.
 
-Overfull \hbox (40.97098pt too wide) in paragraph at lines 77--78
- [][] 
+LaTeX Warning: Citation 'Hesamian' on page 2 undefined on input line 38.
+
+
+LaTeX Warning: Citation 'SmartCrop' on page 2 undefined on input line 42.
+
+<bilder/intestines.png, id=157, 963.6pt x 542.025pt>
+File: bilder/intestines.png Graphic file (type png)
+<use bilder/intestines.png>
+Package pdftex.def Info: bilder/intestines.png  used on input line 54.
+(pdftex.def)             Requested size: 450.0pt x 253.12247pt.
+
+Overfull \hbox (23.20866pt too wide) in paragraph at lines 54--55
+ [] 
  []
 
-<bilder/slices_per_day.png, id=167, 702.625pt x 501.875pt>
-File: bilder/slices_per_day.png Graphic file (type png)
-<use bilder/slices_per_day.png>
-Package pdftex.def Info: bilder/slices_per_day.png  used on input line 82.
-(pdftex.def)             Requested size: 245.829pt x 175.58995pt.
+<bilder/magen-mrt.jpeg, id=158, 519.9425pt x 515.9275pt>
+File: bilder/magen-mrt.jpeg Graphic file (type jpg)
+<use bilder/magen-mrt.jpeg>
+Package pdftex.def Info: bilder/magen-mrt.jpeg  used on input line 61.
+(pdftex.def)             Requested size: 450.0pt x 446.52307pt.
 
-Overfull \hbox (40.97098pt too wide) in paragraph at lines 82--83
- [][] 
- []
-
-[3 <./bilder/slice_per_case.png> <./bilder/slices_per_day.png>]
-
-LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 92.
-
-
-Overfull \hbox (49.93901pt too wide) in paragraph at lines 104--105
+Overfull \hbox (23.20866pt too wide) in paragraph at lines 61--62
  [] 
  []
 
 
-LaTeX Warning: Citation 'Con97' on page 4 undefined on input line 152.
+LaTeX Warning: Citation 'U-Net' on page 2 undefined on input line 69.
+
+[2]
+
+LaTeX Warning: Citation 'Con97' on page 3 undefined on input line 79.
 
 
-LaTeX Warning: Citation 'PeHe97' on page 4 undefined on input line 152.
+Underfull \hbox (badness 1057) in paragraph at lines 73--80
+[]\T1/ppl/m/n/10.95 Eine ^^Rdown-sam-ple^^POperation be-steht zum einen aus ei-
+ner ^^R[][]Con-vo-lu-ti-on Ope-ra-ti-
+ []
+
+<bilder/u-net-architecture.png, id=171, 1039.885pt x 1560.83125pt>
+File: bilder/u-net-architecture.png Graphic file (type png)
+<use bilder/u-net-architecture.png>
+Package pdftex.def Info: bilder/u-net-architecture.png  used on input line 87.
+(pdftex.def)             Requested size: 300.0pt x 450.27165pt.
+
+Overfull \hbox (23.48032pt too wide) in paragraph at lines 87--88
+ [] 
+ []
+
+[3 <./bilder/intestines.png (PNG copy)>]
+<bilder/data_tree.png, id=183, 762.85pt x 286.06876pt>
+File: bilder/data_tree.png Graphic file (type png)
+<use bilder/data_tree.png>
+Package pdftex.def Info: bilder/data_tree.png  used on input line 111.
+(pdftex.def)             Requested size: 450.0pt x 168.74854pt.
+
+Overfull \hbox (23.20866pt too wide) in paragraph at lines 111--112
+ [] 
+ []
+
+<bilder/segmentation_distribution.png, id=186, 501.875pt x 702.625pt>
+File: bilder/segmentation_distribution.png Graphic file (type png)
+<use bilder/segmentation_distribution.png>
+Package pdftex.def Info: bilder/segmentation_distribution.png  used on input li
+ne 122.
+(pdftex.def)             Requested size: 220.0pt x 308.00879pt.
+
+LaTeX Warning: No positions in optional float specifier.
+               Default added (so using `tbp') on input line 127.
+
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 131.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 131.
+<bilder/slice_per_case.png, id=187, 702.625pt x 501.875pt>
+File: bilder/slice_per_case.png Graphic file (type png)
+<use bilder/slice_per_case.png>
+Package pdftex.def Info: bilder/slice_per_case.png  used on input line 150.
+(pdftex.def)             Requested size: 245.829pt x 175.58995pt.
+
+Overfull \hbox (40.97098pt too wide) in paragraph at lines 150--151
+ [][] 
+ []
+
+<bilder/slices_per_day.png, id=188, 702.625pt x 501.875pt>
+File: bilder/slices_per_day.png Graphic file (type png)
+<use bilder/slices_per_day.png>
+Package pdftex.def Info: bilder/slices_per_day.png  used on input line 155.
+(pdftex.def)             Requested size: 245.829pt x 175.58995pt.
+
+Overfull \hbox (40.97098pt too wide) in paragraph at lines 155--156
+ [][] 
+ []
 
 
-LaTeX Warning: Reference `fig_Gallien' on page 4 undefined on input line 152.
+LaTeX Warning: No positions in optional float specifier.
+               Default added (so using `tbp') on input line 167.
 
 
-LaTeX Warning: Citation 'Con97' on page 4 undefined on input line 152.
-
-
-LaTeX Warning: Citation 'Con97' on page 4 undefined on input line 152.
-
-
-LaTeX Warning: Citation 'IWNLP' on page 4 undefined on input line 152.
-
-
-LaTeX Warning: Citation 'IWNLP' on page 4 undefined on input line 152.
-
-
-LaTeX Warning: Citation 'liebeck-esau-conrad:2016:ArgMining2016' on page 4 unde
-fined on input line 152.
-
-
-LaTeX Warning: Citation 'liebeck-esau-conrad:2016:ArgMining2016' on page 4 unde
-fined on input line 152.
-
-
-Overfull \hbox (78.30046pt too wide) in paragraph at lines 152--152
-\T1/ppl/m/n/10.95 3 Au-to-ren: [] |  ([]) 
+Overfull \hbox (49.93901pt too wide) in paragraph at lines 179--180
+ [] 
  []
 
 [4]
 
-LaTeX Warning: Citation 'ILSVRC2016' on page 5 undefined on input line 152.
+LaTeX Warning: Citation 'Yakubovskiy:2019' on page 5 undefined on input line 18
+9.
 
-<bilder/u-net-architecture.png, id=183, 1039.885pt x 1560.83125pt>
-File: bilder/u-net-architecture.png Graphic file (type png)
-<use bilder/u-net-architecture.png>
-Package pdftex.def Info: bilder/u-net-architecture.png  used on input line 161.
 
-(pdftex.def)             Requested size: 300.0pt x 450.27165pt.
+LaTeX Warning: Citation 'Jadon_2020' on page 5 undefined on input line 194.
 
-Overfull \hbox (23.48032pt too wide) in paragraph at lines 161--162
- [] 
+[5]
+
+LaTeX Warning: Citation 'Con97' on page 6 undefined on input line 237.
+
+
+LaTeX Warning: Citation 'PeHe97' on page 6 undefined on input line 237.
+
+
+LaTeX Warning: Reference `fig_Gallien' on page 6 undefined on input line 237.
+
+
+LaTeX Warning: Citation 'Con97' on page 6 undefined on input line 237.
+
+
+LaTeX Warning: Citation 'Con97' on page 6 undefined on input line 237.
+
+
+LaTeX Warning: Citation 'IWNLP' on page 6 undefined on input line 237.
+
+
+LaTeX Warning: Citation 'IWNLP' on page 6 undefined on input line 237.
+
+
+LaTeX Warning: Citation 'liebeck-esau-conrad:2016:ArgMining2016' on page 6 unde
+fined on input line 237.
+
+
+LaTeX Warning: Citation 'liebeck-esau-conrad:2016:ArgMining2016' on page 6 unde
+fined on input line 237.
+
+
+Overfull \hbox (78.30046pt too wide) in paragraph at lines 237--237
+\T1/ppl/m/n/10.95 3 Au-to-ren: [] |  ([]) 
  []
 
-<bilder/segmentation_distribution.png, id=184, 501.875pt x 702.625pt>
-File: bilder/segmentation_distribution.png Graphic file (type png)
-<use bilder/segmentation_distribution.png>
-Package pdftex.def Info: bilder/segmentation_distribution.png  used on input li
-ne 168.
-(pdftex.def)             Requested size: 220.0pt x 308.00879pt.
-File: bilder/segmentation_distribution.png Graphic file (type png)
-<use bilder/segmentation_distribution.png>
-Package pdftex.def Info: bilder/segmentation_distribution.png  used on input li
-ne 175.
-(pdftex.def)             Requested size: 220.0pt x 308.00879pt.
-) [5 <./bilder/u-net-architecture.png>] [6 <./bilder/segmentation_distribution.
-png>]
+
+LaTeX Warning: Citation 'ILSVRC2016' on page 6 undefined on input line 237.
+
+) [6] [7 <./bilder/magen-mrt.jpeg>] [8 <./bilder/u-net-architecture.png> <./bil
+der/data_tree.png>] [9 <./bilder/segmentation_distribution.png> <./bilder/slice
+_per_case.png> <./bilder/slices_per_day.png>]
 
 LaTeX Warning: Empty bibliography on input line 101.
 
@@ -795,18 +855,15 @@ LaTeX Warning: Empty bibliography on input line 101.
 \tf@lot=\write8
 \openout8 = `ba.lot'.
 
- [7
+ [10
 
 
 ] (./ba.aux)
 
 LaTeX Warning: There were undefined references.
 
-
-LaTeX Warning: There were multiply-defined labels.
-
 Package rerunfilecheck Info: File `ba.out' has not changed.
-(rerunfilecheck)             Checksum: 80739A9E7A68CF69B1558CE121CF87D3;3541.
+(rerunfilecheck)             Checksum: 41FB20378D76E16CD6D82548520849B2;3468.
 
 Package biblatex Warning: Please (re)run Biber on the file:
 (biblatex)                ba
@@ -817,10 +874,10 @@ Package logreq Info: Writing requests to 'ba.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 18465 strings out of 478268
- 323134 string characters out of 5846348
- 1068110 words of memory out of 5000000
- 36397 multiletter control sequences out of 15000+600000
+ 18516 strings out of 478268
+ 324201 string characters out of 5846348
+ 1072584 words of memory out of 5000000
+ 36436 multiletter control sequences out of 15000+600000
  485220 words of font info for 54 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
  67i,9n,73p,1141b,2365s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -828,10 +885,10 @@ Here is how much of TeX's memory you used:
 exlive/2022/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/
 2022/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2022/te
 xmf-dist/fonts/type1/urw/palatino/uplr8a.pfb>
-Output written on ba.pdf (12 pages, 248587 bytes).
+Output written on ba.pdf (15 pages, 648484 bytes).
 PDF statistics:
- 237 PDF objects out of 1000 (max. 8388607)
- 203 compressed objects within 3 object streams
- 42 named destinations out of 1000 (max. 500000)
- 210 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 279 PDF objects out of 1000 (max. 8388607)
+ 238 compressed objects within 3 object streams
+ 48 named destinations out of 1000 (max. 500000)
+ 217 words of extra memory for PDF output out of 10000 (max. 10000000)
 

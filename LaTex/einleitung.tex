@@ -2,37 +2,92 @@
 
 \section{Verwandte Arbeiten}\raggedbottom
 
-\subsection{Semantische Segmentierung im medizinischem Bereich}
-Bereits in den 90er Jahren wurde sich mit mit Segmentierungsarchitekturen auseinandergesetzt und baselines geschaffen. Zu dieser Zeit leiferten Methoden mim Bereich 'Pattern recogniction' die besten Ergebnisse ( MRI SEGMENTATION: ETHODS AND APPLICATIONS 1995). Die Autoren legten viel Wert auf preprocessing der Daten und nutzen Methoden wie viele, zu der Zeit, State of the Art Modelle (kNN, Maximimun likelihood, 2D feature maps usw.) ausprobiert worden sind (Noise Suppression and Contrast Enhancement, Combination analysis, adaptive filtering usw.). Trotz den Bemühungen wiesen die Modelle nur eine Accuracy von 3\% bis 34\% auf. 
+\subsection{Semantische Segmentierung im medizinischen Bereich}
 
-Die Autoren sind davon überzeugt, dass segmentierung eine wichtige Rolle im Beriech der Verarbeitung von MRT Daten darstellen wird und mit wachsender Akzeptanz auf klinischer Seite sowie dem technischen Fortschritt der Hochleistungsrechner es in Zukunft möglich sein wird, akkurate Segmentierungen von MRT Scans im live Betrieb vorzunehmen. 
+\subsubsection{Semantische Segmentierung}
+
+Die semantische Segmentierung erfolgt in drei Schritten:
+
+Klassifizierung: Klassifizierung eines bestimmten Objekts im Bild.
+Lokalisieren: Auffinden des Objekts und Zeichnen eines Begrenzungsrahmens um das Objekt.
+
+Segmentierung: Gruppierung der Pixel in einem lokalisierten Bild durch Erstellung einer Segmentierungsmaske.
+
+Im Wesentlichen kann man die Aufgabe der semantischen Segmentierung als Klassifizierung einer bestimmten Bildklasse und deren Abgrenzung von den übrigen Bildklassen durch Überlagerung mit einer Segmentierungsmaske bezeichnen.
+
+Allgemein kann man es sich auch als Klassifizierung von Bildern auf Pixelebene vorstellen.
+
+\subsubsection{Medizinischer Bereich}
+
+Die medizinische Bildgebung umfasst viele Kategorien, von 2- bzw. 3 dimensionalen MRT Scans des Herzens, Gehirns und des Magen-Darm Trakts, 2 dimensionalen Röntgen Bildern sowie Ausschnitte aus der Videoendoskopie.
+
+Bereits in den 90er Jahren wurde sich mit mit Segmentierungsarchitekturen auseinandergesetzt und baselines geschaffen. Zu dieser Zeit lieferten Methoden im Bereich \glqq Pattern recogniction\grqq die besten Ergebnisse. Die Autoren legten viel Wert auf preprocessing der Daten und werteten die zu jener Zeit besten Modelle aus. Es handelte sich um einen Feature basierten Ansatz, es wurden Algorithmen wie
+\href{https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm}{kNN},
+\href{https://en.wikipedia.org/wiki/Maximum_likelihood_estimation}{Maximum Likelihood} und
+\href{https://en.wikipedia.org/wiki/Eigenvalues_and_eigenvectors}{Characteristic vector} getestet.
+
+Trotz aller Bemühungen wiesen die Modelle nur eine Accuracy von 3\% bis 34\% auf. \citep{Clarke:Mri1995}
+
+Jedoch waren die Autoren davon überzeugt, dass segmentierung eine wichtige Rolle im Beriech der Verarbeitung von MRT Daten darstellen wird und mit wachsender Akzeptanz auf klinischer Seite sowie dem technischen Fortschritt der Hochleistungsrechner es in Zukunft möglich sein wird, akkurate Segmentierungen von MRT Scans im Livebetrieb vorzunehmen.
+
+\newpage
 
 \subsection{Deep Learning-Techniken für die Segmentierung medizinischer Bilder:
 Errungenschaften und Herausforderungen}
 
-Dank der immensen Verbesserung der Rechenleistung der Hardwarecomponenten wurde das Thema Deep Learning immer interessanter und gehört heutzutage zur standard Herangehensweise. Architekturen wie das U-Net Modell haben sich hierbei besonders bewiesen und wurden mit den Jahren nach der Verföffentlichung in 2015 stetig erweitert, so dass es für viele verschiedene medizinische Bereiche Architekturen vorliegen, die auf die jeweiligen Problemstellungen angepasst wurden aber jedoch trotzdem Anwendung auf ähnlichen Gebieten finden können. 
+Dank der immensen Verbesserung der Rechenleistung der Hardwarecomponenten wurde das Thema Deep Learning immer interessanter und gehört heutzutage zur standard Herangehensweise. Architekturen wie das U-Net Modell \citep{U-Net} haben sich hierbei besonders bewiesen und wurden mit den Jahren nach der Veröffentlichung in 2015 stetig erweitert, so dass es für viele verschiedene (medizinische) Bereiche Architekturen vorliegen, die auf die jeweiligen Problemstellungen angepasst wurden, jedoch trotzdem Anwendung auf ähnlichen Gebieten finden können \citep{Hesamian}
 
 \subsection{Intelligentes Zuschneiden des Inputs}
 
-Dimitrios G. Zaridis et al. fanden heraus, dass das Vorhandensein eines Klassenungleichgewichts, wo der Anteil der Hintergrundpixel dem Anteil des zu segmentierenden Organs überwiegt zu Problemem führen kann. Mithilfe eines Deep Learning Modells haben die Autoren es geschafft, dieses Klassenungleichgewicht zu reduzieren, in dem das Neuronale Netzwerk die gesuchten Organe lokalisiert, das Originalbild zuschneidet und am Ende das Verhältnis von Vorder- und Hintergrundpixeln normalisiert. Dies führte bei allen gängigen Deep Learning Netzwerken zu erheblichen Verbesserung im Bezug des Dice-Scores. U-Net+ und ResU-Net++ wiesen mithilfe dieser Technologie Verbesserungen von bis zu 8\% auf. (A new smart-cropping pipeline for prostate segmentation using deep learning networks)
+Dimitrios G. Zaridis et al. \citep{SmartCrop} haben sich ebenfalls mit verschiedenen State of the Art U-Net Architekturen auseinandergesetzt und eine Baseline geschaffen. Trotz der beachtlichen Leistung, die die Modelle liefern, sind sie der Meinung dass noch Verbesserungspotential vorhanden ist.
+
+Sie fanden heraus, dass das Vorhandensein eines Klassenungleichgewichts, wo der Anteil der Hintergrundpixel dem Anteil des zu segmentierenden Organs überwiegt zu Problemem führen kann. Mithilfe eines Deep Learning Modells haben die Autoren es geschafft, dieses Klassenungleichgewicht zu reduzieren, in dem das Neuronale Netzwerk die gesuchten Organe lokalisiert, das Originalbild zuschneidet und am Ende das Verhältnis von Vorder- und Hintergrundpixeln normalisiert. Dies führte bei allen gängigen Deep Learning Netzwerken zu erheblichen Verbesserung im Bezug des Dice-Scores. U-Net+ und ResU-Net++ wiesen mithilfe dieser Technologie Verbesserungen von bis zu 8\% auf.
 
 \section{Grundlagen}\raggedbottom
 
 \subsection{Magen-Darmtrakt}
-?? 
 
-\subsection{CNN}
-?? 
+Um die Daten zu verstehen und Erkentnisse aus den Ergebnissen zu gewinnen, ist es wichtig ein Grundverständnis für den Bereich des Körpers zu haben, den unsere Daten beschreiben. Wir interessieren uns in unserem Fall für den Dick- bzw. Dünndarm sowie den Magen. Hierbei liegt die Herausforderung, dass je nach Ernährungsverhalten, Schlafposition, anderen Krankheiten und Verdauung die Position der Organe stark (bzw. stärker als andere) variieren kann. Mithilfe der Grafik kann man sich ein Bild vom groben Aufbau machen. \autoref{magen-darm-trakt}
+
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[width=450pt]{bilder/intestines}
+		\caption{Magen-Darm Trakt}\label{magen-darm-trakt}
+	\end{center}
+\end{figure}
+
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[width=450pt]{bilder/magen-mrt}
+		\caption{Beispiel MRT des Magen-Darm Traks. Zu sehen ist der Magen (rot) und der Tumor (pink) sowie die verabreichte Strahlendosis. Die Strahlenintensivität werden durch den Regenbogen der Umrisse dargestellt, wobei höhere Dosen rot und niedrigere Dosen grün dargestellt werden.}\label{magen-mrt}
+	\end{center}
+\end{figure}
 
 \subsection{U-Net}
-% CNN, Convolution, Maxpooling oder ReLu erklären? 
+% CNN, Convolution, Maxpooling oder ReLu erklären?
 
-U-Net wurde im Jahr 2015 von Olag Ronneberger et al. vorgestellt als Segmentierungsarchitektur für den biomedizinischem Bereich und bildet die Baseline dieser Arbeit. Neu in der Herangehensweise ist der Encoder - Decoder Part, die dem Netzwerk ermöglicht räumliche Merkmale anzutrainieren. 
-Klassisch handelt es sich um ein Convolutional Neural Network bestehend es aus 5 bis 6 'downsampling' (auch Encoder genannt) Schichten und der gleichen Menge an "upsampling" (auch Decoder genannt) Schichten. 
+U-Net wurde im Jahr 2015 von Olag Ronneberger et al. \citep{U-Net} vorgestellt als Segmentierungsarchitektur für den biomedizinischem Bereich und bildet die Baseline dieser Arbeit. Neu in der Herangehensweise ist der Encoder-Decoder Part, die dem Netzwerk ermöglicht räumliche Merkmale anzutrainieren.
+Klassisch handelt es sich um ein
+\href{https://en.wikipedia.org/wiki/Convolutional_neural_network}{Convolutional Neural Network}, bestehend es aus 5 bis 6 \glqq downsampling\grqq Schichten (auch Encoder genannt)  und der gleichen Menge an \glqq upsampling\grqq Schichten (auch Decoder genannt).
 
-Eine 'downsample' Operation besteht zum einen aus einer 'Convolution operation'  sowie einer 'Max pooling operation' an deren Ende jeweils eine ReLu Aktivierungsfunktion zum Einsatz kommt. In diesem Schritt lernt das Modell Eigenschaften auf Pixelebene, wie zum Beispiel Formen, Ecken, Kanten. Hierbei halbieren sich die Eingabedimensionen und die Tiefe des Bildes wird erhöht. Das Modell lernt in diesem Schritt das 'was' 
+Eine \glqq downsample\grqq  Operation besteht zum einen aus einer
+\glqq \href{https://en.wikipedia.org/wiki/Convolution}{Convolution Operation}\grqq
+sowie einer
+\glqq \href{https://computersciencewiki.org/index.php/Max-pooling_/_Pooling}{Max Pooling}\grqq
+an deren Ende jeweils eine
+ \glqq \href{https://deepai.org/machine-learning-glossary-and-terms/relu}{ReLu}\grqq
+ Aktivierungsfunktion zum Einsatz kommt. In diesem Schritt lernt das Modell Eigenschaften auf Pixelebene, wie zum Beispiel Formen, Ecken, Kanten. Hierbei halbieren sich die Eingabedimensionen und die Tiefe des Bildes wird erhöht. Veranschaulicht kann man sagen, dass das Modell das \glqq Was\grqq lernt, was im Bild zu sehen ist. \citep{Con97} Zur Semantischen Segmentierung fehlt dann nur noch das  \glqq Wo\grqq, hierbei wird das Zusammenspiel von En- und Decoder deutlich.
 
-Im Decoder wird das Bild wieder auf seine ursprüngliche Größe mittels 'Transpose Convolution operations' gebracht. Hier ersetzt die transponier Operation die Maxpooling Operation (vergleich Grafik). Dieser Part erlaubt dem Modell das lokalisieren der zuvor gelernten Eigenschaften und gibt eine Maske zurück für jede Klasse, in der 0 der Hintergrund ist und 1 die jeweilige Klasse. 
+Im Decoder wird das Bild wieder auf seine ursprüngliche Größe mittels 
+\glqq \href{https://en.wikipedia.org/wiki/Deconvolution}{Transpose Convolution operations}\grqq  
+gebracht. Hier ersetzt die transponier Operation die Maxpooling Operation (vergleich Grafik). Dieser Part erlaubt dem Modell das lokalisieren der zuvor gelernten Eigenschaften. Output ist eine Maske, bestehend aus Nullen und Einsen, die der Eingabegröße gleicht und bestenfalls den Wert Eins an der Stelle des gesuchten Organs enthält.
+
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[width=300pt, angle=270]{bilder/u-net-architecture}
+		\caption{U-Net Architektur}\label{Fig:unet-diagram}
+	\end{center}
+\end{figure}
 
 \subsection{Encoder 1}
 Eventuell
@@ -44,18 +99,36 @@ Eventuell
 \section{Methodik}\raggedbottom
 
 \subsection{Datenanalyse}
-Der Datensatz besteht aus 115 488 Zeilen und enthält drei features: ID, Klasse und einem Run-lenght codierten String, der die Maske enthält. \autoref{tabelle_daten}. Jeder ID sind drei Zeilen gewidmet, jeweils für die drei Klassen. Zu jeder ID existiert ein Graustufen Bild, welche sich im train Ordner befinden: 
+Der Datensatz besteht aus 115 488 Zeilen und enthält drei features: ID, Klasse und einem Run-lenght codierten String, der die Maske enthält. \autoref{tabelle_daten}. Jeder ID sind drei Zeilen gewidmet, jeweils für die drei Klassen. Zu jeder ID existiert ein Graustufen Bild, welche sich im train Ordner befinden:
 
-input\textbackslash uw-madison-gi-tract-image-segmentation\textbackslash train\textbackslash case101\textbackslash \\case101\textunderscore 
+input\textbackslash uw-madison-gi-tract-image-segmentation\textbackslash train\textbackslash case101\textbackslash \\case101\textunderscore
 day20\textbackslash scans\textbackslash slice\textunderscore 0001\textunderscore 266\textunderscore 266\textunderscore 1.50\textunderscore 1.50.png
+
+Ein Beispiel der Ordnerhierarchie kann man hier sehen \autoref{Fig:train-data}
+
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[width=450pt]{bilder/data_tree}
+		\caption{Trainingsdaten Hierachie}\label{Fig:train-data}
+	\end{center}
+\end{figure}
 
 Jedes slice enthält vier Zahlen (z.B. 266\textunderscore 266\textunderscore 1.50\textunderscore 1.50.png), die ersten beiden stehen für die Auflösung des Bildes und die letzten beiden für den physischen Abstand der Pixel. Der Großteil der Aufnahmen stammt von Tag null oder tag eins \autoref{Fig:slice_per_day} und die durchschnittliche Anzahl an Bildern pro Fall beträgt X.
 
 Beim betrachten der Verteilung der Segmentierungen fällt auf, dass das Vorkommen für jede Klasse stark variiert. \autoref{Fig:klassenverteilung}.
 
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[width=220pt , angle=270]{bilder/segmentation_distribution}
+		\caption{Verteilung der Klassen im Testset}\label{Fig:klassenverteilung}
+	\end{center}
+\end{figure}
+
 \begin{table}[]
 	\begin{center}
-		\begin{tabular}{lllll}
+	        \small
+	        \setlength\tabcolsep{2pt}
+		\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
 			\hline
 			Index  & ID & Class & Segmentation \\
 			\hline \hline
@@ -86,8 +159,10 @@ Beim betrachten der Verteilung der Segmentierungen fällt auf, dass das Vorkomme
 
 \subsection{Metadatenextraktion}
 
-Anhand der ID eines jedes Slices war es möglich verschiedene Metadaten dem originalem Dataframe zu entziehen, zudem wurde die gesamtlänge gedrittelt, dadurch dass die Klassen einer ID  zugewiesen worden sind: 
-% & rs & re & cs & ce & count & path00 & path01 & path02 & image\textunderscore paths 
+Anhand der ID eines jedes Slices war es möglich verschiedene Metadaten dem originalem Dataframe zu entziehen, zudem wurde die gesamtlänge gedrittelt, dadurch dass die Klassen einer ID  zugewiesen worden sind. \autoref{tabelle_meta_daten}
+
+
+% & rs & re & cs & ce & count & path00 & path01 & path02 & image\textunderscore paths
 
 \begin{table}[]
  \begin{center}
@@ -106,10 +181,20 @@ Anhand der ID eines jedes Slices war es möglich verschiedene Metadaten dem orig
  \end{center}
 \end{table}
 
-
+\pagebreak
 
 \subsection{Algorithmik}
-?
+
+Dieses Projekt wurde gänzlich in Python mithilfe der TensorFlow API sowie dem
+ \href{https://deepai.org/machine-learning-glossary-and-terms/relu}{Segmentation Models} \citep{Yakubovskiy:2019}
+ Package aufgezogen, welches verschiedene Architekturen und an- oder nicht antrainierte Encoder zur verfügung stellt. Trainiert wurde mit dem
+\href{https://optimization.cbe.cornell.edu/index.php?title=Adam}{Adam Optimizer},
+ und einer initialen Learning Rate von von 5e-4, die sich um den Faktor e-1 verringert, wenn sich der Validation-loss nach fünf Epochen unverändert schlecht bleibt. Die Loss function ist eine Mischung aus 
+\href{https://www.analyticsvidhya.com/blog/2021/03/binary-cross-entropy-log-loss-for-binary-classification/}{Binary Crossentropy} und zu 50\%
+Dice Loss. Diese Kombination eignet sich laut Jadon  \citep{Jadon_2020} besonders gut, um Segmentierungsarchitekturen anzulernen. Ansonsten wurde mit einer Batchsize von 16 und 32 trainiert.
+Die Daten wurden mithilfe von der 
+\href{https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.StratifiedGroupKFold.html}{StratifiedGroupKFold} Methode von Sklearn in 5 Folds aufgeteilt und nach Case gruppiert. Somit 
+wurde das Verhältnis der Klassendistribution in jedem Fold beibehalten. 
 
 \subsection{2.5 dimensionale Daten}
 ?
@@ -155,26 +240,5 @@ Ideen, die es nicht in die Arbeit geschafft haben oder nicht schafffen konnten.
 	\textbf{quotes}:\\
 	Ein Beispiel für deutsche Anführungszeichen \glqq quote\grqq.
 }{}
-
-\begin{figure}[htb]
-	\begin{center}
-		\includegraphics[width=300pt, angle=270]{bilder/u-net-architecture}
-		\caption{U-Net Architektur}\label{Fig:unet-diagram}
-	\end{center}
-\end{figure}
-
-\begin{figure}[htb]
-	\begin{center}
-		\includegraphics[width=220pt , angle=270]{bilder/segmentation_distribution}
-		\caption{Verteilung der Klassen im Testset}\label{Fig:klassenverteilung}
-	\end{center}
-\end{figure}
-
-\begin{figure}[htb]
-	\begin{center}
-		\includegraphics[width=220pt , angle=270]{bilder/segmentation_distribution}
-		\caption{Verteilung der Klassen im Testset}\label{Fig:klassenverteilung}
-	\end{center}
-\end{figure}
 
 \pagebreak
