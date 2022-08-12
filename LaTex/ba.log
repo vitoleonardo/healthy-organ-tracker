@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.8.5)  10 AUG 2022 09:54
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.8.5)  11 AUG 2022 23:05
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -683,97 +683,106 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.34 \subsection
-                {Encoder 1} [1
+l.24 \subsection
+                {CNN} [1
 
 
-]
+] [2]
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 52.
+               Default added (so using `tbp') on input line 56.
 
-<bilder/slice_per_case.png, id=159, 702.625pt x 501.875pt>
+<bilder/slice_per_case.png, id=165, 702.625pt x 501.875pt>
 File: bilder/slice_per_case.png Graphic file (type png)
 <use bilder/slice_per_case.png>
-Package pdftex.def Info: bilder/slice_per_case.png  used on input line 73.
+Package pdftex.def Info: bilder/slice_per_case.png  used on input line 77.
 (pdftex.def)             Requested size: 245.829pt x 175.58995pt.
 
-Overfull \hbox (40.97098pt too wide) in paragraph at lines 73--74
+Overfull \hbox (40.97098pt too wide) in paragraph at lines 77--78
  [][] 
  []
 
-<bilder/slices_per_day.png, id=161, 702.625pt x 501.875pt>
+<bilder/slices_per_day.png, id=167, 702.625pt x 501.875pt>
 File: bilder/slices_per_day.png Graphic file (type png)
 <use bilder/slices_per_day.png>
-Package pdftex.def Info: bilder/slices_per_day.png  used on input line 78.
+Package pdftex.def Info: bilder/slices_per_day.png  used on input line 82.
 (pdftex.def)             Requested size: 245.829pt x 175.58995pt.
 
-Overfull \hbox (40.97098pt too wide) in paragraph at lines 78--79
+Overfull \hbox (40.97098pt too wide) in paragraph at lines 82--83
  [][] 
  []
-
-[2]
-
-LaTeX Warning: Citation 'Con97' on page 3 undefined on input line 126.
-
-
-LaTeX Warning: Citation 'PeHe97' on page 3 undefined on input line 126.
-
-
-LaTeX Warning: Reference `fig_Gallien' on page 3 undefined on input line 126.
 
 [3 <./bilder/slice_per_case.png> <./bilder/slices_per_day.png>]
 
-LaTeX Warning: Citation 'Con97' on page 4 undefined on input line 126.
+LaTeX Warning: No positions in optional float specifier.
+               Default added (so using `tbp') on input line 92.
 
 
-LaTeX Warning: Citation 'Con97' on page 4 undefined on input line 126.
-
-
-LaTeX Warning: Citation 'IWNLP' on page 4 undefined on input line 126.
-
-
-LaTeX Warning: Citation 'IWNLP' on page 4 undefined on input line 126.
-
-
-LaTeX Warning: Citation 'liebeck-esau-conrad:2016:ArgMining2016' on page 4 unde
-fined on input line 126.
-
-
-LaTeX Warning: Citation 'liebeck-esau-conrad:2016:ArgMining2016' on page 4 unde
-fined on input line 126.
-
-
-Overfull \hbox (78.30046pt too wide) in paragraph at lines 126--126
-\T1/ppl/m/n/10.95 3 Au-to-ren: [] |  ([]) 
- []
-
-
-LaTeX Warning: Citation 'ILSVRC2016' on page 4 undefined on input line 126.
-
-<bilder/u-net-architecture.png, id=177, 1039.885pt x 1560.83125pt>
-File: bilder/u-net-architecture.png Graphic file (type png)
-<use bilder/u-net-architecture.png>
-Package pdftex.def Info: bilder/u-net-architecture.png  used on input line 135.
-
-(pdftex.def)             Requested size: 300.0pt x 450.27165pt.
-
-Overfull \hbox (23.48032pt too wide) in paragraph at lines 135--136
+Overfull \hbox (49.93901pt too wide) in paragraph at lines 104--105
  [] 
  []
 
-<bilder/segmentation_distribution.png, id=178, 501.875pt x 702.625pt>
+
+LaTeX Warning: Citation 'Con97' on page 4 undefined on input line 152.
+
+
+LaTeX Warning: Citation 'PeHe97' on page 4 undefined on input line 152.
+
+
+LaTeX Warning: Reference `fig_Gallien' on page 4 undefined on input line 152.
+
+
+LaTeX Warning: Citation 'Con97' on page 4 undefined on input line 152.
+
+
+LaTeX Warning: Citation 'Con97' on page 4 undefined on input line 152.
+
+
+LaTeX Warning: Citation 'IWNLP' on page 4 undefined on input line 152.
+
+
+LaTeX Warning: Citation 'IWNLP' on page 4 undefined on input line 152.
+
+
+LaTeX Warning: Citation 'liebeck-esau-conrad:2016:ArgMining2016' on page 4 unde
+fined on input line 152.
+
+
+LaTeX Warning: Citation 'liebeck-esau-conrad:2016:ArgMining2016' on page 4 unde
+fined on input line 152.
+
+
+Overfull \hbox (78.30046pt too wide) in paragraph at lines 152--152
+\T1/ppl/m/n/10.95 3 Au-to-ren: [] |  ([]) 
+ []
+
+[4]
+
+LaTeX Warning: Citation 'ILSVRC2016' on page 5 undefined on input line 152.
+
+<bilder/u-net-architecture.png, id=183, 1039.885pt x 1560.83125pt>
+File: bilder/u-net-architecture.png Graphic file (type png)
+<use bilder/u-net-architecture.png>
+Package pdftex.def Info: bilder/u-net-architecture.png  used on input line 161.
+
+(pdftex.def)             Requested size: 300.0pt x 450.27165pt.
+
+Overfull \hbox (23.48032pt too wide) in paragraph at lines 161--162
+ [] 
+ []
+
+<bilder/segmentation_distribution.png, id=184, 501.875pt x 702.625pt>
 File: bilder/segmentation_distribution.png Graphic file (type png)
 <use bilder/segmentation_distribution.png>
 Package pdftex.def Info: bilder/segmentation_distribution.png  used on input li
-ne 142.
+ne 168.
 (pdftex.def)             Requested size: 220.0pt x 308.00879pt.
 File: bilder/segmentation_distribution.png Graphic file (type png)
 <use bilder/segmentation_distribution.png>
 Package pdftex.def Info: bilder/segmentation_distribution.png  used on input li
-ne 149.
+ne 175.
 (pdftex.def)             Requested size: 220.0pt x 308.00879pt.
-) [4 <./bilder/u-net-architecture.png>] [5 <./bilder/segmentation_distribution.
+) [5 <./bilder/u-net-architecture.png>] [6 <./bilder/segmentation_distribution.
 png>]
 
 LaTeX Warning: Empty bibliography on input line 101.
@@ -786,7 +795,7 @@ LaTeX Warning: Empty bibliography on input line 101.
 \tf@lot=\write8
 \openout8 = `ba.lot'.
 
- [6
+ [7
 
 
 ] (./ba.aux)
@@ -797,7 +806,7 @@ LaTeX Warning: There were undefined references.
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `ba.out' has not changed.
-(rerunfilecheck)             Checksum: 09D0C0D0EC8FD5B57122A05F634272C1;3155.
+(rerunfilecheck)             Checksum: 80739A9E7A68CF69B1558CE121CF87D3;3541.
 
 Package biblatex Warning: Please (re)run Biber on the file:
 (biblatex)                ba
@@ -808,10 +817,10 @@ Package logreq Info: Writing requests to 'ba.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 18462 strings out of 478268
- 323101 string characters out of 5846348
- 1065063 words of memory out of 5000000
- 36396 multiletter control sequences out of 15000+600000
+ 18465 strings out of 478268
+ 323134 string characters out of 5846348
+ 1068110 words of memory out of 5000000
+ 36397 multiletter control sequences out of 15000+600000
  485220 words of font info for 54 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
  67i,9n,73p,1141b,2365s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -819,10 +828,10 @@ Here is how much of TeX's memory you used:
 exlive/2022/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/
 2022/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2022/te
 xmf-dist/fonts/type1/urw/palatino/uplr8a.pfb>
-Output written on ba.pdf (11 pages, 244242 bytes).
+Output written on ba.pdf (12 pages, 248587 bytes).
 PDF statistics:
- 229 PDF objects out of 1000 (max. 8388607)
- 197 compressed objects within 2 object streams
- 40 named destinations out of 1000 (max. 500000)
+ 237 PDF objects out of 1000 (max. 8388607)
+ 203 compressed objects within 3 object streams
+ 42 named destinations out of 1000 (max. 500000)
  210 words of extra memory for PDF output out of 10000 (max. 10000000)
 
