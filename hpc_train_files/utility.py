@@ -51,6 +51,26 @@ def build_masks(labels,input_shape, colors=True):
     mask = mask.clip(0, 1)
     return mask
 
+def open_gray16(_path, normalize=True, to_rgb=False):
+    """
+    It reads a 16-bit grayscale image, normalizes it to the range [0,1] (if normalize=True), and returns
+    it as a 3-channel RGB image (if to_rgb=True)
+    
+    :param _path: the path to the image
+    :param normalize: if True, the image will be normalized to [0,1], defaults to True (optional)
+    :param to_rgb: If True, the image will be converted to RGB, defaults to False (optional)
+    """
+    if normalize:
+        if to_rgb:
+            return np.tile(np.expand_dims(cv2.imread(_path, cv2.IMREAD_ANYDEPTH)/65535., axis=-1), 3)
+        else:
+            return cv2.imread(_path, cv2.IMREAD_ANYDEPTH)/65535.
+    else:
+        if to_rgb:
+            return np.tile(np.expand_dims(cv2.imread(_path, cv2.IMREAD_ANYDEPTH), axis=-1), 3)
+        else:
+            return cv2.imread(_path, cv2.IMREAD_ANYDEPTH)
+
 def fix_empty_slices(_row):
     """
     If the slice_id is in the list of slices to remove, then set the predicted value to an empty string.
