@@ -11,7 +11,7 @@ def __crop_image(img, rs, re, cs , ce):
     """
     return img[rs:re, cs:ce]
 
-def __get_crop_area_from_image(slice_, rs, re, cs , ce, tol=0.05):        
+def __get_crop_area_from_image(slice_, rs, re, cs , ce, tol=0.5):        
     """
     It takes a 2D array and returns the smallest rectangle that contains all non-zero elements
     
