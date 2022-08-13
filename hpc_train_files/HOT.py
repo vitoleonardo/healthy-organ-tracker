@@ -72,11 +72,14 @@ def main(backbone, dim, batch, epochs, semi3d_data, remove_faulty_cases, use_cro
 
     print("Starting training with config: ", str(cfg))
 
-    df_train = pd.read_csv('df_train.csv', index_col=[0])
+    df_train = pd.read_csv("df_train_cleaned.csv", index_col=[0])
     df_train.fillna('',inplace=True); 
+
+    print(df_train.info(verbose=True))
 
     if remove_faulty_cases:
         df_train = remove_faulties(df_train)
+        print("Removed faulty cases")
 
     # Cross Validation; Import Index from CSV bc function is not available in HPC module
     if not cfg.use_fold_csv:
