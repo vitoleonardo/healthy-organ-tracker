@@ -2353,26 +2353,13 @@
     <bcf:citekey order="6">Con97</bcf:citekey>
     <bcf:citekey order="7">Yakubovskiy:2019</bcf:citekey>
     <bcf:citekey order="8">Jadon_2020</bcf:citekey>
-    <bcf:citekey order="9">Con97</bcf:citekey>
-    <bcf:citekey order="10">PeHe97</bcf:citekey>
-    <bcf:citekey order="11">Con97</bcf:citekey>
-    <bcf:citekey order="12">Con97</bcf:citekey>
-    <bcf:citekey order="13">IWNLP</bcf:citekey>
-    <bcf:citekey order="14">IWNLP</bcf:citekey>
-    <bcf:citekey order="15">liebeck-esau-conrad:2016:ArgMining2016</bcf:citekey>
-    <bcf:citekey order="16">liebeck-esau-conrad:2016:ArgMining2016</bcf:citekey>
-    <bcf:citekey order="17">ILSVRC2016</bcf:citekey>
-    <bcf:citekey order="18">Clarke:Mri1995</bcf:citekey>
-    <bcf:citekey order="19">U-Net</bcf:citekey>
-    <bcf:citekey order="20">Hesamian</bcf:citekey>
-    <bcf:citekey order="21">SmartCrop</bcf:citekey>
-    <bcf:citekey order="22">Con97</bcf:citekey>
-    <bcf:citekey order="23">Yakubovskiy:2019</bcf:citekey>
-    <bcf:citekey order="24">Jadon_2020</bcf:citekey>
-    <bcf:citekey order="25">PeHe97</bcf:citekey>
-    <bcf:citekey order="26">IWNLP</bcf:citekey>
-    <bcf:citekey order="27">liebeck-esau-conrad:2016:ArgMining2016</bcf:citekey>
-    <bcf:citekey order="28">ILSVRC2016</bcf:citekey>
+    <bcf:citekey order="9">Clarke:Mri1995</bcf:citekey>
+    <bcf:citekey order="10">U-Net</bcf:citekey>
+    <bcf:citekey order="11">Hesamian</bcf:citekey>
+    <bcf:citekey order="12">SmartCrop</bcf:citekey>
+    <bcf:citekey order="13">Con97</bcf:citekey>
+    <bcf:citekey order="14">Yakubovskiy:2019</bcf:citekey>
+    <bcf:citekey order="15">Jadon_2020</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nyt">

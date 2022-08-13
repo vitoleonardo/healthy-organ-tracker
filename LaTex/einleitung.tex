@@ -28,7 +28,7 @@ Bereits in den 90er Jahren wurde sich mit mit Segmentierungsarchitekturen ausein
 
 Trotz aller Bemühungen wiesen die Modelle nur eine Accuracy von 3\% bis 34\% auf. \citep{Clarke:Mri1995}
 
-Jedoch waren die Autoren davon überzeugt, dass segmentierung eine wichtige Rolle im Beriech der Verarbeitung von MRT Daten darstellen wird und mit wachsender Akzeptanz auf klinischer Seite sowie dem technischen Fortschritt der Hochleistungsrechner es in Zukunft möglich sein wird, akkurate Segmentierungen von MRT Scans im Livebetrieb vorzunehmen.
+Jedoch waren die Autoren davon überzeugt, dass Segmentierung eine wichtige Rolle im Beriech der Verarbeitung von MRT Daten darstellen wird und mit wachsender Akzeptanz auf klinischer Seite sowie dem technischen Fortschritt der Hochleistungsrechner es in Zukunft möglich sein wird, akkurate Segmentierungen von MRT Scans im Livebetrieb vorzunehmen.
 
 \newpage
 
@@ -39,9 +39,9 @@ Dank der immensen Verbesserung der Rechenleistung der Hardwarecomponenten wurde 
 
 \subsection{Intelligentes Zuschneiden des Inputs}
 
-Dimitrios G. Zaridis et al. \citep{SmartCrop} haben sich ebenfalls mit verschiedenen State of the Art U-Net Architekturen auseinandergesetzt und eine Baseline geschaffen. Trotz der beachtlichen Leistung, die die Modelle liefern, sind sie der Meinung dass noch Verbesserungspotential vorhanden ist.
+Dimitrios G. Zaridis et al. \citep{SmartCrop} haben sich ebenfalls mit verschiedenen State of the Art U-Net Architekturen auseinandergesetzt jene als Baseline genutzt. Trotz der beachtlichen Leistung, die die Modelle liefern, sind sie der Meinung dass noch Verbesserungspotential vorhanden ist.
 
-Sie fanden heraus, dass das Vorhandensein eines Klassenungleichgewichts, wo der Anteil der Hintergrundpixel dem Anteil des zu segmentierenden Organs überwiegt zu Problemem führen kann. Mithilfe eines Deep Learning Modells haben die Autoren es geschafft, dieses Klassenungleichgewicht zu reduzieren, in dem das Neuronale Netzwerk die gesuchten Organe lokalisiert, das Originalbild zuschneidet und am Ende das Verhältnis von Vorder- und Hintergrundpixeln normalisiert. Dies führte bei allen gängigen Deep Learning Netzwerken zu erheblichen Verbesserung im Bezug des Dice-Scores. U-Net+ und ResU-Net++ wiesen mithilfe dieser Technologie Verbesserungen von bis zu 8\% auf.
+Sie fanden heraus, dass das Vorhandensein eines Klassenungleichgewichts, wo der Anteil der Hintergrundpixel dem Anteil des zu segmentierenden Organs überwiegt zu Problemen führen kann. Mithilfe eines Deep Learning Modells haben die Autoren es geschafft, dieses Klassenungleichgewicht zu reduzieren, in dem das Neuronale Netzwerk die gesuchten Organe lokalisiert, das Originalbild zuschneidet und am Ende das Verhältnis von Vorder- und Hintergrundpixeln normalisiert. Dies führte bei allen gängigen Deep Learning Netzwerken zu erheblichen Verbesserung im Bezug des Dice-Scores. U-Net+ und ResU-Net++ wiesen mithilfe diese Verbesserungen von bis zu 8\% auf.
 
 \section{Grundlagen}\raggedbottom
 
@@ -115,13 +115,26 @@ Ein Beispiel der Ordnerhierarchie kann man hier sehen \autoref{Fig:train-data}
 
 Jedes slice enthält vier Zahlen (z.B. 266\textunderscore 266\textunderscore 1.50\textunderscore 1.50.png), die ersten beiden stehen für die Auflösung des Bildes und die letzten beiden für den physischen Abstand der Pixel. Der Großteil der Aufnahmen stammt von Tag null oder tag eins \autoref{Fig:slice_per_day} und die durchschnittliche Anzahl an Bildern pro Fall beträgt X.
 
-Beim betrachten der Verteilung der Segmentierungen fällt auf, dass das Vorkommen für jede Klasse stark variiert. \autoref{Fig:klassenverteilung}.
+Beim betrachten der Verteilung der Segmentierungen fällt auf, dass das Vorkommen für jede Klasse stark variiert, am häufigsten sind gar keine segmentierten Slices. \autoref{Fig:klassenverteilung}.
 
 \begin{figure}[htb]
 	\begin{center}
 		\includegraphics[width=220pt , angle=270]{bilder/segmentation_distribution}
 		\caption{Verteilung der Klassen im Testset}\label{Fig:klassenverteilung}
 	\end{center}
+\end{figure}
+
+\begin{figure}[!htb]
+   \begin{minipage}{0.48\textwidth}
+     \centering
+     \includegraphics[width=1.2\linewidth]{bilder/slice_per_case}
+     \caption{Anzahl Bilder pro Fall}\label{Fig:slice_per_case}
+   \end{minipage}\hfill
+   \begin{minipage}{0.48\textwidth}
+     \centering
+     \includegraphics[width=1.2\linewidth]{bilder/slices_per_day}
+     \caption{Anzahl Bilder pro Tag}\label{Fig:slice_per_day}
+   \end{minipage}
 \end{figure}
 
 \begin{table}[]
@@ -140,22 +153,9 @@ Beim betrachten der Verteilung der Segmentierungen fällt auf, dass das Vorkomme
 			6     & case123\textunderscore day0\textunderscore slice\textunderscore 0001 	& stomach 	&  NaN \\
 			\hline
 		\end{tabular}
-		\caption{Beispieldaten für zwe slices}\label{tabelle_daten}
+		\caption{Beispieldaten für zwei Slices}\label{tabelle_daten}
 	\end{center}
 \end{table}
-
-\begin{figure}[!htb]
-   \begin{minipage}{0.48\textwidth}
-     \centering
-     \includegraphics[width=1.2\linewidth]{bilder/slice_per_case}
-     \caption{Anzahl Bilder pro Fall}\label{Fig:slice_per_case}
-   \end{minipage}\hfill
-   \begin{minipage}{0.48\textwidth}
-     \centering
-     \includegraphics[width=1.2\linewidth]{bilder/slices_per_day}
-     \caption{Anzahl Bilder pro Tag}\label{Fig:slice_per_day}
-   \end{minipage}
-\end{figure}
 
 \subsection{Metadatenextraktion}
 
@@ -183,27 +183,100 @@ Anhand der ID eines jedes Slices war es möglich verschiedene Metadaten dem orig
 
 \pagebreak
 
+\subsection{Vorarbeit}
+
+\subsubsection{2.5 dimensionale Daten}
+
+Klassisch haben die Slices die Dimensionen 
+\begin{equation}
+H \times W \times 1
+\end{equation}
+da es sich um Graustufen Bilder handeln. U-Net arbeitet klassisch aber mit RGB Bildern, also einem 3 Channel Input
+\begin{equation}
+H \times W \times 3
+\end{equation}
+somit ist die Idee, aufeinanderfolgende Slices mit einem bestimmten Stride (Abstand) zu Verketten und dem Input so mehr Tiefe zu geben.
+
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[width=450pt]{bilder/25d_input}
+		\caption{Semi-3-dimensionaler Input}\label{Fig:25d-data}
+	\end{center}
+\end{figure}
+
+Diese Methode gegenüber 3 dimensionalen Daten einige Vorteile: es wird weniger Rechenpower benötigt, die Trainingspipeline muss nur minimal angepasst werden, Augmentations lassen sich einfacherer implementieren, die Auswertung bleibt ebenfalls gleich und die Daten können jedem Modell übergeben werden, welche darauf ausgelegt sind RGB Bilder zu segmentieren.
+
+\subsubsection{Intelligentes Zuschneiden}
+
+Die Eingabebilder wurden für jeden Tag pro Case individuell zugeschnitten. Zu beginn wird  Backgroundnoise mit einem Medianfilter beseitigt, um das kleinste Rechteck zu finden, welches den Wertebereich enthält, der nicht null ist. Dieser Prozess wird für jedes Slice aus dem Tag wiederholt, zum Schluss werden die Werte der Zeile angehangen, im Dataloader werden die Slices je nach Konfiguration dann zugeschnitten. Ein Beispiel von Case 134, Tag 21, Slice 70 ist hier zu sehen: \autoref{fig:crop} \autoref{fig:crop_table} 
+
+\begin{figure}[htp]
+\centering
+\includegraphics[width=.25\textwidth]{bilder/orig}\hfill
+\caption{Original}
+\includegraphics[width=.25\textwidth]{bilder/crop}\hfill
+\caption{Zugeschnitten}
+\includegraphics[width=.25\textwidth]{bilder/crop_median}
+\caption{Zugeschnitten mit Medianfilter}
+\label{fig:crop}
+\end{figure}
+
+\begin{table}[]
+ \begin{center}
+  \scalebox{1.1}{
+\begin{tabular}{|l|l|l|l|l|l|l|}
+\hline
+ ID & Case & Day & RS & RE & CS & CE \\ \hline
+ 1 & 134 & 21 & 84 & 10000 & 0 & 359 \\ \hline
+ 2 & 113 & 22 & 50 & 10000 & 0 & 332  \\ \hline
+\end{tabular}
+}
+\caption{Ausschnitt aus der Zuschnitt-Tabelle}\label{fig:crop_table}
+ \end{center}
+\end{table}
+
+\subsubsection{Bereinigen der Daten}
+
+Es fiel auf, dass zwei Cases falsch annotiert worden sind und wurden deshalb aus dem Trainingsdatensatz entfernt: \autoref{fig:cut}
+
+\begin{figure}[htp]
+\centering
+\includegraphics[width=.25\textwidth]{bilder/case7-day0-slice-0096}\hfill
+\caption{Case 7, Tag 0, Slice 96}
+\includegraphics[width=.25\textwidth]{bilder/case81-day30-slice-0096}\hfill
+\caption{Case 81, Tag 30, Slice 96}
+\label{fig:cut}
+\end{figure}
+
+RS, RE, CS und CE stehen in diesem Kontext für RowStart, RowEnd, ColumnStart und ColumnEnd
+
+\subsection{Nacharbeit}
+
+Beim Erkunden der Masken ist aufgefallen, dass es Slices gibt die für die jeweilige Klasse nie Segmentierungen aufweisen. Dieses Wissen kann man dazu nutzen, um die Predictions zu bereinigen und somit den eigenen Kaggle-Score zu boosten. Ob dies jedoch good practice im Klinikalltag ist, ist fragwürdig, da diese Beobachtungen auf diesem Datensatz gemacht wurden und es wahrscheinlich ist aufgrund von z.B. einer anderen Statur, Operationen oder ähnlichem dies nicht mehr gegeben ist.
+
 \subsection{Algorithmik}
 
 Dieses Projekt wurde gänzlich in Python mithilfe der TensorFlow API sowie dem
  \href{https://deepai.org/machine-learning-glossary-and-terms/relu}{Segmentation Models} \citep{Yakubovskiy:2019}
- Package aufgezogen, welches verschiedene Architekturen und an- oder nicht antrainierte Encoder zur verfügung stellt. Trainiert wurde mit dem
+ Package aufgezogen, welches verschiedene Architekturen und an- oder nicht antrainierte Encoder zur verfügung stellt. 
+ 
+ Trainiert wurde mit dem
 \href{https://optimization.cbe.cornell.edu/index.php?title=Adam}{Adam Optimizer},
- und einer initialen Learning Rate von von 5e-4, die sich um den Faktor e-1 verringert, wenn sich der Validation-loss nach fünf Epochen unverändert schlecht bleibt. Die Loss function ist eine Mischung aus 
+ und einer initialen Learning Rate von von 5e-4, die sich um den Faktor e-1 verringert, wenn der Validation-loss nach fünf Epochen unverändert schlecht blieb. 
+ 
+ Die Loss function ist eine Mischung aus 
 \href{https://www.analyticsvidhya.com/blog/2021/03/binary-cross-entropy-log-loss-for-binary-classification/}{Binary Crossentropy} und zu 50\%
-Dice Loss. Diese Kombination eignet sich laut Jadon  \citep{Jadon_2020} besonders gut, um Segmentierungsarchitekturen anzulernen. Ansonsten wurde mit einer Batchsize von 16 und 32 trainiert.
+Dice Loss. Diese Kombination eignet sich laut Jadon  \citep{Jadon_2020} besonders gut, um Segmentierungsarchitekturen anzulernen. 
+
+\begin{equation}
+\mathcal{L}_{s e g}\left(S_{i l}, \hat{S_{i}} l\right)= \sum_{j=1}^{J} S_{i j l} \log \left(\hat{S}_{i j l}\right)+0.5 *\left(1-\frac{2\left|S_{i l} \cap \hat{S_{i}} l\right|}{\left|S_{i l}\right|+\left|\hat{S_{i}} l\right|}\right)
+\end{equation}
+
+Es wurde mit einer Batchsize von 16 und 32 auf verschiedenen Grafikkarten vom 
+\href{https://wiki.hhu.de/display/HPC/Abschlussarbeiten+im+HPC}{HPC} des ZIMs Trainiert: RTX 8000, RTX 6000 und GTX 1080ti.
+
 Die Daten wurden mithilfe von der 
-\href{https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.StratifiedGroupKFold.html}{StratifiedGroupKFold} Methode von Sklearn in 5 Folds aufgeteilt und nach Case gruppiert. Somit 
-wurde das Verhältnis der Klassendistribution in jedem Fold beibehalten. 
-
-\subsection{2.5 dimensionale Daten}
-?
-
-\subsection{Intelligentes Zuschneiden}
-?
-
-\subsection{Nachbearbeitung }
-?
+\href{https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.StratifiedGroupKFold.html}{StratifiedGroupKFold} Methode von Sklearn in 5 Folds aufgeteilt und nach Case gruppiert. Somit wurde das Verhältnis der Klassendistribution im Vergleich zum ganzen Dantensatz in jedem Fold beibehalten. 
 
 \subsection{Experimente}
 Experimente.
@@ -214,27 +287,6 @@ Experimente.
 
 \subsection{Ausblick}
 Ideen, die es nicht in die Arbeit geschafft haben oder nicht schafffen konnten.
-
-
-\ifthenelse{\boolean{\biber}}{ % Beispiel um mit Biber zu zitieren (\citet und \citep)
-	\citet{Con97} hat ein Buch geschrieben. Es gibt auch andere Arbeiten \citep{PeHe97} die referenziert sind. In Abbildung \ref{fig_Gallien} ist ein Sachverhalt dargestellt.
-
-
-	1 Autor: \citet{Con97} \hspace*{1cm} \citep{Con97}\\
-	2 Autoren: \citet{IWNLP} \hspace*{1cm} \citep{IWNLP}\\
-	3 Autoren: \citet{liebeck-esau-conrad:2016:ArgMining2016} \hspace*{1cm} \citep{liebeck-esau-conrad:2016:ArgMining2016}
-
-	Online resource: \citet{ILSVRC2016}
-}{ %  Beispiel um klassisch zu zitieren (\cite)
-	\cite{Con97} hat ein Buch geschrieben. Es gibt auch andere Arbeiten \cite{PeHe97} die referenziert sind. In Abbildung \ref{fig_Gallien} ist ein Sachverhalt dargestellt.
-
-
-	1 Autor: \cite{Con97} \hspace*{1cm} \cite{Con97}\\
-	2 Autoren: \cite{IWNLP} \hspace*{1cm} \cite{IWNLP}\\
-	3 Autoren: \cite{liebeck-esau-conrad:2016:ArgMining2016} \hspace*{1cm} \cite{liebeck-esau-conrad:2016:ArgMining2016}
-
-	Online resource: \cite{ILSVRC2016}
-}
 
 \ifthenelse{\equal{\sprache}{deutsch}}{
 	\textbf{quotes}:\\
