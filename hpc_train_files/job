@@ -5,7 +5,7 @@
 
 ## Log-File definieren
 
-INPUT="HOT2_5D.py efficientnetb0 224 16 50 True True"
+INPUT="HOT.py efficientnetb0 32 16 50 True True True"
 export LOGFILE=$PBS_O_WORKDIR/$INPUT/$PBS_JOBNAME"."$PBS_JOBID".log"
 
 module load Python/3.8.3
