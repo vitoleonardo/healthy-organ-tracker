@@ -34,7 +34,12 @@ class CFG:
     # A dictionary of the encoder weights path.
     encoder_weights_path = {
         'efficientnetb0': 'input/efficientnet-b0_weights_tf_dim_ordering_tf_kernels_autoaugment_notop.h5',
+        'efficientnetb1': 'input/efficientnet-b1_weights_tf_dim_ordering_tf_kernels_autoaugment_notop.h5',
+        'efficientnetb2': 'input/efficientnet-b2_weights_tf_dim_ordering_tf_kernels_autoaugment_notop.h5',
+        'efficientnetb3': 'input/efficientnet-b3_weights_tf_dim_ordering_tf_kernels_autoaugment_notop.h5',
+        'efficientnetb4': 'input/efficientnet-b4_weights_tf_dim_ordering_tf_kernels_autoaugment_notop.h5',
         'efficientnetb5': 'input/efficientnet-b5_weights_tf_dim_ordering_tf_kernels_autoaugment_notop.h5',
+        'efficientnetb6': 'input/efficientnet-b6_weights_tf_dim_ordering_tf_kernels_autoaugment_notop.h5',
         'efficientnetb7': 'input/efficientnet-b7_weights_tf_dim_ordering_tf_kernels_autoaugment_notop.h5',
         'inceptionresnetv2': 'input/inception_resnet_v2_weights_tf_dim_ordering_tf_kernels_notop.h5',
         'inceptionv3': 'input/inception_v3_weights_tf_dim_ordering_tf_kernels_notop.h5',
