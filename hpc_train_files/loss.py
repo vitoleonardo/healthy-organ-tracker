@@ -50,10 +50,10 @@ def dice_loss(y_true, y_pred):
 
 def bce_dice_loss(y_true, y_pred):
     """
-    It takes the binary cross entropy loss and adds to it the dice loss with a factor of 0.5
+    It takes the binary cross entropy loss times 0.6 and adds to it the dice loss with a factor of 0.4
     
     :param y_true: the ground truth mask
     :param y_pred: The predicted output of the model
     :return: The loss function is being returned.
     """
-    return binary_crossentropy(tf.cast(y_true, tf.float32), y_pred) + 0.5 * dice_loss(tf.cast(y_true, tf.float32), y_pred)
+    return 0.6 * binary_crossentropy(tf.cast(y_true, tf.float32), y_pred) + 0.4 * dice_loss(tf.cast(y_true, tf.float32), y_pred)
