@@ -39,9 +39,9 @@ Dank der immensen Verbesserung der Rechenleistung der Hardwarecomponenten wurde 
 
 \subsection{Intelligentes Zuschneiden des Inputs}
 
-Dimitrios G. Zaridis et al. \citep{SmartCrop} haben sich ebenfalls mit verschiedenen State of the Art U-Net Architekturen auseinandergesetzt jene als Baseline genutzt. Trotz der beachtlichen Leistung, die die Modelle liefern, sind sie der Meinung dass noch Verbesserungspotential vorhanden ist.
+Dimitrios G. Zaridis et al. \citep{SmartCrop} haben sich ebenfalls mit verschiedenen State of the Art U-Net Architekturen auseinandergesetzt und jene als Baseline für ihre Arbeit genutzt. Trotz der beachtlichen Leistung, die die Modelle liefern, sind sie der Meinung dass noch Verbesserungspotential vorhanden ist.
 
-Sie fanden heraus, dass das Vorhandensein eines Klassenungleichgewichts, wo der Anteil der Hintergrundpixel dem Anteil des zu segmentierenden Organs überwiegt zu Problemen führen kann. Mithilfe eines Deep Learning Modells haben die Autoren es geschafft, dieses Klassenungleichgewicht zu reduzieren, in dem das Neuronale Netzwerk die gesuchten Organe lokalisiert, das Originalbild zuschneidet und am Ende das Verhältnis von Vorder- und Hintergrundpixeln normalisiert. Dies führte bei allen gängigen Deep Learning Netzwerken zu erheblichen Verbesserung im Bezug des Dice-Scores. U-Net+ und ResU-Net++ wiesen mithilfe diese Verbesserungen von bis zu 8\% auf.
+Sie fanden heraus, dass das Vorhandensein eines Klassenungleichgewichts, wo der Anteil der Hintergrundpixel dem Anteil des zu segmentierenden Organs überwiegt zu Problemen führt. Mithilfe eines Deep Learning Modells haben die Autoren es geschafft, dieses Klassenungleichgewicht zu reduzieren, in dem das Neuronale Netzwerk die gesuchten Organe lokalisiert, das Originalbild zuschneidet und am Ende das Verhältnis von Vorder- und Hintergrundpixeln normalisiert. Dies führte bei allen gängigen Deep Learning Netzwerken zu erheblichen Verbesserung im Bezug des Dice-Scores. U-Net+ und ResU-Net++ wiesen mithilfe diese Verbesserungen von bis zu 8\% auf.
 
 \section{Grundlagen}\raggedbottom
 
@@ -105,12 +105,33 @@ Evaluiert wurden die Ergebnisse mit einer Gewichtung von 0.4 des Dice-Koeffizien
 \section{Methodik}\raggedbottom
 
 \subsection{Datenanalyse}
-Der Datensatz besteht aus 115 488 Zeilen und enthält drei features: ID, Klasse und einem Run-lenght codierten String, der die Maske enthält. \autoref{tabelle_daten}. Jeder ID sind drei Zeilen gewidmet, jeweils für die drei Klassen. Zu jeder ID existiert ein Graustufen Bild, welche sich im train Ordner befinden:
+
+Im Folgenden beziehen sich die Werte {X} immer auf auf die Vorhersage und {Y} auf die Groundtruth.
+
+\begin{table}[H]
+	\begin{center}
+	        \small
+	        \setlength\tabcolsep{2pt}
+		\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+			\hline
+			Index  & ID & Class & Segmentation \\
+			\hline \hline
+			1     & case134\textunderscore day0\textunderscore slice\textunderscore 0085 	& large\textunderscore bowel 	&  NaN  \\
+			2     & case134\textunderscore day0\textunderscore slice\textunderscore 0085 	& small\textunderscore bowel 	&  41591 5 41599 7 41949 27 ...  \\
+			3     & case134\textunderscore day0\textunderscore slice\textunderscore 0085 	& stomach 	&  NaN \\
+			4     & case123\textunderscore day0\textunderscore slice\textunderscore 0001 	& large\textunderscore bowel 	&  35223 6 74352 7 32312 12 ...   \\
+			5     & case123\textunderscore day0\textunderscore slice\textunderscore 0001 	& small\textunderscore bowel 	&  63432 5 12354 7 41949 12 ...  \\
+			6     & case123\textunderscore day0\textunderscore slice\textunderscore 0001 	& stomach 	&  NaN \\
+			\hline
+		\end{tabular}
+		\caption{Beispieldaten für zwei Slices}\label{tabelle_daten}
+	\end{center}
+\end{table}
+
+Der Datensatz besteht aus 115 488 Zeilen und enthält drei features: ID, Klasse und einem Run-lenght codierten String, der die Maske enthält. \autoref{tabelle_daten}. Jeder ID sind drei Zeilen gewidmet, jeweils für die drei Klassen: small\textunderscore bowel, large\textunderscore bowel und stomach. Zu jeder ID existiert ein graustufen Bild, welche sich im train Ordner befinden, Ein Beispiel der Ordnerhierarchie kann man hier sehen \autoref{Fig:train-data}.
 
 input\textbackslash uw-madison-gi-tract-image-segmentation\textbackslash train\textbackslash case101\textbackslash \\case101\textunderscore
 day20\textbackslash scans\textbackslash slice\textunderscore 0001\textunderscore 266\textunderscore 266\textunderscore 1.50\textunderscore 1.50.png
-
-Ein Beispiel der Ordnerhierarchie kann man hier sehen \autoref{Fig:train-data}
 
 \begin{figure}[htb]
 	\begin{center}
@@ -119,7 +140,7 @@ Ein Beispiel der Ordnerhierarchie kann man hier sehen \autoref{Fig:train-data}
 	\end{center}
 \end{figure}
 
-Jedes slice enthält vier Zahlen (z.B. 266\textunderscore 266\textunderscore 1.50\textunderscore 1.50.png), die ersten beiden stehen für die Auflösung des Bildes und die letzten beiden für den physischen Abstand der Pixel. Der Großteil der Aufnahmen stammt von Tag null oder tag eins \autoref{Fig:slice_per_day} und die durchschnittliche Anzahl an Bildern pro Fall beträgt X.
+Jedes slice enthält vier Zahlen (z.B. 266\textunderscore 266\textunderscore 1.50\textunderscore 1.50.png), die ersten beiden stehen für die Auflösung des Bildes und die letzten beiden für den physischen Abstand der Pixel. Der Großteil der Aufnahmen stammt von Tag null oder Tag eins \autoref{Fig:slice_per_day} und die durchschnittliche Anzahl an Bildern pro Fall beträgt X.
 
 Beim betrachten der Verteilung der Segmentierungen fällt auf, dass das Vorkommen für jede Klasse stark variiert, am häufigsten sind gar keine segmentierten Slices. \autoref{Fig:klassenverteilung}.
 
@@ -143,34 +164,13 @@ Beim betrachten der Verteilung der Segmentierungen fällt auf, dass das Vorkomme
    \end{minipage}
 \end{figure}
 
-\begin{table}[]
-	\begin{center}
-	        \small
-	        \setlength\tabcolsep{2pt}
-		\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
-			\hline
-			Index  & ID & Class & Segmentation \\
-			\hline \hline
-			1     & case134\textunderscore day0\textunderscore slice\textunderscore 0085 	& large\textunderscore bowel 	&  NaN  \\
-			2     & case134\textunderscore day0\textunderscore slice\textunderscore 0085 	& small\textunderscore bowel 	&  41591 5 41599 7 41949 27 ...  \\
-			3     & case134\textunderscore day0\textunderscore slice\textunderscore 0085 	& stomach 	&  NaN \\
-			4     & case123\textunderscore day0\textunderscore slice\textunderscore 0001 	& large\textunderscore bowel 	&  35223 6 74352 7 32312 12 ...   \\
-			5     & case123\textunderscore day0\textunderscore slice\textunderscore 0001 	& small\textunderscore bowel 	&  63432 5 12354 7 41949 12 ...  \\
-			6     & case123\textunderscore day0\textunderscore slice\textunderscore 0001 	& stomach 	&  NaN \\
-			\hline
-		\end{tabular}
-		\caption{Beispieldaten für zwei Slices}\label{tabelle_daten}
-	\end{center}
-\end{table}
-
 \subsection{Metadatenextraktion}
 
-Anhand der ID eines jedes Slices war es möglich verschiedene Metadaten dem originalem Dataframe zu entziehen, zudem wurde die gesamtlänge gedrittelt, dadurch dass die Klassen einer ID  zugewiesen worden sind. \autoref{tabelle_meta_daten}
-
+Anhand der ID eines jedes Slices war es möglich verschiedene Metadaten dem originalem Dataframe zu hinzuzufügen, zudem wurde die Gesamtlänge gedrittelt, dadurch dass die Klassen einer ID  zugewiesen worden sind, die Gesamtlänge des Dataframes beläuft sich somit auf 38 496 Zeilen. \autoref{tabelle_meta_daten}
 
 % & rs & re & cs & ce & count & path00 & path01 & path02 & image\textunderscore paths
 
-\begin{table}[]
+\begin{table}[H]
  \begin{center}
   \scalebox{0.7}{
    \begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|l|l|l|}
@@ -183,11 +183,9 @@ Anhand der ID eines jedes Slices war es möglich verschiedene Metadaten dem orig
      \hline
    \end{tabular}
    }
-   \caption{Metadaten für drei slices}\label{tabelle_meta_daten}
+   \caption{Metadaten von drei slices}\label{tabelle_meta_daten}
  \end{center}
 \end{table}
-
-\pagebreak
 
 \subsection{Vorarbeit}
 
@@ -197,7 +195,7 @@ Klassisch haben die Slices die Dimensionen
 \begin{equation}
 H \times W \times 1
 \end{equation}
-da es sich um Graustufen Bilder handeln. U-Net arbeitet klassisch aber mit RGB Bildern, also einem 3 Channel Input
+da es sich um graustufen Bilder handeln. U-Net arbeitet klassisch aber mit RGB Bildern, also einem 3 Channel Input
 \begin{equation}
 H \times W \times 3
 \end{equation}
@@ -210,11 +208,44 @@ somit ist die Idee, aufeinanderfolgende Slices mit einem bestimmten Stride (Abst
 	\end{center}
 \end{figure}
 
-Diese Methode gegenüber 3 dimensionalen Daten einige Vorteile: es wird weniger Rechenpower benötigt, die Trainingspipeline muss nur minimal angepasst werden, Augmentations lassen sich einfacherer implementieren, die Auswertung bleibt ebenfalls gleich und die Daten können jedem Modell übergeben werden, welche darauf ausgelegt sind RGB Bilder zu segmentieren.
+Diese Methode hat gegenüber 3 dimensionalen Daten einige Vorteile: es wird weniger Rechenleistung benötigt, die Trainingspipeline muss nur minimal angepasst werden, die Auswertung bleibt ebenfalls gleich und die Daten können jedem Modell übergeben werden, welche darauf ausgelegt sind RGB Bilder zu segmentieren.
 
 \subsubsection{Intelligentes Zuschneiden}
 
-Die Eingabebilder wurden für jeden Tag pro Case individuell zugeschnitten. Zu beginn wird  Backgroundnoise mit einem Medianfilter beseitigt, um das kleinste Rechteck zu finden, welches den Wertebereich enthält, der nicht null ist. Dieser Prozess wird für jedes Slice aus dem Tag wiederholt, zum Schluss werden die Werte der Zeile angehangen, im Dataloader werden die Slices je nach Konfiguration dann zugeschnitten. Ein Beispiel von Case 134, Tag 21, Slice 70 ist hier zu sehen: \autoref{fig:crop} \autoref{fig:crop_table} 
+Basierend auf den Ergebnissen von Zaridis et al. sowie dem Vorhandensein eines Klassen-Ungleichgewichts implementierte ich einen Algorithmus, in der Hoffnung eine Verbesserung der Performance des Models zu erreichen.
+
+Die Eingabebilder wurden für jeden Tag pro Case individuell zugeschnitten. Zu beginn wird das Hintergrundrauschen mit einem Medianfilter beseitigt, um das kleinste Rechteck aus der Menge zu finden, welches den Wertebereich enthält, der ungleich null ist. Dieser Prozess wird für jedes Slice aus dem Tag wiederholt, zum Schluss werden die Werte der Zeile angehangen, im Dataloader werden die Slices je nach Konfiguration dann zugeschnitten. Ein Beispiel von Case 134, Tag 21, Slice 70 ist hier zu sehen: \autoref{tab:crop_table} 
+
+\begin{table}[H]
+ \begin{center}
+  \scalebox{1.1}{
+\begin{tabular}{|l|l|l|l|l|l|l|}
+\hline
+ ID & Case & Day & RS & RE & CS & CE \\ \hline
+ 1 & 134 & 21 & 84 & 10000 & 0 & 359 \\ \hline
+ 2 & 113 & 22 & 50 & 10000 & 0 & 332  \\ \hline
+\end{tabular}
+}
+\caption{Ausschnitt aus der Zuschnitt-Tabelle}\label{tab:crop_table}
+ \end{center}
+ \end{table}
+ 
+ RS, RE, CS und CE stehen in diesem Kontext für Zeilenanfang und Ende sowie Spaltenanfang und Ende.
+ 
+ So konnte das Ungleichgewicht für jede Klasse gesunken werden (Werte wurden gerundet): 
+
+\begin{table}[H]
+\centering
+\begin{tabular}{l|c|c}
+Klasse & ohne Zuschnitt & mit Zuschnitt \\ \hline
+large\textunderscore bowel & 144 & 134\\
+small\textunderscore bowel & 158 & 146 \\
+stomach & 286 & 265\\
+Total & 60 & 56\\
+\end{tabular}
+\caption{\label{tab:ratio}Verhältnis von Vorder- zu Hintergrundpixeln}
+\end{table}
+
 
 \begin{figure}[htp]
 \centering
@@ -227,23 +258,11 @@ Die Eingabebilder wurden für jeden Tag pro Case individuell zugeschnitten. Zu b
 \label{fig:crop}
 \end{figure}
 
-\begin{table}[]
- \begin{center}
-  \scalebox{1.1}{
-\begin{tabular}{|l|l|l|l|l|l|l|}
-\hline
- ID & Case & Day & RS & RE & CS & CE \\ \hline
- 1 & 134 & 21 & 84 & 10000 & 0 & 359 \\ \hline
- 2 & 113 & 22 & 50 & 10000 & 0 & 332  \\ \hline
-\end{tabular}
-}
-\caption{Ausschnitt aus der Zuschnitt-Tabelle}\label{fig:crop_table}
- \end{center}
-\end{table}
+
 
 \subsubsection{Bereinigen der Daten}
 
-Es fiel auf, dass zwei Cases falsch annotiert worden sind und wurden deshalb aus dem Trainingsdatensatz entfernt: \autoref{fig:cut}
+Zwei Cases wurden falsch annotiert und wurden deshalb aus dem Trainingsdatensatz entfernt, somit beläuft sich die Anzahl der Zeilen auf 38 208: \autoref{fig:cut}
 
 \begin{figure}[htp]
 \centering
@@ -254,11 +273,9 @@ Es fiel auf, dass zwei Cases falsch annotiert worden sind und wurden deshalb aus
 \label{fig:cut}
 \end{figure}
 
-RS, RE, CS und CE stehen in diesem Kontext für RowStart, RowEnd, ColumnStart und ColumnEnd
-
 \subsection{Nacharbeit}
 
-Beim Erkunden der Masken ist aufgefallen, dass es Slices gibt die für die jeweilige Klasse nie Segmentierungen aufweisen. Dieses Wissen kann man dazu nutzen, um die Predictions zu bereinigen und somit den eigenen Kaggle-Score zu verbessern. Ob dies jedoch good practice im Klinikalltag ist, ist fragwürdig, da diese Beobachtungen auf diesem Datensatz gemacht wurden und es wahrscheinlich ist aufgrund von z.B. einer anderen Statur, Operationen oder ähnlichem dies nicht mehr gegeben ist.
+Bestimmte Slices weisen nie eine Segmentierung auf. Dieses Wissen kann man dazu nutzen, um die Vorhersage zu bereinigen, indem man die Maske jener Slices entfernt. Mithilfe dieser Methode kann man seinen Score bei Kaggle um e-3 bis e-4 verbessern. Ob dies jedoch good practice im Klinikalltag ist, ist fragwürdig, da diese Beobachtungen auf diesem Datensatz gemacht wurden und es wahrscheinlich ist aufgrund von z.B. einer anderen Statur, Operationen oder ähnlichem dies bei anderen Patienten nicht garantieren kann,
 
 \subsection{Algorithmik}
 
@@ -302,7 +319,7 @@ Das Projekt wurde gänzlich in Python mithilfe der TensorFlow API sowie dem
 \href{https://www.analyticsvidhya.com/blog/2021/03/binary-cross-entropy-log-loss-for-binary-classification/}{Binary Crossentropy} und zu einem Faktor von 0.5 der Dice-Koeffizient. Diese Kombination eignet sich laut Jadon  \citep{Jadon_2020} besonders gut, um einen höheren Dice Score zu erzielen. Außerdem ermöglicht sie dem Modell, sich auf mehrere Klassen zu konzentrieren, so ist das Modell in der Lage das Klassenungleichgewicht zu berücksichtigen. 
 
 \begin{equation}
-\mathcal{L}\left(X_{i l},{Y_{i}} l\right)= \sum_{c=1}^{C} X_{i c l} \log \left({Y}_{i c l}\right)+0.5 *\left(1-\frac{2\left|X_{i l} \cap {Y_{i}} l\right|}{\left|X_{i l}\right|+\left|{Y_{i}} l\right|}\right)
+\mathcal{L}\left(X_{i l},{Y_{i}} l\right)= 0.6 * \sum_{c=1}^{C} X_{i c l} \log \left({Y}_{i c l}\right)+0.4 *\left(1-\frac{2\left|X_{i l} \cap {Y_{i}} l\right|}{\left|X_{i l}\right|+\left|{Y_{i}} l\right|}\right)
 \end{equation}
 
 Es wurde mit einer Batchsize von 16 und 32 auf verschiedenen Grafikkarten vom 
