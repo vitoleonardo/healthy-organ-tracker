@@ -12,20 +12,42 @@ def rle_encode(img):
     runs[1::2] -= runs[::2]
     return ' '.join(str(x) for x in runs)
 
+# ref: https://www.kaggle.com/paulorzp/run-length-encode-and-decode
+# modified from: https://www.kaggle.com/inversion/run-length-decoding-quick-start
 def rle_decode(mask_rle, shape, color=1):
-    '''
-    mask_rle: run-length as string formated (start length)
-    shape: (height,width) of array to return
-    Returns numpy array, 1 - mask, 0 - background
+    """
+    
+    Args:
+        mask_rle (str): run-length as string formated (start length)
+        shape (tuple of ints): (height,width) of array to return 
+    
+    Returns: 
+        Mask (np.array)
+            - 1 indicating mask
+            - 0 indicating background
 
-    '''
-    s = mask_rle.split()
-    starts, lengths = [np.asarray(x, dtype=int) for x in (s[0:][::2], s[1:][::2])]
-    starts -= 1
+    """
+    # Split the string by space, then convert it into a integer array
+    s = np.array(mask_rle.split(), dtype=int)
+
+    # Every even value is the start, every odd value is the "run" length
+    starts = s[0::2] - 1
+    lengths = s[1::2]
     ends = starts + lengths
-    img = np.zeros((shape[0] * shape[1], shape[2]), dtype=np.float32)
+
+    # The image image is actually flattened since RLE is a 1D "run"
+    if len(shape)==3:
+        h, w, d = shape
+        img = np.zeros((h * w, d), dtype=np.float32)
+    else:
+        h, w = shape
+        img = np.zeros((h * w,), dtype=np.float32)
+
+    # The color here is actually just any integer you want!
     for lo, hi in zip(starts, ends):
         img[lo : hi] = color
+        
+    # Don't forget to change the image back to the original shape
     return img.reshape(shape)
 
 
