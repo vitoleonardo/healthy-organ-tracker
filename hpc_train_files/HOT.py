@@ -108,7 +108,7 @@ def main(backbone, dim, batch, epochs, semi3d_data, remove_faulty_cases, use_cro
     # Only train on fold 3
     for i in range(3,4):
         model_full_name = f"{cfg.model}_BB_{cfg.backbone}_DIM_{cfg.img_dims}_SEMI3D_{cfg.semi3d_data}_CROPDATA_{cfg.use_crop_data}_BATCH_{cfg.batch_size}_EPOCHS_{cfg.epochs}_FOLD_{i}.h5"
-        log_dir = f'logs/efbs/{model_full_name}_{datetime.now().strftime("%d%m%Y-%H%M")}_FOLD_{i}'
+        log_dir = f'logs/newLoss/{model_full_name}_{datetime.now().strftime("%d%m%Y-%H%M")}_FOLD_{i}'
 
         callbacks = [
             tf.keras.callbacks.TensorBoard(
