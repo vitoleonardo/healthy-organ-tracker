@@ -50,7 +50,8 @@ def dice_loss(y_true, y_pred):
 
 def bce_dice_loss(y_true, y_pred):
     """
-    It takes the binary cross entropy loss times 0.6 and adds to it the dice loss with a factor of 0.4
+    > The function takes in two arguments, the true labels and the predicted labels, and returns the
+    weighted sum of the binary crossentropy loss and the dice loss
     
     :param y_true: the ground truth mask
     :param y_pred: The predicted output of the model
