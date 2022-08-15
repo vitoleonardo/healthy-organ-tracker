@@ -67,8 +67,8 @@ Um die Daten zu verstehen und Erkentnisse aus den Ergebnissen zu gewinnen, ist e
 % CNN, Convolution, Maxpooling oder ReLu erklären?
 
 U-Net wurde im Jahr 2015 von Olag Ronneberger et al. \citep{U-Net} vorgestellt als Segmentierungsarchitektur für den biomedizinischem Bereich und bildet die Baseline dieser Arbeit. Neu in der Herangehensweise ist der Encoder-Decoder Part, die dem Netzwerk ermöglicht räumliche Merkmale anzutrainieren.
-Klassisch handelt es sich um ein
-\href{https://en.wikipedia.org/wiki/Convolutional_neural_network}{Convolutional Neural Network}, bestehend es aus 5 bis 6 \glqq downsampling\grqq Schichten (auch Encoder genannt)  und der gleichen Menge an \glqq upsampling\grqq Schichten (auch Decoder genannt).
+Klassisch handelt es sich beim Encoder um ein
+\href{https://en.wikipedia.org/wiki/Convolutional_neural_network}{Convolutional Neural Network}, bestehend es aus 5 bis 6 \glqq downsampling\grqq Schichten und der gleichen Menge an \glqq upsampling\grqq Schichten im Decoder-part. 
 
 Eine \glqq downsample\grqq  Operation besteht zum einen aus einer
 \glqq \href{https://en.wikipedia.org/wiki/Convolution}{Convolution Operation}\grqq
@@ -89,11 +89,17 @@ gebracht. Hier ersetzt die transponier Operation die Maxpooling Operation (vergl
 	\end{center}
 \end{figure}
 
+
 \subsection{Encoder 1}
 Eventuell
 
-\subsection{Encoder 2}
-Eventuell
+\subsection{Kaggle}
+
+Diese Arbeit baut auf der 
+\href{https://www.kaggle.com/competitions/uw-madison-gi-tract-image-segmentation/overview/description}{UW-Madison GI Tract Image Segmentation}
+Challenge auf, die von der \glqq University of Wisconsin Carbone Cancer Center Pancreas Pilot Research Grant \grqq organisiert wurde und von denen die Daten auch bereitgestellt wurden.
+
+Evaluiert wurden die Ergebnisse mit einer Gewichtung von 0.4 des Dice-Koeffizienten  (\autoref{ssec:dc}) sowie 0.6 der Hausdorff-Metrik (\autoref{ssec:hdorff}) auf unbekannten Testdaten.
 
 
 \section{Methodik}\raggedbottom
@@ -252,31 +258,58 @@ RS, RE, CS und CE stehen in diesem Kontext für RowStart, RowEnd, ColumnStart un
 
 \subsection{Nacharbeit}
 
-Beim Erkunden der Masken ist aufgefallen, dass es Slices gibt die für die jeweilige Klasse nie Segmentierungen aufweisen. Dieses Wissen kann man dazu nutzen, um die Predictions zu bereinigen und somit den eigenen Kaggle-Score zu boosten. Ob dies jedoch good practice im Klinikalltag ist, ist fragwürdig, da diese Beobachtungen auf diesem Datensatz gemacht wurden und es wahrscheinlich ist aufgrund von z.B. einer anderen Statur, Operationen oder ähnlichem dies nicht mehr gegeben ist.
+Beim Erkunden der Masken ist aufgefallen, dass es Slices gibt die für die jeweilige Klasse nie Segmentierungen aufweisen. Dieses Wissen kann man dazu nutzen, um die Predictions zu bereinigen und somit den eigenen Kaggle-Score zu verbessern. Ob dies jedoch good practice im Klinikalltag ist, ist fragwürdig, da diese Beobachtungen auf diesem Datensatz gemacht wurden und es wahrscheinlich ist aufgrund von z.B. einer anderen Statur, Operationen oder ähnlichem dies nicht mehr gegeben ist.
 
 \subsection{Algorithmik}
 
-Dieses Projekt wurde gänzlich in Python mithilfe der TensorFlow API sowie dem
+\subsubsection{Hausdorff-Metrik} \label{ssec:hdorff}
+Die Hausdorff-Metrik ist eine Methode zur Berechnung des Abstands zwischen den Segmentierungsobjekten X und Y, indem der am weitesten entfernte Punkt auf Objekt X vom nächstgelegenen Punkt auf Objekt Y berechnet wird
+
+\begin{equation}
+d_{\mathrm{H}}(X, Y)=\max \left\{\sup _{x \in X} d(x, Y), \sup _{y \in Y} d(X, y)\right\}
+\end{equation}
+
+\subsubsection{Binäre Kreuzentropie} \label{ssec:bce}
+
+Die Kreuzentropie ist definiert als ein Maß für die Differenz zwischen zwei Wahrscheinlichkeitsverteilungen für eine bestimmte Zufallsvariable oder eine Reihe von Ereignissen. Sie eignet sich besonders gut Klassifizierungen auf Pixelebene, weist jedoch bei einer unausgewogenen Klassenverteilung der Daten ihre schwächen auf. \citep{Jadon_2020} 
+
+Sie ist definiert als:
+\begin{equation}
+\mathcal{L}_{BCE}\left(X_{i l}, Y_{i} l\right)=\sum_{c=1}^{C} X_{i c l} \log \left(Y_{i c l}\right)
+\end{equation}
+
+\subsubsection{Dice-Koeffizient} \label{ssec:dc}
+
+Der Dice-Koeffizient kann verwendet werden, um die pixelweise Übereinstimmung zwischen einer vorhergesagten Segmentierung und der entsprechenden Groundtruth zu vergleichen. Die Formel ist gegeben durch:
+
+\begin{equation}
+D S C=\frac{2|X \cap Y|}{|X|+|Y|}
+\end{equation}
+
+wobei X die vorhergesagte Menge von Pixeln und Y die Groundtruth ist. Der Dice-Koeffizient ist definiert als 0, wenn sowohl X als auch Y leer sind.
+
+\subsection{Modell}
+
+Das Projekt wurde gänzlich in Python mithilfe der TensorFlow API sowie dem
  \href{https://deepai.org/machine-learning-glossary-and-terms/relu}{Segmentation Models} \citep{Yakubovskiy:2019}
- Package aufgezogen, welches verschiedene Architekturen und an- oder nicht antrainierte Encoder zur verfügung stellt. 
+ Package aufgezogen, welches verschiedene Architekturen inklusive an- und nicht antrainierte Encoder zur verfügung stellt. 
  
  Trainiert wurde mit dem
 \href{https://optimization.cbe.cornell.edu/index.php?title=Adam}{Adam Optimizer},
  und einer initialen Learning Rate von von 5e-4, die sich um den Faktor e-1 verringert, wenn der Validation-loss nach fünf Epochen unverändert schlecht blieb. 
  
  Die Loss function ist eine Mischung aus 
-\href{https://www.analyticsvidhya.com/blog/2021/03/binary-cross-entropy-log-loss-for-binary-classification/}{Binary Crossentropy} und zu 50\%
-Dice Loss. Diese Kombination eignet sich laut Jadon  \citep{Jadon_2020} besonders gut, um Segmentierungsarchitekturen anzulernen. 
+\href{https://www.analyticsvidhya.com/blog/2021/03/binary-cross-entropy-log-loss-for-binary-classification/}{Binary Crossentropy} und zu einem Faktor von 0.5 der Dice-Koeffizient. Diese Kombination eignet sich laut Jadon  \citep{Jadon_2020} besonders gut, um einen höheren Dice Score zu erzielen. Außerdem ermöglicht sie dem Modell, sich auf mehrere Klassen zu konzentrieren, so ist das Modell in der Lage das Klassenungleichgewicht zu berücksichtigen. 
 
 \begin{equation}
-\mathcal{L}_{s e g}\left(S_{i l}, \hat{S_{i}} l\right)= \sum_{j=1}^{J} S_{i j l} \log \left(\hat{S}_{i j l}\right)+0.5 *\left(1-\frac{2\left|S_{i l} \cap \hat{S_{i}} l\right|}{\left|S_{i l}\right|+\left|\hat{S_{i}} l\right|}\right)
+\mathcal{L}\left(X_{i l},{Y_{i}} l\right)= \sum_{c=1}^{C} X_{i c l} \log \left({Y}_{i c l}\right)+0.5 *\left(1-\frac{2\left|X_{i l} \cap {Y_{i}} l\right|}{\left|X_{i l}\right|+\left|{Y_{i}} l\right|}\right)
 \end{equation}
 
 Es wurde mit einer Batchsize von 16 und 32 auf verschiedenen Grafikkarten vom 
 \href{https://wiki.hhu.de/display/HPC/Abschlussarbeiten+im+HPC}{HPC} des ZIMs Trainiert: RTX 8000, RTX 6000 und GTX 1080ti.
 
 Die Daten wurden mithilfe von der 
-\href{https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.StratifiedGroupKFold.html}{StratifiedGroupKFold} Methode von Sklearn in 5 Folds aufgeteilt und nach Case gruppiert. Somit wurde das Verhältnis der Klassendistribution im Vergleich zum ganzen Dantensatz in jedem Fold beibehalten. 
+\href{https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.StratifiedGroupKFold.html}{StratifiedGroupKFold} Methode von Sklearn in 5 Folds aufgeteilt und nach Case gruppiert. Somit wurde das Verhältnis der Klassendistribution im Vergleich zum ganzen Datensatz in jedem Fold beibehalten.
 
 \subsection{Experimente}
 Experimente.

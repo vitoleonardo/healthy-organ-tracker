@@ -2351,15 +2351,16 @@
     <bcf:citekey order="4">SmartCrop</bcf:citekey>
     <bcf:citekey order="5">U-Net</bcf:citekey>
     <bcf:citekey order="6">Con97</bcf:citekey>
-    <bcf:citekey order="7">Yakubovskiy:2019</bcf:citekey>
-    <bcf:citekey order="8">Jadon_2020</bcf:citekey>
-    <bcf:citekey order="9">Clarke:Mri1995</bcf:citekey>
-    <bcf:citekey order="10">U-Net</bcf:citekey>
-    <bcf:citekey order="11">Hesamian</bcf:citekey>
-    <bcf:citekey order="12">SmartCrop</bcf:citekey>
-    <bcf:citekey order="13">Con97</bcf:citekey>
-    <bcf:citekey order="14">Yakubovskiy:2019</bcf:citekey>
+    <bcf:citekey order="7">Jadon_2020</bcf:citekey>
+    <bcf:citekey order="8">Yakubovskiy:2019</bcf:citekey>
+    <bcf:citekey order="9">Jadon_2020</bcf:citekey>
+    <bcf:citekey order="10">Clarke:Mri1995</bcf:citekey>
+    <bcf:citekey order="11">U-Net</bcf:citekey>
+    <bcf:citekey order="12">Hesamian</bcf:citekey>
+    <bcf:citekey order="13">SmartCrop</bcf:citekey>
+    <bcf:citekey order="14">Con97</bcf:citekey>
     <bcf:citekey order="15">Jadon_2020</bcf:citekey>
+    <bcf:citekey order="16">Yakubovskiy:2019</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nyt">

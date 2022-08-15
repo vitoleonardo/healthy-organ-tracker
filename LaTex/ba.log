@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.8.5)  13 AUG 2022 16:53
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.8.5)  15 AUG 2022 16:23
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -655,7 +655,7 @@ No file ba.bbl.
 Package biblatex Info: Reference section=0 on input line 69.
 Package biblatex Info: Reference segment=0 on input line 69.
 (./titelmakros.tex
-<bilder/HHU_Logo.pdf, id=88, 896.34875pt x 218.8175pt>
+<bilder/HHU_Logo.pdf, id=92, 896.34875pt x 218.8175pt>
 File: bilder/HHU_Logo.pdf Graphic file (type pdf)
 <use bilder/HHU_Logo.pdf>
 Package pdftex.def Info: bilder/HHU_Logo.pdf  used on input line 47.
@@ -722,7 +722,7 @@ LaTeX Warning: Citation 'Hesamian' on page 2 undefined on input line 38.
 
 LaTeX Warning: Citation 'SmartCrop' on page 2 undefined on input line 42.
 
-<bilder/intestines.png, id=152, 963.6pt x 542.025pt>
+<bilder/intestines.png, id=157, 963.6pt x 542.025pt>
 File: bilder/intestines.png Graphic file (type png)
 <use bilder/intestines.png>
 Package pdftex.def Info: bilder/intestines.png  used on input line 54.
@@ -732,7 +732,7 @@ Overfull \hbox (23.20866pt too wide) in paragraph at lines 54--55
  [] 
  []
 
-<bilder/magen-mrt.jpeg, id=153, 519.9425pt x 515.9275pt>
+<bilder/magen-mrt.jpeg, id=158, 519.9425pt x 515.9275pt>
 File: bilder/magen-mrt.jpeg Graphic file (type jpg)
 <use bilder/magen-mrt.jpeg>
 Package pdftex.def Info: bilder/magen-mrt.jpeg  used on input line 61.
@@ -755,7 +755,7 @@ Underfull \hbox (badness 1057) in paragraph at lines 73--80
 ner ^^R[][]Con-vo-lu-ti-on Ope-ra-ti-
  []
 
-<bilder/u-net-architecture.png, id=166, 1039.885pt x 1560.83125pt>
+<bilder/u-net-architecture.png, id=171, 1039.885pt x 1560.83125pt>
 File: bilder/u-net-architecture.png Graphic file (type png)
 <use bilder/u-net-architecture.png>
 Package pdftex.def Info: bilder/u-net-architecture.png  used on input line 87.
@@ -766,115 +766,119 @@ Overfull \hbox (23.48032pt too wide) in paragraph at lines 87--88
  []
 
 [3 <./bilder/intestines.png (PNG copy)>]
-<bilder/data_tree.png, id=178, 762.85pt x 286.06876pt>
+<bilder/data_tree.png, id=184, 762.85pt x 286.06876pt>
 File: bilder/data_tree.png Graphic file (type png)
 <use bilder/data_tree.png>
-Package pdftex.def Info: bilder/data_tree.png  used on input line 111.
+Package pdftex.def Info: bilder/data_tree.png  used on input line 117.
 (pdftex.def)             Requested size: 450.0pt x 168.74854pt.
 
-Overfull \hbox (23.20866pt too wide) in paragraph at lines 111--112
+Overfull \hbox (23.20866pt too wide) in paragraph at lines 117--118
  [] 
  []
 
-<bilder/segmentation_distribution.png, id=181, 501.875pt x 702.625pt>
+<bilder/segmentation_distribution.png, id=187, 501.875pt x 702.625pt>
 File: bilder/segmentation_distribution.png Graphic file (type png)
 <use bilder/segmentation_distribution.png>
 Package pdftex.def Info: bilder/segmentation_distribution.png  used on input li
-ne 122.
+ne 128.
 (pdftex.def)             Requested size: 220.0pt x 308.00879pt.
-<bilder/slice_per_case.png, id=182, 702.625pt x 501.875pt>
+<bilder/slice_per_case.png, id=188, 702.625pt x 501.875pt>
 File: bilder/slice_per_case.png Graphic file (type png)
 <use bilder/slice_per_case.png>
-Package pdftex.def Info: bilder/slice_per_case.png  used on input line 130.
+Package pdftex.def Info: bilder/slice_per_case.png  used on input line 136.
 (pdftex.def)             Requested size: 245.829pt x 175.58995pt.
 
-Overfull \hbox (40.97098pt too wide) in paragraph at lines 130--131
+Overfull \hbox (40.97098pt too wide) in paragraph at lines 136--137
  [][] 
  []
 
-<bilder/slices_per_day.png, id=183, 702.625pt x 501.875pt>
+<bilder/slices_per_day.png, id=189, 702.625pt x 501.875pt>
 File: bilder/slices_per_day.png Graphic file (type png)
 <use bilder/slices_per_day.png>
-Package pdftex.def Info: bilder/slices_per_day.png  used on input line 135.
+Package pdftex.def Info: bilder/slices_per_day.png  used on input line 141.
 (pdftex.def)             Requested size: 245.829pt x 175.58995pt.
 
-Overfull \hbox (40.97098pt too wide) in paragraph at lines 135--136
+Overfull \hbox (40.97098pt too wide) in paragraph at lines 141--142
  [][] 
  []
 
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 140.
+               Default added (so using `tbp') on input line 146.
 
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 144.
+(Font)              <7> on input line 150.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 144.
+(Font)              <5> on input line 150.
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 167.
+               Default added (so using `tbp') on input line 173.
 
 
-Overfull \hbox (49.93901pt too wide) in paragraph at lines 179--180
+Overfull \hbox (49.93901pt too wide) in paragraph at lines 185--186
  [] 
  []
 
 [4]
-<bilder/25d_input.png, id=194, 666.855pt x 327.186pt>
+<bilder/25d_input.png, id=202, 666.855pt x 327.186pt>
 File: bilder/25d_input.png Graphic file (type png)
 <use bilder/25d_input.png>
-Package pdftex.def Info: bilder/25d_input.png  used on input line 202.
+Package pdftex.def Info: bilder/25d_input.png  used on input line 208.
 (pdftex.def)             Requested size: 450.0pt x 220.79109pt.
 
-Overfull \hbox (23.20866pt too wide) in paragraph at lines 202--203
+Overfull \hbox (23.20866pt too wide) in paragraph at lines 208--209
  [] 
  []
 
-<bilder/orig.png, id=197, 266.9975pt x 231.86626pt>
+<bilder/orig.png, id=205, 266.9975pt x 231.86626pt>
 File: bilder/orig.png Graphic file (type png)
 <use bilder/orig.png>
-Package pdftex.def Info: bilder/orig.png  used on input line 215.
+Package pdftex.def Info: bilder/orig.png  used on input line 221.
 (pdftex.def)             Requested size: 106.69783pt x 92.65994pt.
-<bilder/crop.png, id=198, 266.9975pt x 231.86626pt>
+<bilder/crop.png, id=206, 266.9975pt x 231.86626pt>
 File: bilder/crop.png Graphic file (type png)
 <use bilder/crop.png>
-Package pdftex.def Info: bilder/crop.png  used on input line 217.
+Package pdftex.def Info: bilder/crop.png  used on input line 223.
 (pdftex.def)             Requested size: 106.69783pt x 92.65994pt.
-<bilder/crop_median.png, id=199, 350.30875pt x 189.70876pt>
+<bilder/crop_median.png, id=207, 350.30875pt x 189.70876pt>
 File: bilder/crop_median.png Graphic file (type png)
 <use bilder/crop_median.png>
-Package pdftex.def Info: bilder/crop_median.png  used on input line 219.
+Package pdftex.def Info: bilder/crop_median.png  used on input line 225.
 (pdftex.def)             Requested size: 106.69783pt x 57.78148pt.
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 224.
+               Default added (so using `tbp') on input line 230.
 
-<bilder/case7-day0-slice-0096.png, id=201, 321.2pt x 321.2pt>
+<bilder/case7-day0-slice-0096.png, id=209, 321.2pt x 321.2pt>
 File: bilder/case7-day0-slice-0096.png Graphic file (type png)
 <use bilder/case7-day0-slice-0096.png>
 Package pdftex.def Info: bilder/case7-day0-slice-0096.png  used on input line 2
-44.
+50.
 (pdftex.def)             Requested size: 106.69783pt x 106.69717pt.
-<bilder/case81-day30-slice-0096.png, id=202, 321.2pt x 321.2pt>
+<bilder/case81-day30-slice-0096.png, id=210, 321.2pt x 321.2pt>
 File: bilder/case81-day30-slice-0096.png Graphic file (type png)
 <use bilder/case81-day30-slice-0096.png>
 Package pdftex.def Info: bilder/case81-day30-slice-0096.png  used on input line
- 246.
+ 252.
 (pdftex.def)             Requested size: 106.69783pt x 106.69717pt.
 [5]
 
-LaTeX Warning: Citation 'Yakubovskiy:2019' on page 6 undefined on input line 26
-0.
+LaTeX Warning: Citation 'Jadon_2020' on page 6 undefined on input line 274.
 
 
-LaTeX Warning: Citation 'Jadon_2020' on page 6 undefined on input line 269.
+LaTeX Warning: Citation 'Yakubovskiy:2019' on page 6 undefined on input line 29
+4.
 
-[6]) [7] [8 <./bilder/magen-mrt.jpeg>] [9 <./bilder/u-net-architecture.png> <./
-bilder/data_tree.png>] [10 <./bilder/segmentation_distribution.png> <./bilder/s
-lice_per_case.png> <./bilder/slices_per_day.png>] [11 <./bilder/25d_input.png> 
-<./bilder/orig.png> <./bilder/crop.png> <./bilder/crop_median.png>] [12 <./bild
-er/case7-day0-slice-0096.png (PNG copy)> <./bilder/case81-day30-slice-0096.png 
-(PNG copy)>]
+[6]
+
+LaTeX Warning: Citation 'Jadon_2020' on page 7 undefined on input line 302.
+
+) [7] [8 <./bilder/magen-mrt.jpeg>] [9 <./bilder/u-net-architecture.png> <./bil
+der/data_tree.png>] [10 <./bilder/segmentation_distribution.png> <./bilder/slic
+e_per_case.png> <./bilder/slices_per_day.png>] [11 <./bilder/25d_input.png> <./
+bilder/orig.png> <./bilder/crop.png> <./bilder/crop_median.png>] [12 <./bilder/
+case7-day0-slice-0096.png (PNG copy)> <./bilder/case81-day30-slice-0096.png (PN
+G copy)>]
 
 LaTeX Warning: Empty bibliography on input line 101.
 
@@ -893,11 +897,8 @@ LaTeX Warning: Empty bibliography on input line 101.
 
 LaTeX Warning: There were undefined references.
 
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
 Package rerunfilecheck Info: File `ba.out' has not changed.
-(rerunfilecheck)             Checksum: 0D74DB12805FC7F788145A5FFFCF17E6;3180.
+(rerunfilecheck)             Checksum: 00FCE191C01747105CB21BE4B3585EC6;3250.
 
 Package biblatex Warning: Please (re)run Biber on the file:
 (biblatex)                ba
@@ -908,10 +909,10 @@ Package logreq Info: Writing requests to 'ba.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 19974 strings out of 478268
- 353378 string characters out of 5846348
- 1096670 words of memory out of 5000000
- 37871 multiletter control sequences out of 15000+600000
+ 19985 strings out of 478268
+ 353533 string characters out of 5846348
+ 1096837 words of memory out of 5000000
+ 37875 multiletter control sequences out of 15000+600000
  485220 words of font info for 54 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
  67i,9n,73p,1141b,2365s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -922,13 +923,14 @@ live/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texli
 ve/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive
 /2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/20
 22/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/202
-2/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2022/texmf
--dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2022/texmf-dist/f
-onts/type1/urw/palatino/uplr8a.pfb>
-Output written on ba.pdf (18 pages, 2961023 bytes).
+2/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2022/
+texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2022/texmf-d
+ist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2022/texmf-dist/fon
+ts/type1/urw/palatino/uplr8a.pfb>
+Output written on ba.pdf (18 pages, 2977567 bytes).
 PDF statistics:
- 348 PDF objects out of 1000 (max. 8388607)
- 282 compressed objects within 3 object streams
- 59 named destinations out of 1000 (max. 500000)
- 239 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 366 PDF objects out of 1000 (max. 8388607)
+ 298 compressed objects within 3 object streams
+ 66 named destinations out of 1000 (max. 500000)
+ 247 words of extra memory for PDF output out of 10000 (max. 10000000)
 
