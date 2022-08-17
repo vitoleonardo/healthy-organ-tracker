@@ -4,7 +4,10 @@
 /hpc_train_files/input/*
 /hpc_train_files/logs/*
 /logs
+
 .DS_Store
+model.h5
+
 __pycache__
 hpc_train_files/input/.DS_Store
 hpc_train_files/.DS_Store
