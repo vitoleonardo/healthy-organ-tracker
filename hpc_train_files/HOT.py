@@ -154,9 +154,6 @@ def main(backbone, dim, batch, epochs, semi3d_data, remove_faulty_cases, use_cro
 
     print("Finished training fold: " + str(i) + "... Continuing to next fold")
 
-    hist_df = pd.DataFrame(history.history)
-    hist_df.to_csv(log_dir + '/historyFold' + str(i) + '.csv')
-
 def install():
     subprocess.call(['pip', 'install', 'segmentation_models'], stdout=open(os.devnull, 'wb'))
 
