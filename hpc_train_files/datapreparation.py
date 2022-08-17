@@ -59,6 +59,10 @@ def extract_metadata(df, train_dir, remove_faulty_cases=True, crop_df="crop_df.c
         df_train = remove_faulties(df_train)
         print("Sucess. Shape: {}".format(df_train.shape))
 
+    # For some reason it will always cast the values to float64, so we convert them back to int64
+    cols = ['case','day','rs','cs','re','ce']
+    df_train[cols] = df_train[cols].applymap(np.int64)
+
     return df_train
 
 def remove_faulties(df_train):
