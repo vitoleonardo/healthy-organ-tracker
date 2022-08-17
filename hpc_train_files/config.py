@@ -1,7 +1,7 @@
 # This class contains all the configuration parameters for the model
 class CFG:
 
-    def __init__(self,img_dims=(128,128,3), model='UNet', batch_size=16, epochs=50, kaggle=False, use_fold_csv=True, backbone='efficientnetb0', lr_patience=5, semi3d_data=True, internet=False, remove_faulty_cases=True, use_crop_data=False):
+    def __init__(self,img_dims=(128,128,3), model='UNet', batch_size=16, epochs=50, kaggle=False, use_fold_csv=True, backbone='efficientnetb0', lr_patience=5, semi3d_data=False, internet=False, remove_faulty_cases=True, use_crop_data=False):
         self.img_dims             = img_dims
         self.height               = img_dims[0]
         self.width                = img_dims[1]
