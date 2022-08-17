@@ -362,14 +362,14 @@ efficientnetb0 &           21 & 0.0387 &    0.1641 & 0.9104 &    0.6173 & 0.8804
 \caption{\label{tab:baselines}Baseline Performances nach Validation loss absteigend sortiert.}
 \end{table}
 
-Hier sticht efficientnetb7 klar hervor mit großem Abstand, wenn man den Validation loss betrachtet. 
+Hier sticht efficientnetb7 klar hervor mit großem Abstand, gemessen an dem Validation loss. 
 
 \begin{table}[H]
-\resizebox{\textwidth}{!}{\begin{tabular}{lccccccccccccc}
-Encoder & Größe & Beste Epoche &   Loss & Val. loss &   Dice & Val. Dice &    IoU & Val. IoU &  2.5D &  Crop & Batch Size & Epochen \\\hline
-efficientnetb2 &   256 &           49 & 0.0245 &    0.1032 & 0.9434 &    0.7727 & 0.9406 &   0.8177 & False &  True &         32 &      50 \\
-efficientnetb2 &   256 &           46 & 0.0252 &    0.1052 & 0.9419 &    0.7651 & 0.9394 &   0.8289 &  True &  True &         32 &      50 \\
-efficientnetb2 &   256 &           27 & 0.0323 &    0.1391 & 0.9251 &    0.6798 & 0.9121 &   0.8130 & False & False &         32 &      50 \\
+\resizebox{\textwidth}{!}{\begin{tabular}{lccccccccccccccc}
+Encoder & Größe & Beste Epoche &   Loss & Val. loss &   Dice & Val. Dice &    IoU & Val. IoU  & Privat & Öffentl. &  2.5D &  Crop & Batch Size & Epochen \\\hline
+efficientnetb2 &   256 &           49 & 0.0245 &    0.1032 & 0.9434 &    0.7727 & 0.9406 &   0.8177 & 0.8287 & 0.8440 & False &  True &         32 &      50 \\
+efficientnetb2 &   256 &           46 & 0.0252 &    0.1052 & 0.9419 &    0.7651 & 0.9394 &   0.8289 & 0.7800 & 0.7944 & True &  True &         32 &      50 \\
+efficientnetb2 &   256 &           27 & 0.0323 &    0.1391 & 0.9251 &    0.6798 & 0.9121 &   0.8130 & 0.8279 & 0.8447 & False & False &         32 &      50 \\
 \end{tabular}}
 \caption{\label{tab:efb256}Baseline Performances nach Validation loss absteigend sortiert.}
 \end{table}
