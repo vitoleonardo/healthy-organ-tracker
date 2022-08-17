@@ -1,14 +1,14 @@
 \babel@toc {ngerman}{}\relax 
 \contentsline {figure}{\numberline {1}{\ignorespaces Magen-Darm Trakt\relax }}{3}{figure.caption.4}%
-\contentsline {figure}{\numberline {2}{\ignorespaces Beispiel MRT des Magen-Darm Traks. Zu sehen ist der Magen (rot) und der Tumor (pink) sowie die verabreichte Strahlendosis. Die Strahlenintensivität werden durch den Regenbogen der Umrisse dargestellt, wobei höhere Dosen rot und niedrigere Dosen grün dargestellt werden.\relax }}{9}{figure.caption.5}%
-\contentsline {figure}{\numberline {3}{\ignorespaces U-Net Architektur\relax }}{10}{figure.caption.6}%
-\contentsline {figure}{\numberline {4}{\ignorespaces Trainingsdaten Hierachie\relax }}{10}{figure.caption.8}%
-\contentsline {figure}{\numberline {5}{\ignorespaces Verteilung der Klassen im Testset\relax }}{11}{figure.caption.9}%
-\contentsline {figure}{\numberline {6}{\ignorespaces Anzahl Bilder pro Fall\relax }}{11}{figure.caption.10}%
-\contentsline {figure}{\numberline {7}{\ignorespaces Anzahl Bilder pro Tag\relax }}{11}{figure.caption.10}%
-\contentsline {figure}{\numberline {8}{\ignorespaces Semi-3-dimensionaler Input\relax }}{12}{figure.caption.12}%
-\contentsline {figure}{\numberline {9}{\ignorespaces Original\relax }}{12}{figure.caption.15}%
-\contentsline {figure}{\numberline {10}{\ignorespaces Zugeschnitten\relax }}{12}{figure.caption.15}%
-\contentsline {figure}{\numberline {11}{\ignorespaces Zugeschnitten mit Medianfilter\relax }}{12}{figure.caption.15}%
-\contentsline {figure}{\numberline {12}{\ignorespaces Case 7, Tag 0, Slice 96\relax }}{13}{figure.caption.16}%
-\contentsline {figure}{\numberline {13}{\ignorespaces Case 81, Tag 30, Slice 96\relax }}{13}{figure.caption.16}%
+\contentsline {figure}{\numberline {2}{\ignorespaces Beispiel MRT des Magen-Darm Traks. Zu sehen ist der Magen (rot) und der Tumor (pink) sowie die verabreichte Strahlendosis. Die Strahlenintensivität werden durch den Regenbogen der Umrisse dargestellt, wobei höhere Dosen rot und niedrigere Dosen grün dargestellt werden.\relax }}{10}{figure.caption.5}%
+\contentsline {figure}{\numberline {3}{\ignorespaces U-Net Architektur\relax }}{11}{figure.caption.6}%
+\contentsline {figure}{\numberline {4}{\ignorespaces Trainingsdaten Hierachie\relax }}{11}{figure.caption.8}%
+\contentsline {figure}{\numberline {5}{\ignorespaces Verteilung der Klassen im Testset\relax }}{12}{figure.caption.9}%
+\contentsline {figure}{\numberline {6}{\ignorespaces Anzahl Bilder pro Fall\relax }}{12}{figure.caption.10}%
+\contentsline {figure}{\numberline {7}{\ignorespaces Anzahl Bilder pro Tag\relax }}{12}{figure.caption.10}%
+\contentsline {figure}{\numberline {8}{\ignorespaces Semi-3-dimensionaler Input\relax }}{13}{figure.caption.12}%
+\contentsline {figure}{\numberline {9}{\ignorespaces Original\relax }}{13}{figure.caption.15}%
+\contentsline {figure}{\numberline {10}{\ignorespaces Zugeschnitten\relax }}{13}{figure.caption.15}%
+\contentsline {figure}{\numberline {11}{\ignorespaces Zugeschnitten mit Medianfilter\relax }}{13}{figure.caption.15}%
+\contentsline {figure}{\numberline {12}{\ignorespaces Case 7, Tag 0, Slice 96\relax }}{14}{figure.caption.16}%
+\contentsline {figure}{\numberline {13}{\ignorespaces Case 81, Tag 30, Slice 96\relax }}{14}{figure.caption.16}%

@@ -326,10 +326,55 @@ Es wurde mit einer Batchsize von 16 und 32 auf verschiedenen Grafikkarten vom
 \href{https://wiki.hhu.de/display/HPC/Abschlussarbeiten+im+HPC}{HPC} des ZIMs Trainiert: RTX 8000, RTX 6000 und GTX 1080ti.
 
 Die Daten wurden mithilfe von der 
-\href{https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.StratifiedGroupKFold.html}{StratifiedGroupKFold} Methode von Sklearn in 5 Folds aufgeteilt und nach Case gruppiert. Somit wurde das Verhältnis der Klassendistribution im Vergleich zum ganzen Datensatz in jedem Fold beibehalten.
+\href{https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.StratifiedGroupKFold.html}{StratifiedGroupKFold} Methode von Sklearn in 5 Folds aufgeteilt nach Case gruppiert mit einem festem Seed von 42. Somit wurde das Verhältnis der Klassendistribution im Vergleich zum ganzen Datensatz in jedem Fold beibehalten. 
 
 \subsection{Experimente}
-Experimente.
+Zunächst wurde eine Baseline mit folgenden Standardkonfigurationen geschaffen:
+
+\begin{table}[H]
+\centering
+\begin{tabular}{l|c|c|c}
+Input & Batchsize & Epochen & Datenbereinigung \\\hline
+256x256x1 & 16 & 50 & Wahr \\
+\end{tabular}
+\caption{\label{tab:widgets}Baseline Einstellungen}
+\end{table}
+
+Zunächst wurden mit diesen Konfigurationen 12 verschiedene Modelle trainiert, wessen Encoder auf
+\href{https://www.image-net.org/}{ImageNet} angelernt wurden.
+
+\begin{table}[H]
+\resizebox{\textwidth}{!}{\begin{tabular}{l|c|c|c|c|c|c|c|c|c}
+Encoder & Beste Epoche &      Loss & Val. loss & Dice  & Val. Dice  & IoU & Val. IoU & Privat & Öffentl. \\\hline
+efficientnetb7 &           14 & 0.0500 &    {\bf 0.1064} & 0.8848 &    {\bf 0.7636} & 0.8153 &   0.8223 & 0.8293 & {\bf 0.8467}  \\
+efficientnetb2 &           22 & 0.0369 &    0.1123 & 0.9146 &    0.7489 & 0.9037 &   0.8195 & 0.8278 &  0.8434\\
+efficientnetb1 &           18 & 0.0425 &    0.1158 & 0.9018 &    0.7386 & 0.8889 &   0.8179  & 0.8266 & 0.8416  \\
+efficientnetb5 &           25 & 0.0369 &    0.1160 & 0.9146 &    0.7378 & 0.9089 &   0.8161 & 0.8315 & 0.8457  \\
+   inceptionv3 &           30 & 0.0381 &    0.1186 & 0.9118 &    0.7326 & 0.8937 &   0.8108  & 0.8201 & 0.8385  \\
+efficientnetb3 &           22 & 0.0382 &    0.1181 & 0.9117 &    0.7324 & 0.8958 &   0.8206 & 0.8235 & 0.8434  \\
+   densenet121 &           33 & 0.0385 &    0.1198 & 0.9109 &    0.7300 & 0.8873 &   0.8093 & 0.8179 & 0.8346  \\
+efficientnetb6 &           19 & 0.0401 &    0.1194 & 0.9073 &    0.7277 & 0.8925 &   {\bf 0.8240} & {\bf 0.8357} & 0.8463 \\
+efficientnetb4 &           35 & {\bf 0.0317} &    0.1211 & {\bf 0.9267} &    0.7266 & 0.9235 &   0.8147 & 0.8243 & 0.8426  \\
+      resnet50 &           35 & 0.0324 &    0.1244 & 0.9250 &    0.7206 & {\bf 0.9259} &   0.7974  & 0.8081 & 0.8278 \\
+   densenet201 &           43 & 0.0383 &    0.1553 & 0.9114 &    0.6406 & 0.8942 &   0.7893 & 0.8176 & 0.8322  \\
+efficientnetb0 &           21 & 0.0387 &    0.1641 & 0.9104 &    0.6173 & 0.8804 &   0.7864 & 0.8227 & 0.8406  \\
+\end{tabular}}
+\caption{\label{tab:baselines}Baseline Performances nach Validation loss absteigend sortiert.}
+\end{table}
+
+Hier sticht efficientnetb7 klar hervor mit großem Abstand, wenn man den Validation loss betrachtet. 
+
+-> iou score für predictions vom validation set berechnen und beste + schlechteste masken plotten + score bei kaggle 
+
+-> efb2 und dense121 
+
+-> die werden erneut trainiert mit bereinigten Daten, 25D Daten und / oder zugeschnittenen Daten
+
+-> inputsize erhöht
+
+-> iou score für predictions vom validation set berechnen und beste + schlechteste masken plotten + score bei kaggle 
+
+-> was hat wo was gebracht (25d daten, zuschnitt, datenreinigung) 
 
 \section{Evaluation}\raggedbottom
 
