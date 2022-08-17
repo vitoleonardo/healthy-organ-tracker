@@ -27,5 +27,5 @@
 \contentsline {section}{\numberline {4}Evaluation}{9}{section.4}%
 \contentsline {section}{\numberline {5}Fazit}{9}{section.5}%
 \contentsline {subsection}{\numberline {5.1}Ausblick}{9}{subsection.5.1}%
-\contentsline {section}{Abbildungsverzeichnis}{15}{section*.19}%
-\contentsline {section}{Tabellenverzeichnis}{15}{section*.20}%
+\contentsline {section}{Abbildungsverzeichnis}{15}{section*.20}%
+\contentsline {section}{Tabellenverzeichnis}{15}{section*.21}%
