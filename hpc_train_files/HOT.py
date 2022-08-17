@@ -1,10 +1,15 @@
 #!/usr/bin/env python
 
-"""Usage: HOT.py <backbone> <dim> <batch> <epochs> <semi3d_data> <remove_faulty_cases> <use_crop_data>
+"""Usage: HOT.py <backbone> <dim> <batch> <epochs> <semi3d_data> <remove_faulty_cases> <use_crop_data> <selected_fold>
 
 Backbones available: 
         'efficientnetb0'
+        'efficientnetb1'
+        'efficientnetb2'
+        'efficientnetb3'
+        'efficientnetb4'
         'efficientnetb5'
+        'efficientnetb6'
         'efficientnetb7'
         'inceptionresnetv2'
         'inceptionv3'
@@ -30,6 +35,7 @@ from docopt import docopt
 
 import warnings
 import sys
+import os
 import subprocess
 warnings.filterwarnings("ignore")
 
@@ -57,7 +63,7 @@ from datapreparation import extract_metadata, remove_faulties
 
 print(f"TensorFlow has access to the following devices:\n{tf.config.list_physical_devices()}")
 
-def main(backbone, dim, batch, epochs, semi3d_data, remove_faulty_cases, use_crop_data):
+def main(backbone, dim, batch, epochs, semi3d_data, remove_faulty_cases, use_crop_data, selected_fold):
     cfg = CFG(
         backbone            = backbone,
         img_dims            = (dim,dim,3),
@@ -68,11 +74,12 @@ def main(backbone, dim, batch, epochs, semi3d_data, remove_faulty_cases, use_cro
         use_fold_csv        = True,
         semi3d_data         = semi3d_data,
         remove_faulty_cases = remove_faulty_cases,
-        use_crop_data       = use_crop_data)
+        use_crop_data       = use_crop_data,
+        selected_fold       = selected_fold)
 
     print("Starting training with config: ", str(cfg))
 
-    df_train = pd.read_csv("df_train_cleaned.csv", index_col=[0])
+    df_train = pd.read_csv("df_train.csv", index_col=[0])
     df_train.fillna('',inplace=True); 
 
     print(df_train.info(verbose=True))
@@ -105,53 +112,54 @@ def main(backbone, dim, batch, epochs, semi3d_data, remove_faulty_cases, use_cro
         
     model.compile(optimizer=opt, loss=bce_dice_loss,metrics=[dice_coef,iou_coef])
 
-    # Only train on fold 3
-    for i in range(3,4):
-        model_full_name = f"{cfg.model}_BB_{cfg.backbone}_DIM_{cfg.img_dims}_SEMI3D_{cfg.semi3d_data}_CROPDATA_{cfg.use_crop_data}_BATCH_{cfg.batch_size}_EPOCHS_{cfg.epochs}_FOLD_{i}.h5"
-        log_dir = f'logs/newLoss/{model_full_name}_{datetime.now().strftime("%d%m%Y-%H%M")}_FOLD_{i}'
+    # Train on selected fold
+    i = cfg.selected_fold
 
-        callbacks = [
-            tf.keras.callbacks.TensorBoard(
-                log_dir=log_dir,
-                histogram_freq=1),
-            ModelCheckpoint(
-                log_dir + "/model.h5",
-                monitor='val_loss',
-                verbose=0,
-                save_best_only=True,
-                save_weights_only=False,
-                mode='auto'),
-            keras.callbacks.ReduceLROnPlateau(
-                monitor="val_loss",
-                factor=0.1,
-                patience=cfg.lr_patience,
-                verbose=0,
-                min_delta=0.0001)
-        ]
+    model_full_name = f"{cfg.model}_BB_{cfg.backbone}_DIM_{cfg.img_dims}_SEMI3D_{cfg.semi3d_data}_CROPDATA_{cfg.use_crop_data}_FAULTIES_{cfg.remove_faulty_cases}_BATCH_{cfg.batch_size}_EPOCHS_{cfg.epochs}_FOLD_{i}.h5"
+    log_dir = f'logs/best/{model_full_name}_{datetime.now().strftime("%d%m%Y-%H%M")}_FOLD_{i}'
 
-        train_ids = df_train[df_train["fold"]!=i].index
-        valid_ids = df_train[df_train["fold"]==i].index
-        
-        train_generator = DataGenerator(df_train.loc[train_ids],batch_size=cfg.batch_size, height=cfg.height, width=cfg.width,shuffle=True, semi3d_data=cfg.semi3d_data, use_crop_data=cfg.use_crop_data)
-        val_generator = DataGenerator(df_train.loc[valid_ids], height=cfg.height, width=cfg.width, semi3d_data=cfg.semi3d_data)
+    callbacks = [
+        tf.keras.callbacks.TensorBoard(
+            log_dir=log_dir,
+            histogram_freq=1),
+        ModelCheckpoint(
+            log_dir + "/model.h5",
+            monitor='val_loss',
+            verbose=0,
+            save_best_only=True,
+            save_weights_only=False,
+            mode='auto'),
+        keras.callbacks.ReduceLROnPlateau(
+            monitor="val_loss",
+            factor=0.1,
+            patience=cfg.lr_patience,
+            verbose=0,
+            min_delta=0.0001)
+    ]
 
-        print(f"Starting training {model_full_name}")
+    train_ids = df_train[df_train["fold"]!=i].index
+    valid_ids = df_train[df_train["fold"]==i].index
+    
+    train_generator = DataGenerator(df_train.loc[train_ids],batch_size=cfg.batch_size, height=cfg.height, width=cfg.width,shuffle=True, semi3d_data=cfg.semi3d_data, use_crop_data=cfg.use_crop_data)
+    val_generator = DataGenerator(df_train.loc[valid_ids], height=cfg.height, width=cfg.width, semi3d_data=cfg.semi3d_data)
 
-        history = model.fit(
-            train_generator,
-            validation_data=val_generator,
-            callbacks=[callbacks],
-            use_multiprocessing=False, 
-            workers=4,
-            epochs=cfg.epochs)
+    print(f"Starting training {model_full_name}")
 
-        print("Finished training fold: " + str(i) + "... Continuing to next fold")
+    history = model.fit(
+        train_generator,
+        validation_data=val_generator,
+        callbacks=[callbacks],
+        use_multiprocessing=False, 
+        workers=4,
+        epochs=cfg.epochs)
 
-        hist_df = pd.DataFrame(history.history)
-        hist_df.to_csv(log_dir + '/historyFold' + str(i) + '.csv')
+    print("Finished training fold: " + str(i) + "... Continuing to next fold")
+
+    hist_df = pd.DataFrame(history.history)
+    hist_df.to_csv(log_dir + '/historyFold' + str(i) + '.csv')
 
 def install():
-    subprocess.call(['pip', 'install', 'segmentation_models'])
+    subprocess.call(['pip', 'install', 'segmentation_models'], stdout=open(os.devnull, 'wb'))
 
 if __name__ == '__main__':
     args = docopt(__doc__, version='HOT 0.1')
@@ -165,7 +173,8 @@ if __name__ == '__main__':
         semi3d_data = json.loads(args['<semi3d_data>'].lower())
         remove_faulty_cases = json.loads(args['<remove_faulty_cases>'].lower())
         use_crop_data = json.loads(args['<use_crop_data>'].lower())
-        main(backbone, dim, batch, epochs, semi3d_data, remove_faulty_cases, use_crop_data)
+        selected_fold = int(args['<selected_fold>'])
+        main(backbone, dim, batch, epochs, semi3d_data, remove_faulty_cases, use_crop_data, selected_fold)
     except Exception as e:
         print(e)
         print("Error: Check arguments")
