@@ -82,15 +82,13 @@ def main(backbone, dim, batch, epochs, semi3d_data, remove_faulty_cases, use_cro
     df_train = pd.read_csv("df_train.csv", index_col=[0])
     df_train.fillna('',inplace=True); 
 
-    print(df_train.info(verbose=True))
-
     if remove_faulty_cases:
         df_train = remove_faulties(df_train)
         print("Removed faulty cases")
 
     # Cross Validation; Import Index from CSV bc function is not available in HPC module
     if not cfg.use_fold_csv:
-        from sklearn.model_selection import StratifiedKFold, KFold, StratifiedGroupKFold
+        from sklearn.model_selection import StratifiedGroupKFold
 
         skf = StratifiedGroupKFold(n_splits=cfg.n_splits, shuffle=True, random_state=cfg.seed)
         for fold, (_, val_idx) in enumerate(skf.split(X=df_train, y=df_train['count'], groups=df_train['case']), 1):
@@ -134,7 +132,8 @@ def main(backbone, dim, batch, epochs, semi3d_data, remove_faulty_cases, use_cro
             factor=0.1,
             patience=cfg.lr_patience,
             verbose=0,
-            min_delta=0.0001)
+            min_delta=0.0001),
+        keras.callbacks.CSVLogger(log_dir + "history.csv", separator=',', append=True)
     ]
 
     train_ids = df_train[df_train["fold"]!=i].index
