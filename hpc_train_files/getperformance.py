@@ -109,8 +109,8 @@ def evaluate_model( custom_objects, path="../tensorboard_logs/baselines_256_16_n
             mask_img = cv2.imread(mask_path).astype(dtype='float32')
 
             for k,class_ in enumerate(["large_bowel","small_bowel","stomach"]):
-                class_ += "_dice_coef"
                 predicted_mask = class_ + "_predicted"
+                class_ += "_dice_coef"
 
                 nonzeros = np.count_nonzero(pred_img[:,:,k])
                 nonzeros += np.count_nonzero(mask_img[:,:,k])
