@@ -26,7 +26,7 @@ Bereits in den 90er Jahren wurde sich mit mit Segmentierungsarchitekturen ausein
 \href{https://en.wikipedia.org/wiki/Maximum_likelihood_estimation}{Maximum Likelihood} und
 \href{https://en.wikipedia.org/wiki/Eigenvalues_and_eigenvectors}{Characteristic vector} getestet.
 
-Trotz aller Bemühungen wiesen die Modelle nur eine Accuracy von 3\% bis 34\% auf. \citep{Clarke:Mri1995}
+Trotz aller Bemühungen wiesen die Modelle nur eine Accuracy von 3\% bis 34\% auf. \citet{Clarke:Mri1995}
 
 Jedoch waren die Autoren davon überzeugt, dass Segmentierung eine wichtige Rolle im Beriech der Verarbeitung von MRT Daten darstellen wird und mit wachsender Akzeptanz auf klinischer Seite sowie dem technischen Fortschritt der Hochleistungsrechner es in Zukunft möglich sein wird, akkurate Segmentierungen von MRT Scans im Livebetrieb vorzunehmen.
 
@@ -35,11 +35,11 @@ Jedoch waren die Autoren davon überzeugt, dass Segmentierung eine wichtige Roll
 \subsection{Deep Learning-Techniken für die Segmentierung medizinischer Bilder:
 Errungenschaften und Herausforderungen}
 
-Dank der immensen Verbesserung der Rechenleistung der Hardwarecomponenten wurde das Thema Deep Learning immer interessanter und gehört heutzutage zur standard Herangehensweise. Architekturen wie das U-Net Modell \citep{U-Net} haben sich hierbei besonders bewiesen und wurden mit den Jahren nach der Veröffentlichung in 2015 stetig erweitert, so dass es für viele verschiedene (medizinische) Bereiche Architekturen vorliegen, die auf die jeweiligen Problemstellungen angepasst wurden, jedoch trotzdem Anwendung auf ähnlichen Gebieten finden können \citep{Hesamian}
+Dank der immensen Verbesserung der Rechenleistung der Hardwarecomponenten wurde das Thema Deep Learning immer interessanter und gehört heutzutage zur standard Herangehensweise. Architekturen wie das U-Net Modell \citet{U-Net} haben sich hierbei besonders bewiesen und wurden mit den Jahren nach der Veröffentlichung in 2015 stetig erweitert, so dass es für viele verschiedene (medizinische) Bereiche Architekturen vorliegen, die auf die jeweiligen Problemstellungen angepasst wurden, jedoch trotzdem Anwendung auf ähnlichen Gebieten finden können \citet{Hesamian}
 
 \subsection{Intelligentes Zuschneiden des Inputs}
 
-Dimitrios G. Zaridis et al. \citep{SmartCrop} haben sich ebenfalls mit verschiedenen State of the Art U-Net Architekturen auseinandergesetzt und jene als Baseline für ihre Arbeit genutzt. Trotz der beachtlichen Leistung, die die Modelle liefern, sind sie der Meinung dass noch Verbesserungspotential vorhanden ist.
+Dimitrios G. Zaridis et al. \citet{SmartCrop} haben sich ebenfalls mit verschiedenen State of the Art U-Net Architekturen auseinandergesetzt und jene als Baseline für ihre Arbeit genutzt. Trotz der beachtlichen Leistung, die die Modelle liefern, sind sie der Meinung dass noch Verbesserungspotential vorhanden ist.
 
 Sie fanden heraus, dass das Vorhandensein eines Klassenungleichgewichts, wo der Anteil der Hintergrundpixel dem Anteil des zu segmentierenden Organs überwiegt zu Problemen führt. Mithilfe eines Deep Learning Modells haben die Autoren es geschafft, dieses Klassenungleichgewicht zu reduzieren, in dem das Neuronale Netzwerk die gesuchten Organe lokalisiert, das Originalbild zuschneidet und am Ende das Verhältnis von Vorder- und Hintergrundpixeln normalisiert. Dies führte bei allen gängigen Deep Learning Netzwerken zu erheblichen Verbesserung im Bezug des Dice-Scores. U-Net+ und ResU-Net++ wiesen mithilfe diese Verbesserungen von bis zu 8\% auf.
 
@@ -49,16 +49,16 @@ Sie fanden heraus, dass das Vorhandensein eines Klassenungleichgewichts, wo der 
 
 Um die Daten zu verstehen und Erkentnisse aus den Ergebnissen zu gewinnen, ist es wichtig ein Grundverständnis für den Bereich des Körpers zu haben, den unsere Daten beschreiben. Wir interessieren uns in unserem Fall für den Dick- bzw. Dünndarm sowie den Magen. Hierbei liegt die Herausforderung, dass je nach Ernährungsverhalten, Schlafposition, anderen Krankheiten und Verdauung die Position der Organe stark (bzw. stärker als andere) variieren kann. Mithilfe der Grafik kann man sich ein Bild vom groben Aufbau machen. \autoref{magen-darm-trakt}
 
-\begin{figure}[htb]
+\begin{figure}[H]
 	\begin{center}
-		\includegraphics[width=450pt]{bilder/intestines}
-		\caption{Magen-Darm Trakt}\label{magen-darm-trakt}
+		\includegraphics[width=400pt]{bilder/intestines}
+		\caption{Magen-Darm Trakt. Stomach, large intestine und small intestine stehen jeweils für Magen, Dick- und Dünndarm. }\label{magen-darm-trakt}
 	\end{center}
 \end{figure}
 
-\begin{figure}[htb]
+\begin{figure}[H]
 	\begin{center}
-		\includegraphics[width=450pt]{bilder/magen-mrt}
+		\includegraphics[width=200pt]{bilder/magen-mrt}
 		\caption{Beispiel MRT des Magen-Darm Traks. Zu sehen ist der Magen (rot) und der Tumor (pink) sowie die verabreichte Strahlendosis. Die Strahlenintensivität werden durch den Regenbogen der Umrisse dargestellt, wobei höhere Dosen rot und niedrigere Dosen grün dargestellt werden.}\label{magen-mrt}
 	\end{center}
 \end{figure}
@@ -66,26 +66,29 @@ Um die Daten zu verstehen und Erkentnisse aus den Ergebnissen zu gewinnen, ist e
 \subsection{U-Net}
 % CNN, Convolution, Maxpooling oder ReLu erklären?
 
-U-Net wurde im Jahr 2015 von Olag Ronneberger et al. \citep{U-Net} vorgestellt als Segmentierungsarchitektur für den biomedizinischem Bereich und bildet die Baseline dieser Arbeit. Neu in der Herangehensweise ist der Encoder-Decoder Part, die dem Netzwerk ermöglicht räumliche Merkmale anzutrainieren.
-Klassisch handelt es sich beim Encoder um ein
-\href{https://en.wikipedia.org/wiki/Convolutional_neural_network}{Convolutional Neural Network}, bestehend es aus 5 bis 6 \glqq downsampling\grqq Schichten und der gleichen Menge an \glqq upsampling\grqq Schichten im Decoder-part. 
+U-Net wurde im Jahr 2015 von Olag Ronneberger et al. \citet{U-Net} vorgestellt als Segmentierungsarchitektur für den biomedizinischem Bereich und bildet die Baseline dieser Arbeit. Neu in der Herangehensweise ist der Encoder-Decoder Part, die dem Netzwerk ermöglicht räumliche Merkmale anzutrainieren.
 
-Eine \glqq downsample\grqq  Operation besteht zum einen aus einer
-\glqq \href{https://en.wikipedia.org/wiki/Convolution}{Convolution Operation}\grqq
+Klassisch handelt es sich beim Encoder um ein
+\href{https://en.wikipedia.org/wiki/Convolutional_neural_network}{Convolutional Neural Network}, bestehend es aus 5 bis 6 downsampling Schichten und der gleichen Menge an  upsampling Schichten im Decoder Part. 
+
+Eine downsample Operation besteht zum einen aus einer
+\href{https://en.wikipedia.org/wiki/Convolution}{Convolution Operation}
 sowie einer
-\glqq \href{https://computersciencewiki.org/index.php/Max-pooling_/_Pooling}{Max Pooling}\grqq
+\href{https://computersciencewiki.org/index.php/Max-pooling_/_Pooling}{Max Pooling}
 an deren Ende jeweils eine
- \glqq \href{https://deepai.org/machine-learning-glossary-and-terms/relu}{ReLu}\grqq
- Aktivierungsfunktion zum Einsatz kommt. In diesem Schritt lernt das Modell Eigenschaften auf Pixelebene, wie zum Beispiel Formen, Ecken, Kanten. Hierbei halbieren sich die Eingabedimensionen und die Tiefe des Bildes wird erhöht. Veranschaulicht kann man sagen, dass das Modell das \glqq Was\grqq lernt, was im Bild zu sehen ist. \citep{Con97} Zur Semantischen Segmentierung fehlt dann nur noch das  \glqq Wo\grqq, hierbei wird das Zusammenspiel von En- und Decoder deutlich.
+\href{https://deepai.org/machine-learning-glossary-and-terms/relu}{ReLu}
+ Aktivierungsfunktion zum Einsatz kommt. In diesem Schritt lernt das Modell Eigenschaften auf Pixelebene, wie zum Beispiel Formen, Ecken, Kanten. Hierbei halbieren sich die Eingabedimensionen und die Tiefe des Bildes wird erhöht. 
 
 Im Decoder wird das Bild wieder auf seine ursprüngliche Größe mittels 
-\glqq \href{https://en.wikipedia.org/wiki/Deconvolution}{Transpose Convolution operations}\grqq  
-gebracht. Hier ersetzt die transponier Operation die Maxpooling Operation (vergleich Grafik). Dieser Part erlaubt dem Modell das lokalisieren der zuvor gelernten Eigenschaften. Output ist eine Maske, bestehend aus Nullen und Einsen, die der Eingabegröße gleicht und bestenfalls den Wert Eins an der Stelle des gesuchten Organs enthält.
+\href{https://en.wikipedia.org/wiki/Deconvolution}{Transpose Convolution operations}
+gebracht. Hier ersetzt die transponier Operation die Max Pooling Operation \autoref{Fig:unet-diagram}. 
 
-\begin{figure}[htb]
+Durch die Kombination aus En- und Decoder ist es möglich, Bilder semantisch zu segmentieren. Den Output des Modells bildet eine Maske, bestehend aus Nullen und Einsen, die der Eingabegröße gleicht und bestenfalls den Wert Eins an der Stelle der gesuchten Klasse enthält.
+
+\begin{figure}[H]
 	\begin{center}
-		\includegraphics[width=300pt, angle=270]{bilder/u-net-architecture}
-		\caption{U-Net Architektur}\label{Fig:unet-diagram}
+		\includegraphics[width=430pt]{bilder/u-net-architecture}
+		\caption{U-Net Architektur \citet{Zhang:2020}}\label{Fig:unet-diagram}
 	\end{center}
 \end{figure}
 
@@ -288,7 +291,7 @@ d_{\mathrm{H}}(X, Y)=\max \left\{\sup _{x \in X} d(x, Y), \sup _{y \in Y} d(X, y
 
 \subsubsection{Binäre Kreuzentropie} \label{ssec:bce}
 
-Die Kreuzentropie ist definiert als ein Maß für die Differenz zwischen zwei Wahrscheinlichkeitsverteilungen für eine bestimmte Zufallsvariable oder eine Reihe von Ereignissen. Sie eignet sich besonders gut Klassifizierungen auf Pixelebene, weist jedoch bei einer unausgewogenen Klassenverteilung der Daten ihre schwächen auf. \citep{Jadon_2020} 
+Die Kreuzentropie ist definiert als ein Maß für die Differenz zwischen zwei Wahrscheinlichkeitsverteilungen für eine bestimmte Zufallsvariable oder eine Reihe von Ereignissen. Sie eignet sich besonders gut Klassifizierungen auf Pixelebene, weist jedoch bei einer unausgewogenen Klassenverteilung der Daten ihre schwächen auf. \citet{Jadon_2020} 
 
 Sie ist definiert als:
 \begin{equation}
@@ -308,7 +311,7 @@ wobei X die vorhergesagte Menge von Pixeln und Y die Groundtruth ist. Der Dice-K
 \subsection{Modell}
 
 Das Projekt wurde gänzlich in Python mithilfe der TensorFlow API sowie dem
- \href{https://deepai.org/machine-learning-glossary-and-terms/relu}{Segmentation Models} \citep{Yakubovskiy:2019}
+ \href{https://deepai.org/machine-learning-glossary-and-terms/relu}{Segmentation Models} \citet{Yakubovskiy:2019}
  Package aufgezogen, welches verschiedene Architekturen inklusive an- und nicht antrainierte Encoder zur verfügung stellt. 
  
  Trainiert wurde mit dem
@@ -316,7 +319,7 @@ Das Projekt wurde gänzlich in Python mithilfe der TensorFlow API sowie dem
  und einer initialen Learning Rate von von 5e-4, die sich um den Faktor e-1 verringert, wenn der Validation-loss nach fünf Epochen unverändert schlecht blieb. 
  
  Die Loss function ist eine Mischung aus 
-\href{https://www.analyticsvidhya.com/blog/2021/03/binary-cross-entropy-log-loss-for-binary-classification/}{Binary Crossentropy} und zu einem Faktor von 0.5 der Dice-Koeffizient. Diese Kombination eignet sich laut Jadon  \citep{Jadon_2020} besonders gut, um einen höheren Dice Score zu erzielen. Außerdem ermöglicht sie dem Modell, sich auf mehrere Klassen zu konzentrieren, so ist das Modell in der Lage das Klassenungleichgewicht zu berücksichtigen. 
+\href{https://www.analyticsvidhya.com/blog/2021/03/binary-cross-entropy-log-loss-for-binary-classification/}{Binary Crossentropy} und zu einem Faktor von 0.5 der Dice-Koeffizient. Diese Kombination eignet sich laut Jadon  \citet{Jadon_2020} besonders gut, um einen höheren Dice Score zu erzielen. Außerdem ermöglicht sie dem Modell, sich auf mehrere Klassen zu konzentrieren, so ist das Modell in der Lage das Klassenungleichgewicht zu berücksichtigen. 
 
 \begin{equation}
 \mathcal{L}\left(X_{i l},{Y_{i}} l\right)= 0.6 * \sum_{c=1}^{C} X_{i c l} \log \left({Y}_{i c l}\right)+0.4 *\left(1-\frac{2\left|X_{i l} \cap {Y_{i}} l\right|}{\left|X_{i l}\right|+\left|{Y_{i}} l\right|}\right)
@@ -376,13 +379,13 @@ efficientnetb2 &   256 &           27 & 0.0323 &    0.1391 & 0.9251 &    0.6798 
 
 -> iou score für predictions vom validation set berechnen und beste + schlechteste masken plotten + score bei kaggle 
 
--> efb2 und dense121 
+-> efb2 und efb7 done
 
--> die werden erneut trainiert mit bereinigten Daten, 25D Daten und / oder zugeschnittenen Daten
+-> die werden erneut trainiert mit bereinigten Daten, 25D Daten und / oder zugeschnittenen Daten done
 
--> inputsize erhöht
+-> inputsize erhöht done
 
--> iou score für predictions vom validation set berechnen und beste + schlechteste masken plotten + score bei kaggle 
+-> iou score für predictions vom validation set berechnen und beste + schlechteste masken plotten + score bei kaggle in arbeit
 
 -> was hat wo was gebracht (25d daten, zuschnitt, datenreinigung) 
 

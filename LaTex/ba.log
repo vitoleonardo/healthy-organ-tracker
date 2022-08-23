@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.8.5)  18 AUG 2022 01:29
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.8.5)  18 AUG 2022 19:28
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -567,14 +567,6 @@ Package: a4 2020/02/18 v1.2g A4 based page layout
 Package csquotes Info: Checking for multilingual support...
 Package csquotes Info: ... found 'babel' package.
  (./ba.aux)
-Runaway argument?
-{\contentsline {subsubsection}{\numberline {3.3.2}Intelligentes Zusch\ETC.
-./ba.tex:69: File ended while scanning use of \@writefile.
-<inserted text> 
-                \par 
-l.69 \begin{document}
-                     
-? 
 \openout1 = `ba.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 69.
@@ -595,6 +587,7 @@ LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 69.
 LaTeX Font Info:    ... okay on input line 69.
 LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 69.
 LaTeX Font Info:    ... okay on input line 69.
+
 (/usr/local/texlive/2022/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count409
@@ -671,7 +664,7 @@ No file ba.bbl.
 Package biblatex Info: Reference section=0 on input line 69.
 Package biblatex Info: Reference segment=0 on input line 69.
 (./titelmakros.tex
-<bilder/HHU_Logo.pdf, id=4, 896.34875pt x 218.8175pt>
+<bilder/HHU_Logo.pdf, id=92, 896.34875pt x 218.8175pt>
 File: bilder/HHU_Logo.pdf Graphic file (type pdf)
 <use bilder/HHU_Logo.pdf>
 Package pdftex.def Info: bilder/HHU_Logo.pdf  used on input line 47.
@@ -738,180 +731,146 @@ LaTeX Warning: Citation 'Hesamian' on page 2 undefined on input line 38.
 
 LaTeX Warning: Citation 'SmartCrop' on page 2 undefined on input line 42.
 
-<bilder/intestines.png, id=48, 963.6pt x 542.025pt>
+<bilder/intestines.png, id=157, 963.6pt x 542.025pt>
 File: bilder/intestines.png Graphic file (type png)
 <use bilder/intestines.png>
 Package pdftex.def Info: bilder/intestines.png  used on input line 54.
-(pdftex.def)             Requested size: 450.0pt x 253.12247pt.
-
-Overfull \hbox (23.20866pt too wide) in paragraph at lines 54--55
- [] 
- []
-
-<bilder/magen-mrt.jpeg, id=49, 519.9425pt x 515.9275pt>
+(pdftex.def)             Requested size: 400.0pt x 224.99406pt.
+[2]
+<bilder/magen-mrt.jpeg, id=165, 519.9425pt x 515.9275pt>
 File: bilder/magen-mrt.jpeg Graphic file (type jpg)
 <use bilder/magen-mrt.jpeg>
 Package pdftex.def Info: bilder/magen-mrt.jpeg  used on input line 61.
-(pdftex.def)             Requested size: 450.0pt x 446.52307pt.
-
-Overfull \hbox (23.20866pt too wide) in paragraph at lines 61--62
- [] 
- []
+(pdftex.def)             Requested size: 200.0pt x 198.45557pt.
 
 
-LaTeX Warning: Citation 'U-Net' on page 2 undefined on input line 69.
+LaTeX Warning: Citation 'U-Net' on page 3 undefined on input line 69.
 
-[2]
-
-LaTeX Warning: Citation 'Con97' on page 3 undefined on input line 79.
-
-
-Underfull \hbox (badness 1057) in paragraph at lines 73--80
-[]\T1/ppl/m/n/10.95 Eine ^^Rdown-sam-ple^^POperation be-steht zum einen aus ei-
-ner ^^R[][]Con-vo-lu-ti-on Ope-ra-ti-
- []
-
-<bilder/u-net-architecture.png, id=66, 1039.885pt x 1560.83125pt>
+[3 <./bilder/intestines.png (PNG copy)> <./bilder/magen-mrt.jpeg>]
+<bilder/u-net-architecture.png, id=177, 982.67125pt x 496.85625pt>
 File: bilder/u-net-architecture.png Graphic file (type png)
 <use bilder/u-net-architecture.png>
-Package pdftex.def Info: bilder/u-net-architecture.png  used on input line 87.
-(pdftex.def)             Requested size: 300.0pt x 450.27165pt.
+Package pdftex.def Info: bilder/u-net-architecture.png  used on input line 90.
+(pdftex.def)             Requested size: 430.0pt x 217.41197pt.
 
-Overfull \hbox (23.48032pt too wide) in paragraph at lines 87--88
+Overfull \hbox (3.20866pt too wide) in paragraph at lines 90--91
  [] 
  []
 
-[3 <./bilder/intestines.png (PNG copy)>]
 
-LaTeX Warning: Reference `ssec:dc' on page 4 undefined on input line 102.
+LaTeX Warning: Citation 'Zhang:2020' on page 4 undefined on input line 91.
 
 
-LaTeX Warning: Reference `ssec:hdorff' on page 4 undefined on input line 102.
+LaTeX Warning: Citation 'Zhang:2020' on page 4 undefined on input line 91.
 
+[4 <./bilder/u-net-architecture.png>]
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 115.
+(Font)              <7> on input line 118.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 115.
-
-LaTeX Warning: Reference `Fig:train-data' on page 4 undefined on input line 131
-.
-
-<bilder/data_tree.png, id=77, 762.85pt x 286.06876pt>
+(Font)              <5> on input line 118.
+<bilder/data_tree.png, id=191, 762.85pt x 286.06876pt>
 File: bilder/data_tree.png Graphic file (type png)
 <use bilder/data_tree.png>
-Package pdftex.def Info: bilder/data_tree.png  used on input line 138.
+Package pdftex.def Info: bilder/data_tree.png  used on input line 141.
 (pdftex.def)             Requested size: 450.0pt x 168.74854pt.
 
-Overfull \hbox (23.20866pt too wide) in paragraph at lines 138--139
+Overfull \hbox (23.20866pt too wide) in paragraph at lines 141--142
  [] 
  []
 
-
-LaTeX Warning: Reference `Fig:slice_per_day' on page 4 undefined on input line 
-143.
-
-
-LaTeX Warning: Reference `Fig:klassenverteilung' on page 4 undefined on input l
-ine 145.
-
-<bilder/segmentation_distribution.png, id=78, 501.875pt x 702.625pt>
+<bilder/segmentation_distribution.png, id=194, 501.875pt x 702.625pt>
 File: bilder/segmentation_distribution.png Graphic file (type png)
 <use bilder/segmentation_distribution.png>
 Package pdftex.def Info: bilder/segmentation_distribution.png  used on input li
-ne 149.
+ne 152.
 (pdftex.def)             Requested size: 220.0pt x 308.00879pt.
-<bilder/slice_per_case.png, id=79, 702.625pt x 501.875pt>
+<bilder/slice_per_case.png, id=195, 702.625pt x 501.875pt>
 File: bilder/slice_per_case.png Graphic file (type png)
 <use bilder/slice_per_case.png>
-Package pdftex.def Info: bilder/slice_per_case.png  used on input line 157.
+Package pdftex.def Info: bilder/slice_per_case.png  used on input line 160.
 (pdftex.def)             Requested size: 245.829pt x 175.58995pt.
 
-Overfull \hbox (40.97098pt too wide) in paragraph at lines 157--158
+Overfull \hbox (40.97098pt too wide) in paragraph at lines 160--161
  [][] 
  []
 
-<bilder/slices_per_day.png, id=80, 702.625pt x 501.875pt>
+<bilder/slices_per_day.png, id=196, 702.625pt x 501.875pt>
 File: bilder/slices_per_day.png Graphic file (type png)
 <use bilder/slices_per_day.png>
-Package pdftex.def Info: bilder/slices_per_day.png  used on input line 162.
+Package pdftex.def Info: bilder/slices_per_day.png  used on input line 165.
 (pdftex.def)             Requested size: 245.829pt x 175.58995pt.
 
-Overfull \hbox (40.97098pt too wide) in paragraph at lines 162--163
+Overfull \hbox (40.97098pt too wide) in paragraph at lines 165--166
  [][] 
  []
 
-[4]
-Overfull \hbox (49.93901pt too wide) in paragraph at lines 185--186
+[5]
+Overfull \hbox (49.93901pt too wide) in paragraph at lines 188--189
  [] 
  []
 
-<bilder/25d_input.png, id=91, 666.855pt x 327.186pt>
+<bilder/25d_input.png, id=208, 666.855pt x 327.186pt>
 File: bilder/25d_input.png Graphic file (type png)
 <use bilder/25d_input.png>
-Package pdftex.def Info: bilder/25d_input.png  used on input line 206.
+Package pdftex.def Info: bilder/25d_input.png  used on input line 209.
 (pdftex.def)             Requested size: 450.0pt x 220.79109pt.
 
-Overfull \hbox (23.20866pt too wide) in paragraph at lines 206--207
+Overfull \hbox (23.20866pt too wide) in paragraph at lines 209--210
  [] 
  []
 
-
-LaTeX Warning: Reference `tab:crop_table' on page 5 undefined on input line 217
-.
-
-[5]
-<bilder/orig.png, id=106, 266.9975pt x 231.86626pt>
+[6 <./bilder/data_tree.png>] [7 <./bilder/segmentation_distribution.png> <./bil
+der/slice_per_case.png> <./bilder/slices_per_day.png>]
+<bilder/orig.png, id=230, 266.9975pt x 231.86626pt>
 File: bilder/orig.png Graphic file (type png)
 <use bilder/orig.png>
-Package pdftex.def Info: bilder/orig.png  used on input line 252.
+Package pdftex.def Info: bilder/orig.png  used on input line 255.
 (pdftex.def)             Requested size: 106.69783pt x 92.65994pt.
-<bilder/crop.png, id=107, 266.9975pt x 231.86626pt>
+<bilder/crop.png, id=231, 266.9975pt x 231.86626pt>
 File: bilder/crop.png Graphic file (type png)
 <use bilder/crop.png>
-Package pdftex.def Info: bilder/crop.png  used on input line 254.
+Package pdftex.def Info: bilder/crop.png  used on input line 257.
 (pdftex.def)             Requested size: 106.69783pt x 92.65994pt.
-<bilder/crop_median.png, id=108, 350.30875pt x 189.70876pt>
+<bilder/crop_median.png, id=232, 350.30875pt x 189.70876pt>
 File: bilder/crop_median.png Graphic file (type png)
 <use bilder/crop_median.png>
-Package pdftex.def Info: bilder/crop_median.png  used on input line 256.
+Package pdftex.def Info: bilder/crop_median.png  used on input line 259.
 (pdftex.def)             Requested size: 106.69783pt x 57.78148pt.
-
-
-LaTeX Warning: Reference `fig:cut' on page 6 undefined on input line 265.
-
-<bilder/case7-day0-slice-0096.png, id=109, 321.2pt x 321.2pt>
+<bilder/case7-day0-slice-0096.png, id=234, 321.2pt x 321.2pt>
 File: bilder/case7-day0-slice-0096.png Graphic file (type png)
 <use bilder/case7-day0-slice-0096.png>
 Package pdftex.def Info: bilder/case7-day0-slice-0096.png  used on input line 2
-69.
+72.
 (pdftex.def)             Requested size: 106.69783pt x 106.69717pt.
-<bilder/case81-day30-slice-0096.png, id=110, 321.2pt x 321.2pt>
+<bilder/case81-day30-slice-0096.png, id=235, 321.2pt x 321.2pt>
 File: bilder/case81-day30-slice-0096.png Graphic file (type png)
 <use bilder/case81-day30-slice-0096.png>
 Package pdftex.def Info: bilder/case81-day30-slice-0096.png  used on input line
- 271.
+ 274.
 (pdftex.def)             Requested size: 106.69783pt x 106.69717pt.
+ [8 <./bilder/25d_input.png>] [9 <./bilder/orig.png> <./bilder/crop.png> <./bil
+der/crop_median.png>]
 
-LaTeX Warning: Citation 'Jadon_2020' on page 6 undefined on input line 291.
+LaTeX Warning: Citation 'Jadon_2020' on page 10 undefined on input line 294.
 
-[6]
-
-LaTeX Warning: Citation 'Yakubovskiy:2019' on page 7 undefined on input line 31
-1.
-
-
-LaTeX Warning: Citation 'Jadon_2020' on page 7 undefined on input line 319.
-
-[7] [8]) [9] [10 <./bilder/magen-mrt.jpeg>] [11 <./bilder/u-net-architecture.pn
-g> <./bilder/data_tree.png>] [12 <./bilder/segmentation_distribution.png> <./bi
-lder/slice_per_case.png> <./bilder/slices_per_day.png>] [13 <./bilder/25d_input
-.png> <./bilder/orig.png> <./bilder/crop.png> <./bilder/crop_median.png>]
-[14 <./bilder/case7-day0-slice-0096.png (PNG copy)> <./bilder/case81-day30-slic
+[10 <./bilder/case7-day0-slice-0096.png (PNG copy)> <./bilder/case81-day30-slic
 e-0096.png (PNG copy)>]
+
+LaTeX Warning: Citation 'Yakubovskiy:2019' on page 11 undefined on input line 3
+14.
+
+
+LaTeX Warning: Citation 'Jadon_2020' on page 11 undefined on input line 322.
+
+[11]) [12]
 
 LaTeX Warning: Empty bibliography on input line 101.
 
-(./ba.lof)
+(./ba.lof
+
+LaTeX Warning: Citation 'Zhang:2020' on page 13 undefined on input line 4.
+
+)
 \tf@lof=\write7
 \openout7 = `ba.lof'.
 
@@ -919,24 +878,15 @@ LaTeX Warning: Empty bibliography on input line 101.
 \tf@lot=\write8
 \openout8 = `ba.lot'.
 
- [15
+ [13
 
 
 ] (./ba.aux)
 
 LaTeX Warning: There were undefined references.
 
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-
-Package rerunfilecheck Warning: File `ba.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `ba.out':
-(rerunfilecheck)             Before: D41D8CD98F00B204E9800998ECF8427E;0
-(rerunfilecheck)             After:  44A869D78C857DDF64730527BCE04C6B;3250.
+Package rerunfilecheck Info: File `ba.out' has not changed.
+(rerunfilecheck)             Checksum: 44A869D78C857DDF64730527BCE04C6B;3250.
 
 Package biblatex Warning: Please (re)run Biber on the file:
 (biblatex)                ba
@@ -947,13 +897,13 @@ Package logreq Info: Writing requests to 'ba.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 20036 strings out of 478268
- 354438 string characters out of 5846348
- 1109125 words of memory out of 5000000
- 37916 multiletter control sequences out of 15000+600000
+ 20057 strings out of 478268
+ 354742 string characters out of 5846348
+ 1104631 words of memory out of 5000000
+ 37939 multiletter control sequences out of 15000+600000
  485220 words of font info for 54 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
- 67i,9n,73p,1141b,2365s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 67i,9n,73p,735b,2566s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/te
 xlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/tex
@@ -965,10 +915,10 @@ ve/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive
 texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2022/texmf-d
 ist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2022/texmf-dist/fon
 ts/type1/urw/palatino/uplr8a.pfb>
-Output written on ba.pdf (20 pages, 2979909 bytes).
+Output written on ba.pdf (18 pages, 3369226 bytes).
 PDF statistics:
- 287 PDF objects out of 1000 (max. 8388607)
- 217 compressed objects within 3 object streams
- 72 named destinations out of 1000 (max. 500000)
- 71 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 377 PDF objects out of 1000 (max. 8388607)
+ 308 compressed objects within 4 object streams
+ 70 named destinations out of 1000 (max. 500000)
+ 247 words of extra memory for PDF output out of 10000 (max. 10000000)
 
