@@ -1,13 +1,17 @@
 # Healthy Organ Tracker
 
-UW-Madison GI Tract Image Segmentation Challenge - BA
+UW-Madison GI Tract Image Segmentation Challenge - BA - Viktor Krawutschke
 
-# TODO
+Bei diesem Repository handelt es sich um Basis, auf die die Bachelorarbeit mit dem Namen "Segmentierung des Magen-Darm-Trakts anhand von MRT Bildern mithilfe von Deep Learning" aufbaut.
 
-How to start the script
+### HOT Data Exploration
 
-- params
+In diesem Notebook wird sich allgemein mit dem Datensatz auseinandergesetzt.
 
-What python packages are needed
+### HOT Performance
 
-- export requirements
+Dieses Notebook beinhaltet alle Funktionen, zum Erfassen der Performance der Modelle. Die Daten werden aus der Historie der Metriken der Modelle erhoben.
+
+### HOT Inference
+
+Dieses Notebook enthält alle Funktionen zum Visualisieren der trainierten Modelle.
