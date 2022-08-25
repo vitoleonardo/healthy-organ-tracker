@@ -58,7 +58,7 @@ from keras.layers.pooling import MaxPooling2D
 from config import CFG
 from dataloader import DataGenerator
 from utility import rle_encode, rle_decode, build_masks
-from loss import dice_coef, iou_coef, dice_loss, bce_dice_loss
+from loss import dice_coef, iou_coef, dice_loss, bce_dice_loss, dice_coef_single_label
 from datapreparation import extract_metadata, remove_faulties
 
 print(f"TensorFlow has access to the following devices:\n{tf.config.list_physical_devices()}")
@@ -108,7 +108,8 @@ def main(backbone, dim, batch, epochs, semi3d_data, remove_faulty_cases, use_cro
     model   = Unet(cfg.backbone,input_shape=cfg.img_dims, classes=3, activation='sigmoid', encoder_weights=cfg.encoder_weights_path[cfg.backbone])
     opt     = tf.keras.optimizers.Adam(learning_rate=cfg.lr)
         
-    model.compile(optimizer=opt, loss=bce_dice_loss,metrics=[dice_coef,iou_coef])
+    model.compile(optimizer=opt, loss=bce_dice_loss,metrics=[dice_coef,iou_coef, *[dice_coef_single_label(class_idx=idx, name=class_name)
+        for idx, class_name in enumerate(['large_bowel', 'small_bowel', 'stomach'])]])
 
     # Train on selected fold
     i = cfg.selected_fold

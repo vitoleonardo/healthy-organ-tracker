@@ -1,8 +1,10 @@
 # Loss
+from typing import Callable
 from keras import backend as K
 from keras.losses import binary_crossentropy
 import tensorflow as tf
 
+# zitieren
 def dice_coef(y_true, y_pred, smooth=1):
     """
     The dice coefficient is a measure of overlap between two samples
@@ -30,6 +32,18 @@ def dice_coef2(y_true, y_pred):
     y_pred_f = tf.reshape(tf.dtypes.cast(y_pred, tf.float32), [-1])
     intersection = tf.reduce_sum(y_true_f * y_pred_f)
     return (2. * intersection + 1.) / (tf.reduce_sum(y_true_f) + tf.reduce_sum(y_pred_f) + 1.)
+
+def dice_coef_single_label(class_idx: int, name: str, epsilon=1e-6) -> Callable[[tf.Tensor, tf.Tensor], tf.Tensor]:
+    def dice_coef(y_true: tf.Tensor, y_pred: tf.Tensor) -> tf.Tensor:
+        # Extract single class to compute dice coef
+        y_true_single_class = y_true[..., class_idx]
+        y_pred_single_class = y_pred[..., class_idx]
+
+        intersection = K.sum(K.abs(y_true_single_class * y_pred_single_class))
+        return (2. * intersection) / (K.sum(K.square(y_true_single_class)) + K.sum(K.square(y_pred_single_class)) + epsilon)
+
+    dice_coef.__name__ = f"dice_coef_{name}"  # Set name used to log metric
+    return dice_coef
 
 def iou_coef(y_true, y_pred, smooth=1):
     """

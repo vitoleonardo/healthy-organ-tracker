@@ -29,6 +29,7 @@ def extract_metadata(df, train_dir, remove_faulty_cases=True, crop_df="crop_df.c
     df_train["case"] = df_train["id"].apply(lambda x: re.findall("\d+",x)[0]).astype('int64')
     df_train["day"] = df_train["id"].apply(lambda x: re.findall("\d+",x)[1]).astype('int64')
     df_train["slice"] = df_train["id"].apply(lambda x: re.findall("\d+",x)[2]).astype('int64')
+    df_train["case_day"] = df_train["id"].apply(lambda x: re.findall("(\w+\d+)_",x)[0])
 
     # Get data from slice meta info
     path_df = pd.DataFrame(glob(os.path.join(train_dir, "**", "*.png"), recursive=True),columns=['path'])
