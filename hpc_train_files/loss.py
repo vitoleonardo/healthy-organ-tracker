@@ -33,6 +33,7 @@ def dice_coef2(y_true, y_pred):
     intersection = tf.reduce_sum(y_true_f * y_pred_f)
     return (2. * intersection + 1.) / (tf.reduce_sum(y_true_f) + tf.reduce_sum(y_pred_f) + 1.)
 
+# Thanks to @maxvfischer https://github.com/keras-team/keras/issues/93954
 def dice_coef_single_label(class_idx: int, name: str, epsilon=1e-6) -> Callable[[tf.Tensor, tf.Tensor], tf.Tensor]:
     def dice_coef(y_true: tf.Tensor, y_pred: tf.Tensor) -> tf.Tensor:
         # Extract single class to compute dice coef
