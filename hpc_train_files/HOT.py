@@ -41,23 +41,14 @@ warnings.filterwarnings("ignore")
 
 import pandas as pd
 from datetime import datetime
-import json,itertools
+import json
 
 from tensorflow import keras
 import tensorflow as tf
 from keras import backend as K
-from keras.models import Model
-from keras.layers import Input
-from keras.layers import concatenate
-from keras.losses import binary_crossentropy
-from keras.callbacks import Callback, ModelCheckpoint
-from keras.models import load_model
-from keras.layers.convolutional import Conv2D, Conv2DTranspose
-from keras.layers.pooling import MaxPooling2D
 
 from config import CFG
 from dataloader import DataGenerator
-from utility import rle_encode, rle_decode, build_masks
 from loss import dice_coef, iou_coef, dice_loss, bce_dice_loss, dice_coef_single_label
 from datapreparation import extract_metadata, remove_faulties
 
