@@ -125,7 +125,7 @@ def main(backbone, dim, batch, epochs, semi3d_data, remove_faulty_cases, use_cro
             patience=cfg.lr_patience,
             verbose=0,
             min_delta=0.0001),
-        keras.callbacks.CSVLogger(log_dir + "history.csv", separator=',', append=True)
+        keras.callbacks.CSVLogger(log_dir + "/history.csv", separator=',', append=True)
     ]
 
     train_ids = df_train[df_train["fold"]!=i].index
