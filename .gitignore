@@ -17,3 +17,4 @@ tensorboard_logs/.DS_Store
 tensorboard_logs/base_BS_16_no_add_ons/.DS_Store
 tensorboard_logs/base_BS_16_no_add_ons/UNet_BB_densenet121_DIM_(256, 256, 3)_SEMI3D_False_CROPDATA_False_BATCH_16_EPOCHS_50_FOLD_3.h5_15082022-2112_FOLD_3/.DS_Store
 HOT Help.ipynb
+LaTex/einleitung.log
