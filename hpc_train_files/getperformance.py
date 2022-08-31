@@ -29,7 +29,7 @@ import tensorflow as tf
 from keras import backend as K
 from keras.models import load_model
 
-from loss import dice_coef, iou_coef, dice_coef2, bce_dice_loss
+from loss import dice_coef, iou_coef, dice_coef2, bce_dice_loss, dice_coef_single_label
 from utility import rle_encode, rle_decode
 from dataloader import DataGenerator
 
@@ -136,7 +136,10 @@ def main(path):
         'FixedDropout': FixedDropout,
         'dice_coef': dice_coef,
         'iou_coef': iou_coef,
-        'bce_dice_loss': bce_dice_loss  
+        'bce_dice_loss': bce_dice_loss,
+        'dice_coef_large_bowel': dice_coef_single_label(class_idx=0, name='large_bowel'),
+        'dice_coef_small_bowel': dice_coef_single_label(class_idx=1, name='small_bowel'),
+        'dice_coef_stomach': dice_coef_single_label(class_idx=2, name='stomach'),
     }
 
 

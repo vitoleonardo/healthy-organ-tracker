@@ -92,8 +92,7 @@ def main(backbone, dim, batch, epochs, semi3d_data, remove_faulty_cases, use_cro
 
     install()
 
-    from segmentation_models import Unet, FPN
-    from segmentation_models.utils import set_trainable
+    from segmentation_models import Unet
     from keras.callbacks import Callback, ModelCheckpoint
 
     model   = Unet(cfg.backbone,input_shape=cfg.img_dims, classes=3, activation='sigmoid', encoder_weights=cfg.encoder_weights_path[cfg.backbone])
