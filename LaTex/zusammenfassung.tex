@@ -1,3 +1,13 @@
+
+\section*{Danksagung}
+
+An dieser Stelle möchte ich besonders meinen Eltern danken, mir das Studium möglich gemacht zu haben!
+
+Ich danke Herrn Prof. Dr. Conrad und Herrn. Prof. Dr. Kollmann dafür diese Arbeit zu begutachten.
+
+Außerdem danke ich Herrn Bogomasov, der mich während der gesamten Arbeit betreut hat und mir wertvolle Anregungen bot. 
+
+\pagebreak
 %%% Die folgende Zeile nicht ändern!
 \section*{\ifthenelse{\equal{\sprache}{deutsch}}{Einleitung}{Abstract}}
 %%% Zusammenfassung:
@@ -7,10 +17,8 @@ Diese Bachelorarbeit beschäftigt sich mit der semantischen Segmentierung von MR
 
 Dank Magnetresonanztomographen (MRT) und Linearbeschleunigern können Onkologen jedoch die genaue Position der Organe feststellen. Dies ist jedoch ein Zeitintensiver Prozess und dauert je nach Patienten zwischen 15 und 60 Minuten. Deep Learning könnte dabei helfen, diesen Prozess erheblich zu beschleunigen, um so Patienten zu entlasten und Ärzten die Chance zu geben mehreren Menschen im selben Zeitraum ihre Hilfe anzubieten. 
 
-Das UW-Madison Carbone Cancer Center hat im Rahmen einer Challenge auf Kaggle.com anonymisierte Scans von über 150 Patienten zur Verfügung gestellt, in denen manuell der Dickdarm, Dünndarm und der Magen von Fachleuten segmentiert worden ist. Ziel ist es, ein Modell zu entwerfen welches gegeben den Trainingsdaten dazu in der Lage ist in Bildausschnitten von vorher ungesehenen Patienten die Lokalität der genannten Organe in Form von einer Maske zu bestimmen. 
+Das UW-Madison Carbone Cancer Center hat im Rahmen eines Wettbewerbs auf Kaggle.com anonymisierte MRT-Aufnahmen von über 150 Patienten zur Verfügung gestellt, in denen manuell der Dickdarm, Dünndarm und der Magen von Fachleuten segmentiert worden ist. Ziel ist es, ein Modell zu entwerfen welches gegeben den Trainingsdaten dazu in der Lage ist in Bildausschnitten von vorher ungesehenen Patienten die Lokalität der genannten Organe vorherzusagen. 
 
-Baseline dieser Arbeit bildet ein Convolutional Neural Network, der U-Net Segmentierungsarchitektur, welches auf Graustufenbildern antrainiert wurde. 
+Baseline dieser Arbeit bildet ein Convolutional Neural Network (CNN), der U-Net Segmentierungsarchitektur. Zuvor hat sich besonders Deep Learning als besonders gut erpropt, um Segmentierungsaufgaben zu erledigen.
 
-Auf einer detaillierten Datenanalyse aufbauend werden dann weitere Methoden angewendet, um die Performance zu verbessern. Es werden Trainigsdaten bereinigt und mit verschiedenen Eingabegrößen experimentiert. Ein weiterer Ansatz ist ein intelligenter Zuschnitt der Slices sowie die Verwendung von "2.5 dimensionalen" Daten, auf die ich später genauer eingehe. 
-
-Zuletzt erfolgt eine Evaluation der Vorhersagungen sowie eine Gegenüberstellung der verschiedenen Modelle.
+Auf einer detaillierten Datenanalyse aufbauend wird mit verschiedenen Erweiterungen experimentiert, um die Vorhersagungen zu verbessern. Falsch annotierte Daten werden entfernt, Pixelverhältnisse von Vorder- und Hintergrund normalisiert und die Dimensionen der Eingabebilder werden erweitert.
