@@ -5,7 +5,7 @@ import re
 import os
 
 
-def extract_metadata(df, train_dir, remove_faulty_cases=True, crop_df="crop_df.csv", channels=3, stride=2):
+def extract_metadata(df, train_dir, remove_faulty_cases=True, crop_df="../input/crop_dataframe/crop_df.csv", channels=3, stride=2):
     """
     It takes the dataframe from the train.csv file, and merges it with the dataframe from the
     crop_df.csv file.
