@@ -18,7 +18,11 @@ Dieses Notebook enthält alle Funktionen zum Visualisieren der trainierten Model
 
 ### hpc_train_files
 
-In diesem Ordner befinden sich die einzelnen Klassen die zum Trainieren auf dem Hilber-Cluster genutzt wurden.
+In diesem Ordner befinden sich die einzelnen Klassen die zum Trainieren auf dem Hilber-Cluster genutzt wurden. Benutzung:
+
+```
+HOT.py <backbone> <dim> <batch> <epochs> <semi3d_data> <remove_faulty_cases> <use_crop_data> <selected_fold>
+```
 
 ### input
 
