@@ -8,39 +8,41 @@
 
 Die semantische Segmentierung erfolgt in drei Schritten:
 
-Klassifizierung: Klassifizierung eines bestimmten Objekts im Bild.
-
-Lokalisieren: Auffinden des Objekts und Zeichnen eines Begrenzungsrahmens um das Objekt.
-
-Segmentierung: Gruppierung der Pixel in einem lokalisierten Bild durch Erstellung einer Segmentierungsmaske.
+\begin{enumerate}
+\item Klassifizierung: Klassifizierung eines bestimmten Objekts im Bild.
+\item Lokalisierung: Auffinden des Objekts sowie das Zeichnen eines Begrenzungsrahmens um es herum.
+\item Segmentierung: Gruppierung der Pixel in einem lokalisierten Bild durch Erstellung einer Segmentierungsmaske.
+\end{enumerate}
 
 Im Wesentlichen kann man die Aufgabe der semantischen Segmentierung als Klassifizierung einer bestimmten Bildklasse und deren Abgrenzung von den übrigen Bildklassen durch Überlagerung mit einer Segmentierungsmaske bezeichnen.
 
-Veranschaulicht spricht man von einer Klassifizierung der Bildern auf Pixelebene.
+Veranschaulicht spricht man von einer Klassifizierung der Bilder auf Pixelebene.
 
 \subsubsection{Medizinischer Bereich}
 
-Die medizinische Bildgebung umfasst viele Kategorien, von 2- und 3 dimensionalen MRT Scans des Herzens, Gehirns und des Magen-Darm Trakts, 2 dimensionalen Röntgen Bildern sowie Ausschnitte aus der Videoendoskopie.
+Die medizinische Bildgebung umfasst viele Kategorien, von 2D und 3D MRT Scans des Herzens, Gehirns und des Magen-Darm Trakts, 2D Röntgen Bildern sowie Ausschnitte aus der Videoendoskopie.
 
-Bereits in den 90er Jahren wurde sich mit Segmentierungsarchitekturen auseinandergesetzt und Baselines geschaffen. Zu dieser Zeit lieferten Methoden im Bereich Mustererkennung die besten Ergebnisse. Die Autoren legten viel Wert auf Datenvorverarbeitung und werteten die zu jener Zeit besten Architekturen aus. Damals griff man auf einen erweiterungs-basierten Ansatz zurück, es wurde mit Algorithmen wie
+Bereits in den 90er Jahren wurde sich mit Segmentierungsarchitekturen auseinandergesetzt und Baselines geschaffen. Zu dieser Zeit lieferten Modelle aus dem Bereich Mustererkennung die besten Ergebnisse. Die Autoren investierten viel Zeit in Datenvorverarbeitung und werteten die zu jener Zeit besten Architekturen aus. Damals griff man auf einen Erweiterungs-basierten Ansatz zurück. Es wurde mit Algorithmen wie
 \href{https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm}{kNN},
 \href{https://en.wikipedia.org/wiki/Maximum_likelihood_estimation}{Maximum Likelihood} und
 \href{https://en.wikipedia.org/wiki/Eigenvalues_and_eigenvectors}{Characteristic vector} experimentiert.
 
-Trotz aller Bemühungen wiesen die Modelle nur eine Genauigkeit von 3\% bis 34\% auf. \citet{Clarke:Mri1995}
+Trotz aller Bemühungen wiesen die Modelle nur eine Genauigkeit von 3\% bis 34\% auf.
 
-Jedoch waren die Autoren davon überzeugt, dass maschinelle Segmentierung eine wichtige Rolle im Bereich der Verarbeitung von MRT Daten darstellen wird. Mit wachsender Akzeptanz auf klinischer Seite sowie dem allgemeinen technischen Fortschritt sollen akkurate Segmentierungen von MRT Bildern im Livebetrieb möglich werden.
+\citet{Clarke:Mri1995} waren jedoch davon überzeugt, dass maschinelle Segmentierung eine wichtige Rolle im Bereich der Verarbeitung von MRT Daten spielen wird. Mit wachsender Akzeptanz auf klinischer Seite sowie dem allgemeinen technischen Fortschritt sollen akkurate Segmentierungen von MRT Bildern im Livebetrieb möglich werden.
 
 \newpage
 
 \subsection{Deep Learning-Techniken für die Segmentierung medizinischer Bilder:
 Errungenschaften und Herausforderungen}
 
-Dank der immensen Verbesserung der Rechenleistung der Hardwareeinheiten wurde das Thema Deep Learning immer interessanter und gehört heutzutage zur Standard Vorgehensweise im Bereich Computer Vision. Architekturen wie das U-Net \citet{U-Net} haben sich hierbei im medizinischen Bereich besonders bewiesen. Im Verlauf der Jahre nach der Veröffentlichung in 2015 sind viele wissenschaftliche Arbeiten mit die er Erweiterungen der Grundarchitektur vorstellten, so dass es heute ein breites Spektrum an Modellen gibt, die an verschiedene (medizinische) Problemstellungen angepasst sind. \citet{Hesamian}
+Dank der immensen Verbesserung der Rechenleistung der Hardwareeinheiten wurde das Thema Deep Learning immer interessanter und gehört heutzutage zur Standardvorgehensweise im Bereich Computer Vision (Vgl. \citet{dl_medical_image}). Architekturen wie das U-Net von \citet{U-Net} haben sich hierbei im medizinischen Bereich besonders bewiesen. 
+
+In den letzten 5 Jahren wurden viele neue Segmentierungsarchitekturen publiziert, davon sind einige Erweiterungen des U-Nets dabei. \citet{UnetMed} nahmen einen Vergleich der Modelle im medizinischen Kontext vor. 
 
 \subsection{Intelligentes Zuschneiden des Inputs}
 
-Dimitrios G. Zaridis et al. \citet{SmartCrop} haben sich ebenfalls mit verschiedenen State-of-the-Art U-Net Architekturen auseinandergesetzt und jene als Baseline für ihre Arbeit genutzt. Trotz der beachtlichen Leistung, die die Modelle lieferten, waren sie der Meinung dass noch Verbesserungspotential vorhanden ist. Sie fanden heraus, dass das Vorhandensein eines Klassenungleichgewichts, in dem der Anteil der Hintergrundpixel dem Anteil der zu segmentierenden Klasse überwiegt, zu Problemen bei der Genauigkeit der Vorhersage führen kann. 
+\citet{SmartCrop} befassten sich ebenfalls mit verschiedenen State-of-the-art U-Net Architekturen und nutzten jene als Baseline für ihre Arbeit. Die Autoren sind auf einen weiteren Ansatz um die Genauigkeit zu steigern gestoßen. Sie fanden heraus, dass das Verringern eines Klassenungleichgewichts, in dem der Anteil der Hintergrundpixel dem Anteil der zu segmentierenden Klasse überwiegt, die Genauigkeit der Modelle erhöhen kann.
 
 Mithilfe einer auf Deep Learning aufbauenden Architektur haben die Autoren es geschafft, dieses Klassenungleichgewicht zu reduzieren, in dem ein Neuronales Netzwerk die gesuchten Organe lokalisiert, das Originalbild zuschneidet um am Ende das Verhältnis von Vorder- und Hintergrundpixeln bestmöglich zu normalisieren. Dies führte bei einem Großteil der getesteten Modelle zu einem erheblichen Anstieg der Genauigkeit, die Ergebnisse von U-Net+ und ResU-Net++ verbesserten sich um bis zu 8\%.
 
@@ -48,41 +50,40 @@ Mithilfe einer auf Deep Learning aufbauenden Architektur haben die Autoren es ge
 
 \subsection{Magen-Darmtrakt}
 
-Für das Gewinnen von Erkenntnissen sowie der Analyse des Datensatzes ist es von nöten, ein anatomisches Grundverständnis von der Körperregion zu besitzen, den sie beschreiben. Oben angefangen beginnt es mit dem Magen, der unten am Dickdarm abschließt und davon umgeben ist der Dünndarm (vergl. Abb \ref{Fig:magen-darm-trakt}). 
+Für das Gewinnen von Erkenntnissen sowie der Analyse des Datensatzes ist es vonnöten, ein anatomisches Grundverständnis von der Körperregion zu besitzen, den er beschreibt. Oben angefangen beginnt es mit dem Magen, der unten am Dickdarm abschließt und davon umgeben ist der Dünndarm (Vgl. Abb \ref{Fig:magen-darm-trakt}). 
 
-Beim Datensatz handelt es sich um segmentierte MRT-Bilder von anonymisierten Patienten die am UW-Madison Carbone Cancer Center behandelt wurden. Beim Magen- und Darmtrakt handelt es sich um einen selbst für Menschen schwer zu segmentierenden Bereich aufgrund seiner Komplexität, seiner unregelmäßigen Formen sowie variierender Position der Organe (Vergl. \cite{Chen_2020}).
+Beim Datensatz handelt es sich um segmentierte MRT-Bilder von anonymisierten Patienten die am UW-Madison Carbone Cancer Center behandelt wurden. Beim Magen- und Darmtrakt handelt es sich um einen selbst für Menschen schwer zu segmentierenden Bereich aufgrund seiner Komplexität, seiner unregelmäßigen Formen sowie variierender Position der Organe (Vgl. \cite{Chen_2020}).
 
 \begin{figure}[H]
-   \begin{minipage}{0.48\textwidth}
+   \begin{minipage}{0.49\textwidth}
      \centering
      \includegraphics[width=1\linewidth]{bilder/intestines}
-     \caption{Magen-Darm Trakt. Stomach, large intestine und small intestine stehen jeweils für Magen, Dick- und Dünndarm. }
-   \end{minipage}\label{Fig:magen-darm-trakt}
-   \hfill
-   \begin{minipage}{0.48\textwidth}
+     \caption{Magen-Darm Trakt. Stomach, large intestine und small intestine stehen jeweils für Magen, Dick- und Dünndarm.}\label{Fig:magen-darm-trakt}
+   \end{minipage}
+   \hfill\hfill
+   \begin{minipage}{0.49\textwidth}
      \centering
      \includegraphics[width=1\linewidth]{LaTex/bilder/beispieldaten.png}
-     \caption{ Zu sehen ist hier eine Abfolge von segmentierten Teilstücken eines Falles. Die rote Markierung beschreibt den Magen, die orangene den Dickdarm.}
-   \end{minipage}\label{Fig:magen-mrt}
+     \caption{ Zu sehen ist hier eine Abfolge von segmentierten Teilstücken eines Falles. Die rote Markierung beschreibt den Magen, die orangene den Dickdarm.}\label{Fig:magen-mrt}
+   \end{minipage}
 \end{figure}
 
 \subsection{Kaggle} \label{ssec:kaggle}
 
-Diese Arbeit baut auf der 
+Diese Arbeit baut auf dem
 \href{https://www.kaggle.com/competitions/uw-madison-gi-tract-image-segmentation/overview/description}{UW-Madison GI Tract Image Segmentation}
-Challenge auf, die von der University of Wisconsin Carbone Cancer Center Pancreas Pilot Research Grant organisiert wurde und von denen die Daten auch bereitgestellt wurden.
+Wettbewerb auf, die von der University of Wisconsin Carbone Cancer Center Pancreas Pilot Research Grant organisiert wurde und von denen die Daten ebenfalls zur Verfügung gestellt wurden.
 
 Ziel ist es eine Architektur zu finden, die dazu in der Lage ist zukünftig Onkologen im Klinikalltag dabei zu helfen, Tumore besser und schneller zu lokalisieren um so eine genauere Strahlentherapie durchführen zu können. 
 
-Im Rahmen des Wettbewerbs wurden die Daten anhand einer Mischung aus dem Dice-Koeffizienten zu 40\% (Vergl. \ref{ssec:dc}) sowie der Hausdorff-Metrik zu 60\% (Vergl. \ref{ssec:hdorff}) auf ungesehenen Testdaten von ungefähr 50 Personen ausgewertet, siehe  \href{https://www.kaggle.com/competitions/uw-madison-gi-tract-image-segmentation/data}{hier}.
+Im Rahmen des Wettbewerbs wurden die Daten anhand einer Mischung aus dem Dice-Koeffizienten zu 40\% (Vgl. \ref{ssec:dc}) sowie der Hausdorff-Metrik zu 60\% (Vgl. \ref{ssec:hdorff}) auf ungesehenen Testdaten von ungefähr 50 Personen ausgewertet, siehe  \href{https://www.kaggle.com/competitions/uw-madison-gi-tract-image-segmentation/data}{hier}.
 
 \subsection{U-Net}
-% CNN, Convolution, Maxpooling oder ReLu erklären?
 
-U-Net wurde im Jahr 2015 von Olag Ronneberger et al. \citet{U-Net} vorgestellt als Segmentierungsarchitektur für den biomedizinischem Bereich und bildet die Baseline dieser Arbeit. Neu in der Herangehensweise ist der Encoder-Decoder Part, die dem Netzwerk ermöglicht räumliche Merkmale zu lernen.
+U-Net wurde im Jahr 2015 von \citet{U-Net} vorgestellt als Segmentierungsarchitektur für den biomedizinischem Bereich und bildet die Baseline dieser Arbeit. Neu in der Herangehensweise ist der Encoder-Decoder Part, die dem Netzwerk ermöglicht räumliche Merkmale zu lernen.
 
 Klassisch handelt es sich beim Encoder um ein
-\href{https://en.wikipedia.org/wiki/Convolutional_neural_network}{Convolutional Neural Network} (CNN) , bestehend es aus 5 bis 6 downsampling Schichten und der gleichen Menge an  upsampling Schichten im Decoder Part. 
+\href{https://en.wikipedia.org/wiki/Convolutional_neural_network}{Convolutional Neural Network} (CNN) , bestehend aus 5 bis 6 downsampling Schichten und der gleichen Menge an  upsampling Schichten im Decoder Part. 
 
 Eine downsample Operation besteht zum einen aus einer
 \href{https://en.wikipedia.org/wiki/Convolution}{Convolution Operation}
@@ -109,13 +110,13 @@ Durch die Kombination aus En- und Decoder ist es möglich, Bilder semantisch zu 
 \subsection{EfficientNet}
 EfficientNet ist eine von Google zusammengestellte Sammlung an CNN's. Klassisch verbessert man die Genauigkeit eines CNN's mittels dem Erhöhen der Netzwerkdimensionen, wie der Breite oder der Tiefe. Tan et al. verfolgen einen neuen Ansatz, sie skalieren den Input in all seinen Dimensionen - mittels einem Compound Koeffizienten und geht dabei einem Schema nach, im Gegensatz zur klassischen Methode, wo Skalierungen willkürlich vorgenommen werden. \autoref{Fig:compund-scaling}
 
-Verglichen mit anderen state-of-the-art Modellen weist EfficientNet eine höhere Genauigkeit bei stark verringerter Anzahl an Parametern auf, was ein Resultat der generalisierten Skalierungsmethode ist. Es besteht aus acht Architekturen, EfficientNet-B0 bildet die Basis und ist vergleichbar mit dem \citet{MobileNetV2}.
+Verglichen mit anderen State-of-the-art Modellen weist EfficientNet eine höhere Genauigkeit bei stark verringerter Anzahl an Parametern auf, was ein Resultat der generalisierten Skalierungsmethode ist. Es besteht aus acht Architekturen, EfficientNet-B0 bildet die Basis und ist vergleichbar mit dem MobileNetV2, welches von \cite{MobileNetV2} publiziert wurde.
 
 
 \begin{figure}[H]
 	\begin{center}
 		\includegraphics[width=430pt]{bilder/efficientnet}
-		\caption{Veranschaulischung des Skalierungskoeffizienten (d), der alle Dimensionen gleichzeitig und gleichmäßig behandelt. (Tan et al. \citet{EfficientNet}) }\label{Fig:compund-scaling}
+		\caption{Veranschaulischung des Skalierungskoeffizienten (d), der alle Dimensionen gleichzeitig und gleichmäßig verändert. (\citet{EfficientNet}) }\label{Fig:compund-scaling}
 	\end{center}
 \end{figure}
 
@@ -143,22 +144,22 @@ Im Folgenden beziehen sich die Werte {X} immer auf auf die Vorhersage und {Y} au
 			6     & case123\textunderscore day0\textunderscore slice\textunderscore 0001 	& stomach 	&  NaN \\
 			\hline
 		\end{tabular}
-		\caption{Beispieldaten für zwei Slices}\label{tabelle_daten}
+		\caption{Beispieldaten für zwei Teilstücke}\label{tabelle_daten}
 	\end{center}
 \end{table}
 
-Der Datensatz besteht aus 85 verschiedenen Patienten, davon hat jeder 3 bis 5 Tage MRT-Bildmaterial. Der 3 dimensionale Scan eines jeden Tages ist aufgeteilt in 144  bzw. in seltenen Fällen 80 Teilstücken. Demnach verfügt jeder Patient über ein Kontigent an 80 bis 720 Bildern.
+Der Datensatz besteht aus 85 verschiedenen Patienten, wovon jeder Eins bis Sechs Tage MRT-Bildmaterial umfasst. Der 3D Scan eines jeden Tages ist aufgeteilt in 144  bzw. in seltenen Fällen 80 Teilstücken. Demnach verfügt jeder Patient über ein Kontigent von 80 bis 864 Bildern.
 
-115 488 Zeilen und enthält drei Features: ID, Klasse und einem Run-lenght codierten String, der die Maske enthält. \autoref{tabelle_daten}. Jeder ID sind drei Zeilen gewidmet, jeweils den Klassen für Dick- Dünndarm und Magen. Zu jeder ID existiert ein Graustufenbild, welche sich im train Ordner befinden, ein Beispiel der Ordnerhierarchie ist hier zu sehen (Vergl. Abb. \ref{Fig:train-data}).
+Der gesamte Datensatz beinhaltet 115 488 Zeilen und enthält drei Features: ID, Klasse und einem Run-lenght codierten String, der die Maske enthält. (Vgl. Tabelle \ref{tabelle_daten}). Jeder ID sind drei Zeilen gewidmet, jeweils den Klassen für Dick- Dünndarm und Magen. Zu jeder ID existiert ein Graustufenbild, ein Beispiel der Ordnerhierarchie ist hier zu sehen (Vgl. Abb. \ref{Fig:train-data}).
 
 \begin{figure}[H]
 	\begin{center}
 		\includegraphics[width=350pt]{bilder/data_tree}
-		\caption{Ordnerstruktur der Trainingsdaten. Slice 1 ist das unterste und 144 das oberste Teilstück der 3d Aufnahme.}\label{Fig:train-data}
+		\caption{Ordnerstruktur der Trainingsdaten. Nr. 1 ist das unterste und 144 das oberste Teilstück der 3D Aufnahme.}\label{Fig:train-data}
 	\end{center}
 \end{figure}
 
-Jedes Teilstück besitzt vier Werte im Namen (z.B. 266\textunderscore 266\textunderscore 1.50\textunderscore 1.50.png), die ersten beiden stehen für die Auflösung des Bildes und die letzten beiden für den physischen Abstand der Pixel in Millimeter. Der Großteil der Aufnahmen stammt von Tag Null und belaufen sich auf 11 680 (Vergl. Abb. \ref{Fig:pie-chart}. Die darauf meisten Teilstücke hat Tag 20, betrachtet man die Verteilung und schließt den 0. Tag aus findet man eine Normalverteilung vor (Vergl. Abb. \ref{Fig:slice_per_day}
+Jedes Teilstück besitzt vier Werte im Namen (z.B. 266\textunderscore 266\textunderscore 1.50\textunderscore 1.50.png), die ersten beiden stehen für die Auflösung des Bildes und die letzten beiden für den physischen Abstand der Pixel in Millimeter. Der Großteil der Aufnahmen stammt von Tag Null und belaufen sich auf 11 680 (Vgl. Abb. \ref{Fig:pie-chart}). Die darauf meisten Teilstücke hat Tag 20, betrachtet man die Verteilung und schließt den 0. Tag aus findet man eine Normalverteilung vor (Vgl. Abb. \ref{Fig:slice_per_day}).
 
 \begin{figure}[H]
    \begin{minipage}{0.48\textwidth}
@@ -173,7 +174,7 @@ Jedes Teilstück besitzt vier Werte im Namen (z.B. 266\textunderscore 266\textun
    \end{minipage}
 \end{figure}
 
-Beim betrachten der Verteilung der Segmentierungen fällt auf, dass das Vorkommen für jede Klasse stark variiert, am häufigsten sind gar keine segmentierten Teilstücke. 
+Beim betrachten der Verteilung der Segmentierungen fällt auf, dass das Vorkommen für jede Klasse stark variiert, am häufigsten sind gar keine segmentierten Teilstücke. Von allen Teilstücken enthalten nur etwa ein Fünftel eine Segmentierung für den Magen. 
 
 \begin{table}[!ht]
     \centering
@@ -182,12 +183,13 @@ Beim betrachten der Verteilung der Segmentierungen fällt auf, dass das Vorkomme
         Dickdarm & Dünndarm & Magen & Ohne \\ \hline
         37\% & 29\% & 22\% & 56\% \\ \hline
     \end{tabular}
+    \caption{Relativer Anteil Segmentierungen pro Klasse.}
     \label{Tab:klassenverteilung}
 \end{table}
 
 \subsection{Bildgröße} \label{ssec:input-size}
 
-Es handelt sich bei den Trainingsdaten um relativ kleine Bilder. Es sind vier verschiedene Größen im Datensatz vorhanden, die rechteckigen Exemplare stammen in Anbetracht der Pixelwerte sehr wahrscheinlich von einem anderem MRT-Gerät.
+Es handelt sich bei den Trainingsdaten um relativ kleine Bilder, die größten umfassen 310 {x} 360 Pixel. Es sind vier verschiedene Größen im Datensatz vorhanden, die rechteckigen Exemplare stammen in Anbetracht der Pixelwerte sehr wahrscheinlich von einem anderem MRT-Gerät.
 
 \begin{table}[!ht]
     \centering
@@ -195,7 +197,7 @@ Es handelt sich bei den Trainingsdaten um relativ kleine Bilder. Es sind vier ve
     \hline
         Größe & 234 {x} 234 & 266 {x} 266 & 276 {x} 276 & 310 {x} 360 \\ \hline
         Anteil in \% & 0.37\% & 67.34\% & 3.12\% & 29.17\% \\ \hline
-        \varnothing Pixelwert & 1145 & 1005 & 1148 & 134 \\\hline
+        $\varnothing $ Pixelwert & 1145 & 1005 & 1148 & 134 \\\hline
     \end{tabular}
     \label{Tab:klassenverteilung}
 \end{table}
@@ -204,9 +206,7 @@ Es handelt sich bei den Trainingsdaten um relativ kleine Bilder. Es sind vier ve
 
 \subsection{Metadatenextraktion}
 
-Anhand der ID eines jedes Slices war es möglich verschiedene Metadaten dem originalem Dataframe zu hinzuzufügen. Außerdem ist jede ID nun einzigartig vorhanden und enthält alle drei Klassen in der selben Zeile. \autoref{tabelle_meta_daten}
-
-% & rs & re & cs & ce & count & path00 & path01 & path02 & image\textunderscore paths
+Anhand der ID eines jeden Teilstücks war es möglich verschiedene Metadaten dem originalem Dataframe hinzuzufügen. Außerdem ist jede ID nun einzigartig vorhanden und enthält alle drei Klassen in der selben Zeile (Vgl. Tabelle \ref{tabelle_meta_daten}). Die Gesamtzahl der Zeilen des Trainingsdatensatzes beläuft sich nun auf 38 496 Zeilen. 
 
 \begin{table}[H]
  \begin{center}
@@ -220,20 +220,20 @@ Anhand der ID eines jedes Slices war es möglich verschiedene Metadaten dem orig
      3     & case134\textunderscore day0\textunderscore slice\textunderscore 0086 	& NaN & NaN   & NaN & 134 & 0 & 87 & input\textbackslash  & 266 & 266 & 1.5 & 1.5  \\
      \hline
    \end{tabular}}
-   \caption{Metadaten von dreier Teilstücke}\label{tabelle_meta_daten}
+   \caption{Metadaten dreier Teilstücke}\label{tabelle_meta_daten}
  \end{center}
 \end{table}
 
 
 \subsection{Vorarbeit}
 
-\subsubsection{2.5 dimensionale Daten} \label{ssec:semi3d-data}
+\subsubsection{2.5 dimensionale Daten} \label{ssec:semi3D-data}
 
-Klassisch haben die Slices die Dimensionen 
+Da es sich bei den Daten um Graustufenbilder handelt haben die Teilstücke die Dimensionen 
 \begin{equation}
 H \times W \times 1
 \end{equation}
-da es sich um Graustufenbilder handelt. U-Net arbeitet klassisch aber mit RGB Bildern, also einem 3 Channel Input
+U-Net arbeitet klassisch aber mit RGB Bildern, also einem Input mit drei Kanälen
 \begin{equation}
 H \times W \times 3
 \end{equation}
@@ -246,7 +246,7 @@ somit ist die Idee, aufeinanderfolgende Slices mit einem bestimmten Stride (Abst
 	\end{center}
 \end{figure}
 
-Diese Methode hat gegenüber 3 dimensionalen Daten einige Vorteile: es wird weniger Rechenleistung benötigt, die Trainingspipeline muss nur minimal angepasst werden, die Auswertung bleibt ebenfalls gleich und die Daten können jedem Modell übergeben werden, welche darauf ausgelegt sind RGB Bilder zu segmentieren. \cite{Chen_2020} haben damit ebenfalls ihr Modell erweitert und ihre Ergebnisse verbessert, bevor sie zu 3 dimensionalen Daten übergingen.
+Diese Methode hat gegenüber 3D Daten einige Vorteile: es wird weniger Rechenleistung benötigt, die Trainingspipeline muss nur minimal angepasst werden, die Auswertung bleibt ebenfalls gleich und die Daten können jedem Modell übergeben werden, welche darauf ausgelegt sind RGB Bilder zu segmentieren. \cite{Chen_2020} haben damit ebenfalls ihr Modell erweitert und ihre Ergebnisse verbessert, bevor sie zu 3D Daten übergingen.
 
 \subsubsection{Intelligentes Zuschneiden} \label{ssec:intellicrop}
 
@@ -254,7 +254,7 @@ Ein bekanntes Problem bei der Segmentierung von Organen anhand von MRT-Bildern i
 
 Die Eingabebilder wurden für jeden Tag pro Fall individuell zugeschnitten. Zu beginn wird das Hintergrundrauschen mit einem Medianfilter beseitigt, um das kleinste Rechteck aus der Menge zu finden, welches den Wertebereich enthält, der ungleich null ist. Dieser Prozess wird für jedes Teilstück aus dem Tag wiederholt und das kleinste Rechteck welche alle Bilder aus jenem Fall und Tag berücksichtigt wird zurückgegeben und den Metadaten der Trainingsdaten hinzugefügt.
 
-Anschließend werden die Werte dem Trainingsdatensatz hinzugefügt. Ein Beispiel von Case 134, Tag 21, Slice 70 ist hier zu sehen: \autoref{tab:crop_table} 
+Anschließend werden die Werte dem Trainingsdatensatz hinzugefügt. Ein Beispiel von Case 134, Tag 21, Teilstück 70 ist hier zu sehen: \autoref{tab:crop_table} 
 
 \begin{table}[H]
  \begin{center}
@@ -272,7 +272,7 @@ Anschließend werden die Werte dem Trainingsdatensatz hinzugefügt. Ein Beispiel
  
  RS, RE, CS und CE stehen in diesem Kontext für Zeilenanfang und Ende sowie Spaltenanfang und Ende. Im Dataloader wurden die Bilder dann zur Traningszeit zugeschnitten.
  
- So konnte das Ungleichgewicht für jede Klasse gesunken werden (Werte wurden gerundet): 
+So konnte das Ungleichgewicht für jede Klasse reduziert werden (Werte wurden gerundet): 
 
 \begin{table}[H]
 \centering
@@ -302,13 +302,13 @@ Total & 60 & 56\\ \hline
 
 \subsubsection{Bereinigen der Daten} \label{ssec:clean-data}
 
-Beim Abgleich der Teilstücken mit den zugehörigen Masken ist aufgefallen, dass die Segmentierung in zwei Fällen der für einen Laien zu erwartenden Maske abweicht (Vergleich \ref{fig:false-seg}). Im Fall Sieben scheint die Maske diagonal nach links abzuweichen. Im Fall 12 hingegen weichen die Segmentierungen stark von den zugrundeliegenden Trennlinien der Organe ab.
+Beim Abgleich der Teilstücke mit den zugehörigen Masken ist aufgefallen, dass die Segmentierung in zwei Fällen den Trennlinien der Organe abweicht. (Vergleich \ref{fig:false-seg}). Beim 7. Fall scheint die Maske diagonal nach links abzuweichen. Beim 12. Fall hingegen scheint die Segmentierung unstimmig mit dem Hintergrund.
 
 Es ist nach wie vor unklar, welche genaue Gewichtung Daten und ihre Quantität bzw. Qualität beim maschinellen Lernen besitzen. Forscher wie \citet{Souly2022} haben sich mit dieser Fragestellung auseinandergesetzt und experimentierten mit künstlich erzeugten Daten.
 
 Um die Qualität der Vorhersage zu testen wurde ein Parameter eingeführt, der nach belieben die schlechten Daten miteinbezieht oder ausschließt, um so Beobachtungen machen zu können, wie sich das Vorhandensein oder das Entfernen jener Daten auf die Vorhersage auswirkt.
 
-Die Anzahl der Zeilen des bereinigten Datensatzes beläuft sich auf 38 208.
+Die Datengrundlage verringert sich nach dem Entfernen der beiden Fälle um 288 auf 38 208 Zeilen. 
 
 \begin{figure}[H]
     \begin{minipage}{0.45\textwidth}
@@ -326,11 +326,11 @@ Die Anzahl der Zeilen des bereinigten Datensatzes beläuft sich auf 38 208.
 
 \subsection{Nacharbeit}
 
-Bestimmte Teilstücke weisen nie eine Segmentierung auf. Dieses Wissen kann man dazu nutzen, um die Vorhersage zu bereinigen, indem man die Maske jener Teilstücke entfernt. Mithilfe dieser Methode kann man seinen Score bei Kaggle um e-3 bis e-4 verbessern. 
+Bestimmte Teilstücke weisen nie eine Segmentierung auf. Dieses Wissen kann man dazu nutzen, um die Vorhersage zu bereinigen, indem man die Maske jener Teilstücke entfernt. Mithilfe dieser Methode kann man seinen Score bei Kaggle um ${e^{-3}}$ bis ${e^{-4}}$ verbessern. 
 
 Im Schnitt handelt es sich um ungefähr 17 Teilstücken pro Klasse, die niemals segmentiert sind, dabei sind es immer die Stücke zu Beginn oder zum Ende eines Scans.
 
-Ob dies jedoch good practice im Klinikalltag ist, ist fragwürdig, da diese Beobachtungen auf diesem Datensatz gemacht wurden und es wahrscheinlich ist aufgrund von z.B. einer anderen Statur, Vorerkrankungen oder anderen physikalischen Eigenschaften dies bei anderen Patienten nicht gegeben ist. 
+Ob dies jedoch Zielführend im Klinikalltag ist, ist fragwürdig, da diese Beobachtungen auf diesem spezifischen Datensatz gemacht worden ist. Es ist denkbar, dass andere Patienten aufgrund von Vorerkrankungen oder anderen physikalischen Eigenschaften dieses Merkmal nicht teilen.
 
 \pagebreak
 
@@ -362,13 +362,13 @@ D S C=\frac{2|X \cap Y|}{|X|+|Y|}
 \label{eq:dice}
 \end{equation}
 
-wobei X die vorhergesagte Menge von Pixeln und Y die Groundtruth ist. Der Dice-Koeffizient ist definiert als 0, wenn sowohl X als auch Y leer sind.
+wobei X die vorhergesagte Menge von Pixeln und Y die Groundtruth ist. Der Dice-Koeffizient ist definiert als 0, wenn sowohl X als auch Y leer sind. Bei einer genauen Überlagerung der beiden Mengen beträgt er 1. 
 
 \subsection{Modell}
 
 Das Projekt wurde gänzlich in Python mithilfe der TensorFlow API sowie dem
  \href{https://deepai.org/machine-learning-glossary-and-terms/relu}{Segmentation Models} \citet{Yakubovskiy:2019}
- Package aufgezogen, welches verschiedene Architekturen inklusive an- und nicht trainierte Encoder zur verfügung stellt. 
+ Package aufgezogen, welches verschiedene Architekturen mit verschiedenen Encodern zur verfügung stellt. Die Encoder wurden auf dem ImageNet Datensatz antrainiert.
  
  Die Lossmetrik ist eine Mischung aus zu 60\% der 
 binären Kreuzentropie [\ref{eq:bce}] und zu 40\% des Dice-Koeffizienten [\ref{eq:dice}]. 
@@ -383,9 +383,11 @@ Diese Kombination eignet sich laut \citet{Jadon_2020} et al. besonders gut, um e
 
  Trainiert wurde mit dem
 \href{https://optimization.cbe.cornell.edu/index.php?title=Adam}{Adam Optimizer}
- und einer initialen Lernrate von von 5e-4, die sich um den Faktor e-1 verringert, wenn die Validierungsmetrik nach fünf Epochen keine Verbesserung vorwies.
+ und einer initialen Lernrate von 5e-4, die sich um den Faktor e-1 verringert, wenn die Validierungsmetrik nach fünf Epochen keine Verbesserung vorwies.
+ 
+ Da ein überlappen der Klassen möglich ist wurde auf die Sigmoid Aktivierungsfunktion zurück gegriffen. 
 
-Die Daten wurden in 5 Folds aufgeteilt und anhand des Falles getrennt. Hierbei wurde beachtet, dass die einzelnen Folds die Verteilung der Klassen beibehielten.
+Die Daten wurden in 5 Folds aufgeteilt und anhand der Fälle gruppiert. Hierbei wurde beachtet, dass die einzelnen Folds die Verteilung der Klassen beibehielten.
 Die Daten wurden mithilfe von der 
 \href{https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.StratifiedGroupKFold.html}{StratifiedGroupKFold} Methode von Sklearn aufgeteilt nach mit einem  Zufalls-Seed von 42.
 
@@ -400,7 +402,7 @@ Folgende Parameter konnten über die Kommandozeile konfiguriert werden:
 
 Außerdem konnten folgende Features angewendet werden:
 \begin{itemize}
-\item 2.5 dimensionale Trainigsdaten \ref{ssec:semi3d-data}
+\item 2.5 dimensionale Trainigsdaten \ref{ssec:semi3D-data}
 \item Intelligentes Zuschneiden \ref{ssec:intellicrop}
 \item Bereinigen der Trainingsdaten \ref{ssec:clean-data}
 \end{itemize}
@@ -472,7 +474,7 @@ EfficientNet-b2 führt die Tabelle an mit einem Val. loss von 0.1198 und einem V
 
 Wie in \autoref{Fig:256_train} zu sehen konvergieren die Modelle ab Epoche 35, eine Verbesserung der Loss-Metrik ist demnach nicht weiter absehbar. In Epoche 50 führt b6, gefolgt von b2, b5 und densenet201. 
 
-Somit bildet das Modell mit denm Encodern EfficientNet-b2 die Baseline dieser Arbeit.
+Somit bildet das Modell mit dem Encoder EfficientNet-b2 die Baseline dieser Arbeit.
 
 \subsection{Batchgröße}
 
@@ -502,14 +504,14 @@ Beste Epoche &   Loss &   Dice  & Dickdarm & Dünndarm &  Magen &  2.5D &  Crop 
           26 & 0.0353 & 0.9181  &   0.9211 &   0.8957 & 0.9325 & False & False &      True  \\
           34 & 0.0322 & 0.9257  &   0.9304 &   0.9057 & 0.9374 &  True &  True &     False  \\
 \end{tabular}}
-\caption{\label{tab:efb2-train} Performance von EfficientNet-b2 auf dem Trainingsdatensatz.}
+\caption{\label{tab:efb2-train} Performance von EfficientNet-b2 auf dem Trainingsdatensatz. Die Werte der Klassen entsprechen dem Dice-Koeffizienten.}
 \end{table}
 
 
 \begin{table}[H]
 \centering
 \resizebox{\textwidth}{!}{\begin{tabular}{c|c|c|c|c|c|c|c|c|c}
-Index & Beste Epoche & Loss      &  Dice     &  Dickdarm     & Dünndarm      & Magen       &  2.5D &  Crop & Bereinigt \\\hline
+Modell Nr. & Beste Epoche & Loss      &  Dice     &  Dickdarm     & Dünndarm      & Magen       &  2.5D &  Crop & Bereinigt \\\hline
  1    &     36 &    0.0919 &    0.7983 &        0.8271 &        0.7709 &     0.8412  &  True & False &      True\\
  2    &     29 &    0.0950 &    0.7904 &        0.8292 &        \textbf{0.7760} &     0.8505  & False &  True &      True\\
  3    &     31 &    0.0954 &    0.7873 &        \textbf{0.8365} &        0.7724 &     \textbf{0.8527 } &  True &  True &      True\\
@@ -542,57 +544,59 @@ $ Dice-Koeffizienten vorweisen. ($\varnothing$ Score der einzelnen Klassen)
 \item Fall 123 Tag 20 Teilstück 73
 \end{itemize}
 
-\begin{figure}[H]
-	\begin{center}
-		\includegraphics[width=400pt]{LaTex/bilder/case123_day20_slice_0073.png}
-		\caption{ Teilstück mit dem höchsten Dice-Koeffizienten }\label{Fig:7vs1}
-	\end{center}
-\end{figure}
-
-Dieses Teilstück wurde von allen Modellen mit einem Score von über 0.97 segmentiert. 
-
-\begin{itemize}
-\item Fall 33 Tag 21 Teilstück 86
-\end{itemize}
-
-\begin{figure}[H]
-	\begin{center}
-		\includegraphics[width=400pt]{LaTex/bilder/case33_day21_slice_0086.png}
-		\caption{ Akkurate Segmentierung des Magens }\label{Fig:7vs1}
-	\end{center}
-\end{figure}
-
-\pagebreak
+\begin{table}[H]
+\centering
+\scalebox{0.76}{
+\begin{tabular}{c|c|c|c|c|c|c|c|c|c}
+ 2.5D &  Crop & Bereinigt & Dickdarm & Dünndarm &  Magen & Schnitt \\\hline
+ True & False &      True &      NaN &      NaN & 0.9807 &  0.9807 \\
+False & False &     False &      NaN &      NaN & 0.9805 &  0.9805 \\
+False & False &      True &      NaN &      NaN & 0.9804 &  0.9804 \\
+False &  True &      True &      NaN &      NaN & 0.9799 &  0.9799 \\
+ True & False &     False &      NaN &      NaN & 0.9785 &  0.9785 \\
+False &  True &     False &      NaN &      NaN & 0.9749 &  0.9749 \\
+ True &  True &      True &      NaN &      NaN & 0.9745 &  0.9745 \\
+ True &  True &     False &      NaN &      NaN & 0.9718 &  0.9718 \\
+\end{tabular}}
+\caption{Siehe Abb. \ref{Fig:case123_day20_slice_0073}}
+\end{table}
 
 \begin{itemize}
-\item Fall 36 Tag 10 Teilstück 60
+\item Fall 33 Tag 21 Teilstück 86 (Vgl. Abb. \ref{Fig:case33_day21_slice_0086})
 \end{itemize}
 
-\begin{figure}[H]
-	\begin{center}
-		\includegraphics[width=400pt]{LaTex/bilder/case36_day10_slice_0060.png}
-		\caption{  }\label{Fig:7vs1}
-	\end{center}
-\end{figure}
+\begin{itemize}
+\item Fall 36 Tag 10 Teilstück 60 (Vgl. Abb. \ref{Fig:case36_day10_slice_0060})
+\end{itemize}
 
 Jedes Modell konnte diese Teilstücke mit einer Genauigkeit von über 0.96 gemessen am Dice-Koeffizienten segmentieren.
 
 Die Beobachtung setzt sich genauso weiter fort, es sind immer Teilstücke auf denen der Magen sehr gut erkannt worden ist. Dadurch dass der Magen im Gegensatz zu den anderen beiden Organen seine Position im Körper relativ konstant beibehält sind die Ergebnisse stimmig.
 
-Nun zu den Teilstücken, die mindestens 2 Organe abbilden:
+Im weiteren Verlauf Teilstücke, die mindestens 2 Organe abbilden:
 
 \begin{itemize}
 \item Fall 156 Tag 11 Teilstück 110
 \end{itemize}
 
-\begin{figure}[H]
-	\begin{center}
-		\includegraphics[width=400pt]{LaTex/bilder/case156_day11_slice_0110.png}
-		\caption{  }\label{Fig:7vs1}
-	\end{center}
-\end{figure}
+\begin{table}[H]
+\centering
+\scalebox{0.76}{
+\begin{tabular}{c|c|c|c|c|c|c|c|c|c}
+ 2.5D &  Crop & Bereinigt & Dickdarm & Dünndarm &  Magen & Schnitt \\\hline
+ True & False &      True &   0.9280 &   0.8997 & 0.9562 &  0.9280 \\
+False & False &      True &   0.9152 &   0.8975 & 0.9482 &  0.9203 \\
+ True &  True &      True &   0.9306 &   0.9002 & 0.9093 &  0.9134 \\
+False &  True &      True &   0.9157 &   0.9040 & 0.8943 &  0.9046 \\
+False &  True &     False &   0.9027 &   0.8642 & 0.8959 &  0.8876 \\
+ True & False &     False &   0.8852 &   0.8462 & 0.7781 &  0.8365 \\
+ True &  True &     False &   0.8149 &   0.7119 & 0.9111 &  0.8126 \\
+False & False &     False &   0.9057 &   0.8745 & 0.6491 &  0.8098 \\
+\end{tabular}}
+\caption{Siehe Abb. \ref{Fig:case123_day20_slice_0073}}
+\end{table}
 
-Die Baseline weist hierbei den geringsten Score von 0.81 auf, Nr 6 und 1 erzielen hier über 0.92.
+Die Tabelle wird angeführt von Modellen, in denen falsch annotierte Daten entfernt wurden. Nr 1. erkannte in diesem Fall die Organe am besten.
 
 \pagebreak
 
@@ -600,128 +604,150 @@ Die Baseline weist hierbei den geringsten Score von 0.81 auf, Nr 6 und 1 erziele
 \item Fall 41 Tag 32 Teilstück 106
 \end{itemize}
 
-\begin{figure}[H]
-	\begin{center}
-		\includegraphics[width=400pt]{LaTex/bilder/case41_day32_slice_0106.png}
-		\caption{ Vorhersage von Model Nr 2 mit einem Score von 0.92 }\label{Fig:analysis-clean-data}
-	\end{center}
-\end{figure}
+\begin{table}[H]
+\centering
+\scalebox{0.76}{
+\begin{tabular}{c|c|c|c|c|c|c|c|c|c}
+ 2.5D &  Crop & Bereinigt & Dickdarm & Dünndarm &  Magen & Schnitt \\\hline
+False & False &      True &   0.9200 &   0.9174 & 0.9342 &  0.9239 \\
+False &  True &      True &   0.9414 &   0.8957 & 0.9301 &  0.9224 \\
+ True & False &      True &   0.9286 &   0.8973 & 0.9272 &  0.9177 \\
+ True &  True &      True &   0.9416 &   0.8893 & 0.9165 &  0.9158 \\
+False &  True &     False &   0.9373 &   0.8844 & 0.7137 &  0.8451 \\
+ True & False &     False &   0.7191 &   0.8541 & 0.7426 &  0.7719 \\
+ True &  True &     False &   0.7705 &   0.7082 & 0.7030 &  0.7272 \\
+False & False &     False &   0.9266 &   0.0547 & 0.7243 &  0.5685 \\
+\end{tabular}}
+\caption{Siehe Abb. \ref{Fig:case41_day32_slice_0106}}\label{tab:analysis-clean-data}
+\end{table}
 
-Hierbei macht sich das entfernen der schlecht segmentierten Trainingsbilder deutlich: Modelle ohne jenes Feature haben einen Score von 0.56 - 0.86, wohingegen die restlichen auf über 0.91 kommen. 
+Die Beobachtung setzt sich hier fort: Modelle ohne jenes Feature haben einen Score von 0.56 - 0.85, wohingegen die restlichen auf über 0.91 kommen. 
 
 \begin{itemize}
 \item Fall 18 Tag 19 Teilstück 79
 \end{itemize}
 
-\begin{figure}[H]
-	\begin{center}
-		\includegraphics[width=400pt]{LaTex/bilder/case18_day19_slice_0079.png}
-		\caption{ Vorhersage von Model Nr. 7 mit einem Score von 0.73 }\label{Fig:trade-off}
-	\end{center}
-\end{figure}
+\begin{table}[H]
+\centering
+\scalebox{0.76}{
+\begin{tabular}{c|c|c|c|c|c|c|c|c|c}
+ 2.5D &  Crop & Bereinigt & Dickdarm & Dünndarm &  Magen & Schnitt \\\hline
+ True &  True &     False &   0.9358 &   0.6178 & 0.6424 &  0.7320 \\
+False &  True &     False &   0.9533 &   0.3554 & 0.7694 &  0.6927 \\
+ True &  True &      True &   0.9372 &   0.3547 & 0.7288 &  0.6736 \\
+False &  True &      True &   0.9474 &   0.1181 & 0.7952 &  0.6202 \\
+ True & False &     False &   0.9416 &   0.0074 & 0.8336 &  0.5942 \\
+ True & False &      True &   0.9463 &   0.0074 & 0.8232 &  0.5923 \\
+False & False &      True &   0.9458 &   0.0074 & 0.8230 &  0.5921 \\
+False & False &     False &   0.9375 &   0.0074 & 0.7796 &  0.5748 \\
+\end{tabular}}
+\caption{Siehe Abb. \ref{Fig:case18_day19_slice_0079}}\label{tab:intresting}
+\end{table}
 
-Interessanterweise führt hier das Modell, welches mit allen Features bis auf die Bereinigung der Daten trainiert wurde mit einem Abstand von 0.06 zu Modell Nr 1., welches mit allen Features trainiert wurde. Modell 1 hatte hier Schwierigkeiten den Dünndarm neben dem Magen zu erkennen. 
+In diesem Fall führen Modelle, dessen Daten nicht bereinigt wurden die Tabelle an. Der Abstand zum nächsten Modell mit bereinigten Daten beträgt 0.06. In diesem Beispiel sind klar die Auswirkungen des Zuschneidens ersichtlich. Modelle ohne jenes Feature konnten den Dünndarm nicht erkennen. Das reinigen der Daten beeinträchtigte die Performance.
 
 \pagebreak
 
 \subsubsection{Schwächen}
 
 \begin{itemize}
-\item  Fall 88 Tag 0 Teilstück 121 und 122
+\item  Fall 88 Tag 0 Teilstück 121 und 122 (Vgl. Abb. \ref{Fig:case88_day0_slice_0121})
 \end{itemize}
 
-\begin{figure}[H]
-	\begin{center}
-		\includegraphics[width=400pt]{LaTex/bilder/case88_day0_slice_0121.png}
-		\caption{ Nicht-segmentiertes Teilstück 121 }\label{Fig:7vs1}
-	\end{center}
-\end{figure}
-
-Alle obigen Modelle haben für dieses Teilstück keine Segmentierung vorhergesagt obwohl dort der Dick- und Dünndarm zu sehen ist. 
+Alle obigen Modelle haben für diese Teilstücke keine Segmentierung vorhergesagt obwohl dort Organe zu sehen sind.
 
 \begin{itemize}
 \item  Fall 88 Tag 0 Teilstück 120
 \end{itemize}
-\begin{figure}[H]
-	\begin{center}
-		\includegraphics[width=400pt]{LaTex/bilder/case88_day0_slice_0120_no2.png}
-		\caption{ Einzige Vorhersage von Modell Nr. 2 }\label{Fig:7vs1}
-	\end{center}
-\end{figure}
-Hier konnte einzig das zweite Modell etwas erkennen mit einem Score von 0.13
+
+\begin{table}[H]
+\centering
+\scalebox{0.76}{
+\begin{tabular}{c|c|c|c|c|c|c|c|c|c}
+ 2.5D &  Crop & Bereinigt & Dickdarm & Dünndarm &  Magen & Schnitt \\\hline
+False &  True &      True &   0.1996 &   0.0570 &   NaN &  0.1283 \\
+\end{tabular}}
+\caption{Siehe Abb. \ref{Fig:case88_day0_slice_0120}}
+\end{table}
+
+Hier konnte einzig das zweite Modell etwas erkennen mit einem Score von 0.13. 
 
 \begin{itemize}
 \item Fall 88 Tag 0 Teilstück 119
 \end{itemize}
-\begin{figure}[H]
-	\begin{center}
-		\includegraphics[width=400pt]{LaTex/bilder/case88_day0_slice_0119_no7.png}
-		\caption{ Höchster Dice-Koeffizient von Modell Nr. 7 }\label{Fig:7vs1}
-	\end{center}
-\end{figure}
+
+\begin{table}[H]
+\centering
+\scalebox{0.76}{
+\begin{tabular}{c|c|c|c|c|c|c|c|c|c}
+ 2.5D &  Crop & Bereinigt & Dickdarm & Dünndarm &  Magen & Schnitt \\\hline
+ True &  True &     False &   0.5263 &   0.0821 &   NaN &  0.3042 \\
+False & False &     False &   0.5266 &   0.0002 &   NaN &  0.2634 \\
+False &  True &      True &   0.2780 &   0.0991 &   NaN &  0.1885 \\
+\end{tabular}}
+\caption{Siehe Abb. \ref{Fig:case88_day0_slice_0120}}
+\end{table}
+
 Die Baseline, Nr. 2 und 7 erkannten Organe mit einem Score von 0.25 +- 0.6. An erster Stelle ist die Nr. 7 mit 0.3 gefolgt von der Baseline mit 0.26.
 
 \begin{itemize}
-\item  Fall 34 Tag 16 Teilstück 72
+\item  Fall 34 Tag 16 Teilstück 72 (Vgl. Abb. \ref{Fig:case34_day16_slice_0072})
 \end{itemize}
-\begin{figure}[H]
-	\begin{center}
-		\includegraphics[width=400pt]{LaTex/bilder/case34_day16_slice_0072_no1.png}
-		\caption{ False-Positive Vorhersage von Nr. 1 }\label{Fig:7vs1}
-	\end{center}
-\end{figure}
 
 In diesem Beispiel lieferten alle Modelle außer die Baseline und Nr. 5 eine False-Positive Vorhersage.
+
 \pagebreak
 
 \begin{itemize}
 \item Fall 40 Tag 17 Teilstück 122 und 123
 \end{itemize}
-\begin{figure}[H]
-	\begin{center}
-		\includegraphics[width=400pt]{LaTex/bilder/case40_day17_slice_0122_no1.png}
-		\caption{ Vorhersage von Modell Nr. 1 (0.935) }\label{Fig:analysis-clean-data-weak}
-	\end{center}
-\end{figure}
+
+\begin{table}[H]
+\centering
+\scalebox{0.76}{
+\begin{tabular}{c|c|c|c|c|c|c|c|c|c}
+ 2.5D &  Crop & Bereinigt & Dickdarm & Dünndarm &  Magen & Schnitt \\\hline
+ True & False &      True &   0.9404 &   0.9301 &   NaN &  0.9353 \\
+False & False &      True &   0.9297 &   0.9366 &   NaN &  0.9331 \\
+ True &  True &      True &   0.9255 &   0.9274 &   NaN &  0.9264 \\
+False &  True &      True &   0.9294 &   0.9140 &   NaN &  0.9217 \\
+ True & False &     False &   0.0004 &   0.0005 &   NaN &  0.0004 \\
+False & False &     False &   0.0004 &   0.0005 &   NaN &  0.0004 \\
+ True &  True &     False &   0.0004 &   0.0005 &   NaN &  0.0004 \\
+False &  True &     False &   0.0004 &   0.0005 &   NaN &  0.0004 \\
+\end{tabular}}
+\caption{Werte für Teilstück 122. Siehe Abb. \ref{Fig:case40_day17_slice_0122}}\label{tab:analysis-clean-data-weak}
+\end{table}
+
 Modell Nr. 1, 2, 3, und 6 erkannten hier mit einem Score von über 0.9 eine Segmentierung, der Rest lieferte ein False-Negative Vorhersage. Auch hier sind klar die Auswirkungen von schlecht annotierten Daten zu erkennen: alle Modelle die mit diesen Daten trainiert wurden erkannten hier nichts.
 
 \begin{itemize}
 \item Fall 40 Tag 17 Teilstück 121
 \end{itemize}
 
-\begin{figure}[H]
-	\begin{center}
-		\includegraphics[width=400pt]{LaTex/bilder/case40_day17_slice122_7vs1.png}
-		\caption{Links Original, gefolgt von Nr. 1 (0.935), Nr 7 (0.58) und der tatsächlichen Maske. }\label{Fig:7vs1}
-	\end{center}
-\end{figure}
-
-Die Baseline, Nr. 4 und 5 lieferten hier ein False-Negative. Die restlichen Modelle bis auf Nr. 7 wiesen einen Score von über 0.92 auf. Auch hier weisen alle Modelle, dessen Daten nicht bereinigt wurden die schlechtesten Ergebnisse. 
-
 \begin{table}[H]
 \centering
-\begin{tabular}{c|c|c|c}
-Index & False-Negative & False-Positive & Dice-Koeffizienten  \\\hline
- 1    &     4         &    2       &  0.9 u. 0.92   \\
- 2    &     2         &    2       & 0.13 u. 0.19 u. 0.9 u. 0.92    \\
- 3    &     4         &    2       & 0.92 u. 0.92   \\
- 4    &     6         &    2       & 0    \\
- 5    &     6         &    0       & 1 u. 1    \\
- 6    &     4         &    2       & 0.9 u. 0.92 \\
- 7    &     4         &    2       & 0.3 u. 0.56 \\
- Baseline&  5        &    0       & 0.26 u. 1 u. 1\\
-
-\end{tabular}
-\caption{\label{tab:efb2-val} Performance von EfficientNet-b2 auf dem Validierungsdatensatz.}
+\scalebox{0.76}{
+\begin{tabular}{c|c|c|c|c|c|c|c|c|c}
+ 2.5D &  Crop & Bereinigt & Dickdarm & Dünndarm &  Magen & Schnitt \\\hline
+ True & False &      True &   0.9446 &   0.9262 &   NaN &  0.9354 \\
+False & False &      True &   0.9386 &   0.9283 &   NaN &  0.9334 \\
+ True &  True &      True &   0.9378 &   0.9209 &   NaN &  0.9293 \\
+False &  True &      True &   0.9324 &   0.9146 &   NaN &  0.9235 \\
+ True &  True &     False &   0.8253 &   0.3328 &   NaN &  0.5790 \\
+\end{tabular}}
+\caption{Werte für Teilstück 122. Siehe Abb. \ref{Fig:case40_day17_slice121}}
 \end{table}
+
+Die Baseline, Nr. 4 und 5 lieferten hier ein False-Negative. Die restlichen Modelle bis auf Nr. 7 wiesen einen Score von über 0.92 auf. 
 
 \subsection{Gegenüberstellung der Features}
 
 \subsubsection{Entfernen falsch annotierter Daten}
 
-Das Entfernen von falsch annotierten Datensätzen hilft den Modellen für ähnliche Fälle eine akkuratere Vorhersage zu treffen. Damit sind Fälle gemeint, die am gleichen Tag aufgenommen wurden oder auch vom selben MRT-Gerät stammen. In diesem Beispiel (Abb. \ref{Fig:analysis-clean-data}) lieferten alle Modelle ohne jene Erweiterung einen signifikant geringeren Dice-Koeffizenten (-0.7 bis -0.35). Im Fall 40 lieferten die Modelle nur ein False-Positive, wohingegen die restlichen Modelle die Organe gut erkannten worden sind (Vergl. Abb. \ref{Fig:analysis-clean-data-weak}).
+Das Entfernen von falsch annotierten Datensätzen hilft den Modellen für ähnliche Fälle eine akkuratere Vorhersage zu treffen. Damit sind Fälle gemeint, die am gleichen Tag aufgenommen wurden oder auch vom selben MRT-Gerät stammen. In diesem Beispiel (Siehe Tabelle \ref{tab:analysis-clean-data}) lieferten alle Modelle ohne jene Erweiterung einen signifikant geringeren Dice-Koeffizenten (-0.7 bis -0.35). Im Fall 40 lieferten die Modelle nur ein False-Positive, wohingegen die restlichen Modelle die Organe gut erkannten worden sind (Siehe Tabelle \ref{tab:analysis-clean-data-weak}).
 
-Auf der anderen Seite hat das Entfernen von falsch annotierten Daten nicht nur seine Vorzüge, durch die geringere Datenmenge fällt es den Modellen schwerer unähnliche Fälle gut vorherzusagen. Auch wenn der Unterschied des Dice-Koeffizienten nicht so ausgeprägt ist, haben alle Modelle mit falsch annotierten Daten im Fall 18 eine bessere Vorhersage getroffen (Vergl. Abb. \ref{Fig:trade-off}).
+Auf der anderen Seite hat das Entfernen von falsch annotierten Daten nicht nur seine Vorzüge, durch die geringere Datenmenge fällt es den Modellen schwerer unähnliche Fälle gut vorherzusagen. Auch wenn der Unterschied des Dice-Koeffizienten nicht so ausgeprägt ist, haben alle Modelle mit falsch annotierten Daten im Fall 18 eine bessere Vorhersage getroffen (Siehe Tabelle \ref{tab:intresting}).
 
 Das Einsetzen von Data Augmentation könnte diesem Trade-off Abhilfe schaffen, diese wirken sich nämlich besonders positiv auf den Score bei geringer Datenmenge aus und wirken laut \citet{U-Net} over-fitting entgegen. 
 
@@ -733,13 +759,13 @@ Interessanterweise funktioniert das Zusammenspiel von zugeschnittenem Input nur 
 
 \subsubsection{Glättung des Klassenverhätlnisses}
 
-Durch dem Entfernen von nicht-aussagekräftigen Daten (Rand) und der damit einhergehenden Verringerung des Klassenungleichgewichts können die Modelle Organe genauer segmentieren. Drei der besten Vier Modelle haben mit zugeschnittenen Daten gelernt. 
+Durch das Entfernen von nicht-aussagekräftigen Daten (Rand) und der damit einhergehenden Verringerung des Klassenungleichgewichts können die Modelle Organe genauer segmentieren. Drei der besten Vier Modelle haben mit zugeschnittenen Daten gelernt. 
 
 Eine Implementierung eines Modells welches mithilfe von Deep learning die zu segmentierenden Bereiche ausfindig macht und zuschneidet wie \citet{SmartCrop} zeigten könnte die Ergebnisse noch weiter verbessern.
 
 \subsection{Analyse der Pixelwerte}
 
-Ein Drittel der Daten (310 x 360) weisen einen weitaus geringeren durchschnittlichen Pixelwert auf (Vergl. \ref{ssec:input-size}), bei genauerer Inspektion der Teilstücke ließ sich feststellen, dass der Wertebereich für Umriss und Organe sich stark von den restlichen Teilstücken unterscheidet. Auf dieser Erkenntnis aufbauend wurde untersucht, ob bestimmte Maße signifikant öfter schlecht erkannt werden.
+Ein Drittel der Daten (310 x 360) weisen einen weitaus geringeren durchschnittlichen Pixelwert auf (Vgl. \ref{ssec:input-size}), bei genauerer Inspektion der Teilstücke ließ sich feststellen, dass sich der Wertebereich für Umriss und Organe stark von den restlichen Teilstücken unterscheidet. Auf dieser Erkenntnis aufbauend wurde untersucht, ob bestimmte Maße signifikant öfter schlecht erkannt werden.
 
 Es wurde geprüft, welche Maße (und somit welches Gerät) die 1000 besten bzw. schlechtesten Vorhersagen besitzen. Dies wurde für Vorhersagungen für ein Organ, mindestens einem Organ, zwei Organen, mindestens zwei Organen und genau drei Organen überprüft. Die Verteilung der Maße deckt sich jedoch mit der Verteilung der Trainingsdaten - das Modell scheint die Verschiebung der Werte gelernt zu haben. 
 
@@ -755,13 +781,13 @@ Die vom UW-Madison Carbone Cancer Center bereitgestellten Daten wurden analysier
 
 Diese wurde um weitere Features erweitert und die Stärken und Schwächen der Modelle wurden ausgewertet. Es wurde überprüft wie sich das Modell auf das Entfernen von falsch annotierten Daten verhält, was das Stapeln der Teilstücke mit einem Stride von 2 bewirkt sowie das normalisieren der Klassenverhältnisse. 
 
-In jedem Fall zeigte der Einsatz von jenen Erweiterungen eine Verbesserung des Dice-Koeffizienten. In Kombination konnte sogar ein noch besserer Wert erzielt werden. Das Entfernen der Daten wirkte sich positiv auf Vorhersagungen ähnlicher Teile aus, an anderer Stelle wurden Organe dafür aber schlechter erkannt, auch wenn nur geringfügig schlechter. Das Zuschneiden sowie das Stapeln der Teilstücke erlaubten dem Modell eine Pixel-genauere Vorhersage und somit einen höheren Dice-Koeffizienten.
+In jedem Fall zeigte der Einsatz von jenen Erweiterungen eine Verbesserung des Dice-Koeffizienten. In Kombination konnte sogar ein noch besserer Wert erzielt werden. Das Entfernen der Daten wirkte sich positiv auf die Vorhersage ähnlicher Teile aus, an anderer Stelle wurden Organe dafür aber schlechter erkannt, auch wenn nur geringfügig schlechter. Das Zuschneiden sowie das Stapeln der Teilstücke erlaubten dem Modell eine Pixel-genauere Vorhersage und somit einen höheren Dice-Koeffizienten.
 
 Durch das Anwenden von Erweiterung war es möglich den Score um 0.07 Punkte auf 0.80 anzuheben. Dies ist bereits im Vergleich zu den 90er Jahren eine beachtliche Leistung, kommt aber noch nicht an die des Menschen heran. Ein Problem stellen die Falsch-Positiv und die Falsch-Negativen Vorhersagungen, die zu Verwirrungen beim Klinikpersonal führen könnten, sowie Segmentierungen die zu stark von dem tatsächlichen Ort der Organe abweichen.
 
-Diese Arbeit zeigt klar, dass ein solches Modell möglich ist und maschinelles Lernen seinen Anwendungsplatz in der Radiologie finden wird. Auch zeigt sie, dass es mehr Forschung für dieses spezifische Problem bedarf, da bisher nur wenige wissenschaftliche Publikationen sich damit befasst haben.
+Diese Arbeit zeigt klar, dass ein solches Modell möglich ist und maschinelles Lernen seinen Anwendungsplatz in der Radiologie finden wird. Auch zeigt sie, dass es mehr Forschung für dieses spezifische Problem bedarf, da sich bisher nur wenige wissenschaftliche Publikationen damit befasst haben.
 
-Um abschließend die ethische Frage zu klären: Es wird jedoch immer ein beaufsichtigender Arzt von Nöten sein, der die Ergebnisse des Computers interpretiert und überprüft bevor Entscheidungen getroffen werden.
+Um abschließend die ethische Frage zu klären: Es wird jedoch immer ein beaufsichtigender Arzt vonnöten sein, der die Ergebnisse des Computers interpretiert und überprüft bevor Entscheidungen getroffen werden.
 
 \section{Ausblick}
 
@@ -774,3 +800,91 @@ Aufgrund des Problems der Falsch-Negativ und Falsch-Positiven Vorhersagungen wä
 Der Code, auf dem diese Arbeit aufbaut, ist öffentlich in meinem \href{https://github.com/vitoleonardo/HealthyOrganTracker/}{persönlichen} Github Account ersichtlich. 
 
 \pagebreak
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=400pt]{LaTex/bilder/case123_day20_slice_0073.png}
+		\caption{ Teilstück mit dem höchsten Dice-Koeffizienten.}\label{Fig:case123_day20_slice_0073}
+	\end{center}
+\end{figure}
+
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=400pt]{LaTex/bilder/case33_day21_slice_0086.png}
+		\caption{ Akkurate Segmentierung des Magens }\label{Fig:case33_day21_slice_0086}
+	\end{center}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=400pt]{LaTex/bilder/case36_day10_slice_0060.png}
+		\caption{  }\label{Fig:case36_day10_slice_0060}
+	\end{center}
+\end{figure}
+
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=400pt]{LaTex/bilder/case156_day11_slice_0110.png}
+		\caption{  }\label{Fig:case123_day20_slice_0073}
+	\end{center}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=400pt]{LaTex/bilder/case41_day32_slice_0106.png}
+		\caption{ Vorhersage von Model Nr 2 mit einem Score von 0.92 }\label{Fig:case41_day32_slice_0106}
+	\end{center}
+\end{figure}
+
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=400pt]{LaTex/bilder/case18_day19_slice_0079.png}
+		\caption{ Vorhersage von Model Nr. 7 mit einem Score von 0.73 }\label{Fig:case18_day19_slice_0079}
+	\end{center}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=400pt]{LaTex/bilder/case88_day0_slice_0121.png}
+		\caption{ Nicht-segmentiertes Teilstück 121 }\label{Fig:case88_day0_slice_0121}
+	\end{center}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=400pt]{LaTex/bilder/case88_day0_slice_0120_no2.png}
+		\caption{ Einzige Vorhersage von Modell Nr. 2 }\label{Fig:case88_day0_slice_0120}
+	\end{center}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=400pt]{LaTex/bilder/case88_day0_slice_0119_no7.png}
+		\caption{ Höchster Dice-Koeffizient von Modell Nr. 7 }\label{Fig:case88_day0_slice_0119}
+	\end{center}
+\end{figure}
+
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=400pt]{LaTex/bilder/case34_day16_slice_0072_no1.png}
+		\caption{ False-Positive Vorhersage von Nr. 1 }\label{Fig:case34_day16_slice_0072}
+	\end{center}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=400pt]{LaTex/bilder/case40_day17_slice_0122_no1.png}
+		\caption{ Vorhersage von Modell Nr. 1 (0.935) }\label{Fig:case40_day17_slice_0122}
+	\end{center}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=400pt]{LaTex/bilder/case40_day17_slice122_7vs1.png}
+		\caption{Links Original, gefolgt von Nr. 1 (0.935), Nr 7 (0.58) und der tatsächlichen Maske. }\label{Fig:case40_day17_slice121}
+	\end{center}
+\end{figure}
