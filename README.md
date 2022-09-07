@@ -15,3 +15,27 @@ Dieses Notebook beinhaltet alle Funktionen, zum Erfassen der Performance der Mod
 ### HOT Inference
 
 Dieses Notebook enthält alle Funktionen zum Visualisieren der trainierten Modelle.
+
+### hpc_train_files
+
+In diesem Ordner befinden sich die einzelnen Klassen die zum Trainieren auf dem Hilber-Cluster genutzt wurden.
+
+### input
+
+Hier befinden sich verschiedene Versionen des Tranings-Dataframes.
+
+### jobscript
+
+Skript, welches benutzt wurde um Aufträge in die Queue zu schicken.
+
+### Latex
+
+Latex Dateien der Thesis.
+
+### Performance
+
+Hier finden sich die Werte der Metriken der Predictions der einzelnen Modelle.
+
+### tensorboard_logs
+
+Hier befinden sich die Werte der Trainingsverläufe sowie die Dateien für Tensorboard.
